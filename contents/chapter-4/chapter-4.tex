@@ -1,27 +1,69 @@
 \chapter{Hasil dan Pembahasan}
 
-Berikut ini adalah yang perlu diperhatikan untuk mengisi bab hasil dan pembahasan:
+Uraian pada Subbab 3.4 mengenai cara analisis menunjukkan bahwa penelitian ini disusun ke dalam enam skenario percobaan. Ringkasan keenam skenario tersebut disajikan pada Tabel 4.1.
 
-\begin{enumerate}
-	\item Setiap rumusan masalah boleh memiliki lebih dari 1 tujuan.
-	\item Setiap subbab harus spesifik menjawab setiap tujuan yang dituliskan.
-	\item Setiap rumusan masalah boleh dijawab dengan 1 subbab atau lebih.
-\end{enumerate}
+\begin{table}[h]
+	\centering
+	\caption{Ringkasan Skenario Percobaan}
+	\label{tab:skenario}
+	\begin{tabular}{|c|c|p{9cm}|}
+		\hline
+		\textbf{No} & \textbf{Skenario} & \textbf{Keterangan} \\
+		\hline
+		1 & Skenario 1 & Kondisi awal sistem \textit{nine bus} belum terkoneksi DFIG \\
+		\hline
+		\multirow{2}{*}{2} & \multirow{2}{*}{Skenario 2} & 1. DFIG mengganti salah satu generator konvensional yaitu G3 \\
+		\cline{3-3}
+		 & & 2.DFIG mengganti salah satu generator konvensional yaitu G2 \\
+		\hline
+		\multirow{2}{*}{3} & \multirow{2}{*}{Skenario 3} & 1. PMSG mengganti salah satu generator konvensional yaitu G3 \\
+		\cline{3-3}
+		 & & 2.PMSG mengganti salah satu generator konvensional yaitu G2 \\
+		\hline
+		\multirow{2}{*}{4} & \multirow{2}{*}{Skenario 4} & 1. Perubahan peningkatan beban B ketika DFIG mengganti G3 \\
+		\cline{3-3}
+		 & & 2.Perubahan peningkatan beban A ketika DFIG mengganti G2 \\
+		\hline
+		\multirow{2}{*}{5} & \multirow{2}{*}{Skenario 5} & 1. Perubahan peningkatan beban B ketika PMSG mengganti G3 \\
+		\cline{3-3}
+		 & & 2. Perubahan peningkatan beban A ketika PMSG mengganti G2 \\
+		\hline
+		6 & Skenario 6 & 1. Perubahan peningkatan beban A dan beban B yang dilakukan secara bergantian pada sistem \textit{nine bus} (Tanpa Integrasi DFIG dan PMSG) \\
+		\hline
+	\end{tabular}
+\end{table}
 
-Berikut ini adalah contoh sub bab untuk menjelaskan tujuan penelitian.
+\section{Analisis \textit{Small Signal Stability} pada Skenario 1}
 
-\section{Pembahasan Tujuan 1 dengan Hasil Penelitian 1 (Ubah Judul Sesuai dengan Hal yang Hendak dibahas)}
+Skenario 1 merepresentasikan kondisi awal sistem \textit{Nine Bus} sebelum diintegrasikan dengan Pembangkit Listrik Tenaga Bayu (PLTB). Dalam kondisi ini, seluruh beban masih disuplai oleh generator konvensional, yaitu G1, G2, dan G3, sebagaimana ditunjukkan pada Gambar 3.1. Analisis \textit{small signal stability} (SSS) pada skenario ini dilakukan dengan meninjau nilai \textit{eigenvalue}, \textit{damping ratio} (DR), dan \textit{participation factor} (PRF) untuk mengevaluasi karakteristik kestabilan sistem.
 
-Sub bab pertama adalah membahas tujuan penelitian pertama dengan hasil penelitian ke-1. 
-Dapat ditambahkan beberapa sub bab jika diperlukan.
+\subsection{Analisis \textit{Eigenvalue} dan \textit{Damping Ratio} pada Skenario 1}
 
-\section{Pembahasan Tujuan 1 dengan Hasil Penelitian 2 (Ubah Judul Sesuai dengan Hal yang Hendak dibahas)}
+Skenario 1 diawali dengan pengujian kestabilan sistem \textit{Nine Bus} dalam kondisi awal, yaitu ketika seluruh beban masih disuplai oleh generator konvensional tanpa adanya integrasi PLTB. Pengujian dilakukan melalui simulasi \textit{modal analysis} menggunakan perangkat lunak DIgSILENT PowerFactory untuk memperoleh nilai eigenvalue sistem. Hasil simulasi menunjukkan bahwa sistem memiliki 16 nilai eigenvalue yang merepresentasikan karakteristik dinamik sistem.
 
-Sub bab kedua adalah membahas tujuan penelitian pertama dengan hasil penelitian ke-2. Sub bab ini merupakan contoh tambahan sub bab pertama.
+Gambar 4.1 menampilkan plot empat \textit{eigenvalue} dengan nilai \textit{damping ratio} (DR) terkecil dari total 16 \textit{eigenvalue} yang diperoleh pada Skenario 1. Rincian nilai dari keempat mode tersebut disajikan pada Tabel 4.2. Nilai DR yang lebih besar menunjukkan kemampuan redaman sistem yang lebih baik, sedangkan nilai \textit{damping time constant} yang lebih kecil mengindikasikan bahwa osilasi sistem dapat teredam dalam waktu yang lebih singkat.
 
-\section{Pembahasan Tujuan 2 dengan Hasil Penelitian 3 (Ubah Judul Sesuai dengan Hal yang Hendak dibahas)}
+Hasil simulasi menunjukkan bahwa sistem pada Skenario 1 masih berada dalam kondisi stabil. Kestabilan tersebut ditunjukkan oleh seluruh nilai riil \textit{eigenvalue} yang bernilai negatif atau berada di sebelah kiri sumbu imajiner. Dengan demikian, kondisi awal sistem \textit{Nine Bus} masih memenuhi kriteria kestabilan sinyal kecil. Nilai \textit{eigenvalue} untuk mode-mode lainnya disajikan secara lengkap pada Lampiran.
 
-Sub bab ketiga adalah membahas tujuan penelitian kedua. Dapat ditambahkan beberapa sub bab jika diperlukan.
+\subsection{Analisis \textit{Participation Factor} pada Skenario 1}
+
+Tabel 4.2 menunjukkan bahwa mode 005 memiliki nilai \textit{damping ratio} (DR) terkecil. Nilai DR yang rendah mengindikasikan bahwa mode tersebut memiliki kemampuan redaman yang relatif lemah terhadap gangguan. Oleh karena itu, analisis \textit{participation factor} (PRF) perlu dilakukan untuk mengidentifikasi variabel keadaan yang paling dominan memengaruhi karakteristik kestabilan sistem.
+
+Analisis PRF pada Skenario 1 untuk mode 005 menghasilkan 17 \textit{state variables}. Setiap generator memiliki beberapa variabel keadaan yang merepresentasikan karakteristik dinamiknya, antara lain phi, speed, psi1q, psi2q, psi1d, dan psifd. Nilai PRF untuk mode 005 disajikan pada Tabel 4.3.
+
+Hasil pada Tabel 4.3 menunjukkan bahwa nilai PRF tertinggi, yaitu sebesar 1, terdapat pada variabel speed milik generator G2. Hal ini menunjukkan bahwa variabel \textit{speed} pada G2, yang merepresentasikan kecepatan putar rotor mesin sinkron, memiliki kontribusi paling dominan terhadap mode 005. Dengan demikian, karakteristik kestabilan sistem pada Skenario 1 paling dipengaruhi oleh dinamika kecepatan rotor G2.
+
+\section{Analisis \textit{Small Signal Stability} pada Skenario 2}
+
+Skenario 2 merepresentasikan kondisi sistem Nine Bus setelah diintegrasikan dengan Pembangkit Listrik Tenaga Bayu (PLTB) berbasis doubly-fed induction generator (DFIG) melalui skema penggantian generator konvensional. Analisis \textit{small signal stability} (SSS) pada skenario ini dilakukan melalui dua konfigurasi sistem, yaitu Skenario 2.1 dan Skenario 2.2. Perbedaan utama antara kedua konfigurasi tersebut terletak pada lokasi integrasi DFIG serta tingkat penetrasi daya DFIG dalam menggantikan peran generator konvensional untuk menyuplai beban. Pembagian skenario ini bertujuan untuk mengevaluasi pengaruh perubahan lokasi dan kapasitas penetrasi DFIG terhadap karakteristik kestabilan sinyal kecil sistem.
+
+
+\subsection{Analisis \textit{Small Signal Stability} pada Skenario 2.1}
+Skenario 2.1 difokuskan pada analisis kestabilan sistem setelah PLTB berbasis DFIG diintegrasikan ke dalam sistem \textit{Nine Bus}. Integrasi tersebut dilakukan dengan mengganti Generator 3 (G3) menggunakan DFIG, sebagaimana ditunjukkan pada Gambar 3.4. Kapasitas DFIG diatur sama dengan kapasitas G3, yaitu sebesar 85 MW, sehingga G3 dinonaktifkan dalam simulasi ini.
+
+Generator konvensional lainnya tetap dioperasikan sesuai kondisi sistem yang telah ditentukan. Analisis kestabilan sistem pada skenario ini dilakukan dengan meninjau nilai eigenvalue, nilai damping ratio (DR) terkecil, serta participation factor (PRF) terbesar pada mode dengan nilai DR terkecil. Melalui pendekatan tersebut, variabel keadaan yang paling dominan memengaruhi karakteristik kestabilan sistem dapat diidentifikasi secara lebih jelas.
+
+
 
 \section{Perbandingan Hasil Penelitian dengan Hasil Terdahulu}
 
