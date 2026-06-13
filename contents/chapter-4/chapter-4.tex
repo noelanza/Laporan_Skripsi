@@ -2,33 +2,35 @@
 
 Uraian pada Subbab 3.4 mengenai cara analisis menunjukkan bahwa penelitian ini disusun ke dalam enam skenario percobaan. Ringkasan keenam skenario tersebut disajikan pada Tabel 4.1.
 
+\newcommand{\keterangan}[1]{\begin{tabular}[t]{@{}r@{~}p{8.1cm}@{}}#1\end{tabular}}
 \begin{table}[h]
 	\centering
 	\caption{Ringkasan Skenario Percobaan}
 	\label{tab:skenario}
+	\fontsize{12}{14.4}\selectfont
 	\begin{tabular}{|c|c|p{9cm}|}
 		\hline
-		\textbf{No} & \textbf{Skenario} & \textbf{Keterangan} \\
+		\textbf{No} & \textbf{Skenario} & \multicolumn{1}{c|}{\textbf{Keterangan}} \\
 		\hline
 		1 & Skenario 1 & Kondisi awal sistem \textit{nine bus} belum terkoneksi DFIG \\
 		\hline
-		\multirow{2}{*}{2} & \multirow{2}{*}{Skenario 2} & 1. DFIG mengganti salah satu generator konvensional yaitu G3 \\
+		\multirow{2}{*}{2} & \multirow{2}{*}{Skenario 2} & \keterangan{1. & DFIG mengganti salah satu generator konvensional yaitu G3} \\
 		\cline{3-3}
-		 & & 2.DFIG mengganti salah satu generator konvensional yaitu G2 \\
+		 & & \keterangan{2. & DFIG mengganti salah satu generator konvensional yaitu G2} \\
 		\hline
-		\multirow{2}{*}{3} & \multirow{2}{*}{Skenario 3} & 1. PMSG mengganti salah satu generator konvensional yaitu G3 \\
+		\multirow{2}{*}{3} & \multirow{2}{*}{Skenario 3} & \keterangan{1. & PMSG mengganti salah satu generator konvensional yaitu G3} \\
 		\cline{3-3}
-		 & & 2.PMSG mengganti salah satu generator konvensional yaitu G2 \\
+		 & & \keterangan{2. & PMSG mengganti salah satu generator konvensional yaitu G2} \\
 		\hline
-		\multirow{2}{*}{4} & \multirow{2}{*}{Skenario 4} & 1. Perubahan peningkatan beban B ketika DFIG mengganti G3 \\
+		\multirow{2}{*}{4} & \multirow{2}{*}{Skenario 4} & \keterangan{1. & Perubahan peningkatan beban B ketika DFIG mengganti G3} \\
 		\cline{3-3}
-		 & & 2.Perubahan peningkatan beban A ketika DFIG mengganti G2 \\
+		 & & \keterangan{2. & Perubahan peningkatan beban A ketika DFIG mengganti G2} \\
 		\hline
-		\multirow{2}{*}{5} & \multirow{2}{*}{Skenario 5} & 1. Perubahan peningkatan beban B ketika PMSG mengganti G3 \\
+		\multirow{2}{*}{5} & \multirow{2}{*}{Skenario 5} & \keterangan{1. & Perubahan peningkatan beban B ketika PMSG mengganti G3} \\
 		\cline{3-3}
-		 & & 2. Perubahan peningkatan beban A ketika PMSG mengganti G2 \\
+		 & & \keterangan{2. & Perubahan peningkatan beban A ketika PMSG mengganti G2} \\
 		\hline
-		6 & Skenario 6 & 1. Perubahan peningkatan beban A dan beban B yang dilakukan secara bergantian pada sistem \textit{nine bus} (Tanpa Integrasi DFIG dan PMSG) \\
+		6 & Skenario 6 &  Perubahan peningkatan beban A dan beban B yang dilakukan secara bergantian pada sistem \textit{nine bus} (Tanpa Integrasi DFIG dan PMSG) \\
 		\hline
 	\end{tabular}
 \end{table}
@@ -49,24 +51,59 @@ Hasil simulasi menunjukkan bahwa sistem pada Skenario 1 masih berada dalam kondi
 
 Tabel 4.2 menunjukkan bahwa mode 005 memiliki nilai \textit{damping ratio} (DR) terkecil. Nilai DR yang rendah mengindikasikan bahwa mode tersebut memiliki kemampuan redaman yang relatif lemah terhadap gangguan. Oleh karena itu, analisis \textit{participation factor} (PRF) perlu dilakukan untuk mengidentifikasi variabel keadaan yang paling dominan memengaruhi karakteristik kestabilan sistem.
 
-Analisis PRF pada Skenario 1 untuk mode 005 menghasilkan 17 \textit{state variables}. Setiap generator memiliki beberapa variabel keadaan yang merepresentasikan karakteristik dinamiknya, antara lain phi, speed, psi1q, psi2q, psi1d, dan psifd. Nilai PRF untuk mode 005 disajikan pada Tabel 4.3.
+Analisis PRF pada Skenario 1 untuk mode 005 menghasilkan 17 \textit{state variables}. Setiap generator memiliki beberapa variabel keadaan yang merepresentasikan karakteristik dinamiknya, antara lain \textit{phi}, \textit{speed}, \textit{psi1q}, \textit{psi2q}, \textit{psi1d}, dan \textit{psifd}. Nilai PRF untuk mode 005 disajikan pada Tabel 4.3.
 
 Hasil pada Tabel 4.3 menunjukkan bahwa nilai PRF tertinggi, yaitu sebesar 1, terdapat pada variabel speed milik generator G2. Hal ini menunjukkan bahwa variabel \textit{speed} pada G2, yang merepresentasikan kecepatan putar rotor mesin sinkron, memiliki kontribusi paling dominan terhadap mode 005. Dengan demikian, karakteristik kestabilan sistem pada Skenario 1 paling dipengaruhi oleh dinamika kecepatan rotor G2.
 
 \section{Analisis \textit{Small Signal Stability} pada Skenario 2}
 
-Skenario 2 merepresentasikan kondisi sistem Nine Bus setelah diintegrasikan dengan Pembangkit Listrik Tenaga Bayu (PLTB) berbasis doubly-fed induction generator (DFIG) melalui skema penggantian generator konvensional. Analisis \textit{small signal stability} (SSS) pada skenario ini dilakukan melalui dua konfigurasi sistem, yaitu Skenario 2.1 dan Skenario 2.2. Perbedaan utama antara kedua konfigurasi tersebut terletak pada lokasi integrasi DFIG serta tingkat penetrasi daya DFIG dalam menggantikan peran generator konvensional untuk menyuplai beban. Pembagian skenario ini bertujuan untuk mengevaluasi pengaruh perubahan lokasi dan kapasitas penetrasi DFIG terhadap karakteristik kestabilan sinyal kecil sistem.
-
+Skenario 2 merepresentasikan kondisi sistem Nine Bus setelah diintegrasikan dengan Pembangkit Listrik Tenaga Bayu (PLTB) berbasis \textit{doubly-fed induction generator} (DFIG) melalui skema penggantian generator konvensional. Analisis \textit{small signal stability} (SSS) pada skenario ini dilakukan melalui dua konfigurasi sistem, yaitu Skenario 2.1 dan Skenario 2.2. Perbedaan utama antara kedua konfigurasi tersebut terletak pada lokasi integrasi DFIG serta tingkat penetrasi daya DFIG dalam menggantikan peran generator konvensional untuk menyuplai beban. Pembagian skenario ini bertujuan untuk mengevaluasi pengaruh perubahan lokasi dan kapasitas penetrasi DFIG terhadap karakteristik kestabilan sinyal kecil sistem.
 
 \subsection{Analisis \textit{Small Signal Stability} pada Skenario 2.1}
-Skenario 2.1 difokuskan pada analisis kestabilan sistem setelah PLTB berbasis DFIG diintegrasikan ke dalam sistem \textit{Nine Bus}. Integrasi tersebut dilakukan dengan mengganti Generator 3 (G3) menggunakan DFIG, sebagaimana ditunjukkan pada Gambar 3.4. Kapasitas DFIG diatur sama dengan kapasitas G3, yaitu sebesar 85 MW, sehingga G3 dinonaktifkan dalam simulasi ini.
+Skenario 2.1 difokuskan pada analisis kestabilan sistem setelah PLTB berbasis DFIG diintegrasikan ke dalam sistem \textit{Nine Bus}. Integrasi tersebut dilakukan dengan mengganti generator G3 menggunakan DFIG, sebagaimana ditunjukkan pada Gambar 3.4. Kapasitas DFIG diatur sama dengan kapasitas G3, yaitu sebesar 85 MW, sehingga G3 dinonaktifkan dalam simulasi ini.
 
-Generator konvensional lainnya tetap dioperasikan sesuai kondisi sistem yang telah ditentukan. Analisis kestabilan sistem pada skenario ini dilakukan dengan meninjau nilai eigenvalue, nilai damping ratio (DR) terkecil, serta participation factor (PRF) terbesar pada mode dengan nilai DR terkecil. Melalui pendekatan tersebut, variabel keadaan yang paling dominan memengaruhi karakteristik kestabilan sistem dapat diidentifikasi secara lebih jelas.
+Generator konvensional lainnya tetap dioperasikan sesuai kondisi sistem yang telah ditentukan. Analisis kestabilan sistem pada skenario ini dilakukan dengan meninjau nilai \textit{eigenvalue}, nilai \textit{damping ratio} (DR) terkecil, serta \textit{participation factor} (PRF) terbesar pada mode dengan nilai DR terkecil. Melalui pendekatan tersebut, \textit{state variables} yang paling dominan memengaruhi karakteristik kestabilan sistem dapat diidentifikasi secara lebih jelas.
 
+\subsection{Analisis \textit{Eigenvalue} dan \textit{Damping Ratio} pada Skenario 2.1}
 
+Skenario 2.1 dianalisis melalui simulasi \textit{modal analysis} menggunakan perangkat lunak DIgSILENT PowerFactory guna memperoleh nilai \textit{eigenvalue} sistem. Hasil simulasi menunjukkan bahwa jumlah \textit{eigenvalue} yang diperoleh pada Skenario 2.1 lebih banyak dibandingkan dengan Skenario 1. Peningkatan jumlah tersebut disebabkan oleh penggunaan DFIG yang memiliki komponen kontrol tambahan, sehingga jumlah \textit{state variables} dalam sistem turut bertambah. Akibatnya, jumlah mode pada Skenario 2.1 meningkat menjadi 30 mode.
 
-\section{Perbandingan Hasil Penelitian dengan Hasil Terdahulu}
+Gambar 4.2 menampilkan plot empat \textit{eigenvalue} dengan nilai \textit{damping ratio} (DR) terkecil pada Skenario 2.1. Hasil tersebut menunjukkan bahwa mode 9 dan mode 10 memiliki nilai DR terendah, sehingga kedua mode tersebut menjadi perhatian utama dalam analisis kestabilan sinyal kecil. Rincian nilai DR dari mode-mode dengan redaman terendah tersebut disajikan pada Tabel 4.4.
 
-Pembahasan penutup dapat menjelaskan mengenai kelebihan hasil pengembangan / 
-penelitian dan kekurangan dibandingkan dengan skripsi atau penelitian terdahulu atau
-perbandingan terhadap produk lain yang ada di pasaran. Penulis dapat menggunakan tabel untuk membandingkan secara gamblang dan menjelaskannya.
+\begin{table}[h]
+	\centering
+	\caption{Nilai \textit{Eigenvalue} dengan \textit{Damping Ratio} Terkecil pada Skenario 2.1}
+	\label{tab:eigenvalue_sk21}
+	\fontsize{12}{14.4}\selectfont
+	\setlength{\tabcolsep}{4pt}
+	\begin{tabular}{|>{\centering\arraybackslash}m{2.3cm}|c|c|c|c|}
+		\hline
+		\textbf{Name} &
+		\textbf{\shortstack{Real Part\\(1/s)}} &
+		\textbf{\shortstack{Imaginary Part\\(rad/s)}} &
+		\textbf{\shortstack{Damped Frequency\\(Hz)}} &
+		\textbf{\shortstack{Damping Ratio\\(\%)}} \\
+		\hline
+		Mode 00009 & $-$0,40985370 &    10,1287611 & 1,61206070 & 4,04308016 \\
+		\hline
+		Mode 00010 & $-$0,40985370 & $-$10,1287611 & 1,61206070 & 4,04308016 \\
+		\hline
+		Mode 00011 & $-$0,64317724 &    8,91207674 & 1,41840106 & 7,19819651 \\
+		\hline
+		Mode 00012 & $-$0,64317724 & $-$8,91207674 & 1,41840106 & 7,19819651 \\
+		\hline
+	\end{tabular}
+\end{table}
+
+Hasil yang ditampilkan pada Tabel 4.4 menunjukkan bahwa nilai DR terkecil masih bernilai positif. Kondisi ini mengindikasikan bahwa seluruh mode atau \textit{eigenvalue} sistem masih berada di sebelah kiri sumbu imajiner, sehingga sistem tetap memenuhi kriteria kestabilan sinyal kecil. Dengan demikian, integrasi DFIG sebagai pengganti G3 pada Skenario 2.1 tidak menyebabkan sistem kehilangan kestabilannya. Nilai \textit{eigenvalue} untuk mode-mode lainnya pada Skenario 2.1 disajikan secara lengkap pada Lampiran.
+
+\subsection{Analisis \textit{Participation Factor} pada Skenario 2.1}
+
+Variabel generator yang paling dominan memengaruhi kestabilan sistem pada Skenario 2.1 dapat ditinjau melalui nilai \textit{participation factor} (PRF) pada mode dengan \textit{damping ratio} (DR) terkecil. Tabel 4.4 menunjukkan bahwa mode dengan nilai DR terkecil adalah mode 009. Oleh karena itu, analisis PRF difokuskan pada mode tersebut untuk mengetahui \textit{state variable} yang memiliki kontribusi terbesar terhadap karakteristik kestabilan sistem.
+
+Analisis PRF pada mode 009 menghasilkan 41 \textit{state variables}. Jumlah tersebut lebih banyak dibandingkan dengan Skenario 1 karena adanya penambahan variabel keadaan yang berasal dari model DFIG beserta sistem kontrolnya. Tabel 4.5 menyajikan variabel keadaan dengan nilai PRF lebih dari 1, sedangkan variabel dengan nilai PRF kurang dari 1\% tetapi tidak bernilai nol disajikan pada Lampiran.
+
+Hasil PRF pada Tabel 4.5 menunjukkan bahwa variabel dphi12 memiliki nilai PRF tertinggi, yaitu sebesar 1. Dengan demikian, variabel tersebut merupakan variabel yang paling dominan memengaruhi kestabilan sistem pada Skenario 2.1. Variabel dphi12 menggambarkan perubahan perbedaan sudut putar pada poros yang menghubungkan turbin dan generator. Besarnya kontribusi variabel ini menunjukkan bahwa dinamika mekanis poros DFIG memiliki pengaruh utama terhadap mode osilasi dengan redaman terendah pada Skenario 2.1.
+
+\subsection{Analisis \textit{Small Signal Stability} pada Skenario 2.2}
+
