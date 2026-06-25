@@ -1,46 +1,29 @@
-Intisari ditulis menggunakan bahasa Indonesia dengan jarak antar baris 1 spasi dan maksimal 1 halaman. Intisari sekurang-kurangnya berisi tentang latar belakang dan tujuan penelitian, metodologi yang digunakan, hasil penelitian, kesimpulan dan implikasi, dan Kata kunci yang berhubungan dengan penelitian.
+Integrasi Pembangkit Listrik Tenaga Bayu (PLTB) berbasis \textit{doubly fed
+induction generator} (DFIG-WT) dan \textit{permanent magnet synchronous
+generator} (PMSG-WT) ke dalam sistem tenaga listrik berpotensi mengubah
+karakteristik stabilitas sinyal kecil karena kedua teknologi ini memiliki
+dinamika yang berbeda dari generator sinkron konvensional; penelitian ini
+bertujuan menganalisis dan membandingkan dampak integrasi DFIG-WT dan PMSG-WT
+terhadap \textit{small signal stability} (SSS) pada sistem uji IEEE
+\textit{nine-bus} menggunakan analisis modal berbasis \textit{eigenvalue} di
+DIgSILENT PowerFactory 2024, dengan enam skenario percobaan yang memvariasikan
+teknologi PLTB, posisi integrasi (Bus 7 dan Bus 9), serta kondisi pembebanan.
+Hasil menunjukkan bahwa integrasi DFIG-WT menurunkan \textit{damping ratio} mode
+dominan dari 7,22\% menjadi sekitar 4,04\% tanpa bergantung pada posisi
+integrasi, serta mempersempit margin kestabilan beban secara signifikan---batas
+ketidakstabilan Beban B turun dari 373\% menjadi 86\% dan Beban A dari 247\%
+menjadi 63\%; sebaliknya, integrasi PMSG-WT mempertahankan atau meningkatkan
+\textit{damping ratio} (7,25\%--8,73\%) karena \textit{fully-rated converter}
+memisahkan dinamika mesin dari jaringan sehingga mode osilasi dominan tetap
+dikendalikan oleh dinamika rotor generator sinkron konvensional, dan analisis
+\textit{participation factor} mengonfirmasi bahwa variabel poros DFIG-WT
+($\Delta\delta_{12}$) mendominasi mode osilasi dominan sedangkan sudut rotor
+internal DFIG-WT ($\varphi_m$) mendominasi mode tidak stabil pada kondisi
+peningkatan beban. Kesimpulannya, DFIG-WT dan PMSG-WT memberikan dampak yang
+berlawanan terhadap SSS---DFIG-WT memperburuk redaman dan mempersempit margin
+operasi aman, sedangkan PMSG-WT mempertahankan atau meningkatkan kestabilan
+dengan karakteristik yang bergantung pada posisi integrasi---sehingga temuan ini
+memberikan acuan teknis bagi perencanaan integrasi PLTB yang aman terhadap SSS
+sistem tenaga listrik.
 
-Kata Kunci ditulis maksimal 5 kata yang paling berhubungan dengan isi skripsi. Silakan mengacu pada ACM / IEEE \textit{Computing classification} jika Anda adalah mahasiswa Sarjana TI \textcolor{blue}{http://www.acm.org/about/class/} atau mengacu kepada IEEE keywords \textcolor{blue}{http://www.ieee.org/documents/taxonomy\_v101.pdf} jika Anda berasal dari Prodi Sarjana TE.
-
-\noindent{Kata kunci} : Kata kunci 1, Kata kunci 2, Kata kunci 3, Kata kunci 4, Kata kunci 5
-
-\vspace{1cm}
-
-%HAPUS YANG TIDAK PERLU
-%-------------------------------------------------
-\noindent\fbox{%
-	\parbox{\textwidth}{%
-\textbf{Contoh Abstrak Teknik Elektro:} \\
-
-\hspace{1cm} "Penelitian ini bertujuan untuk mengembangkan sistem pengendalian suhu ruangan dengan menggunakan microcontroller. Metodologi yang digunakan adalah desain sirkuit, implementasi sistem pengendalian, dan pengujian performa. Hasil penelitian menunjukkan 
-bahwa sistem pengendalian suhu ruangan yang dikembangkan mampu mengendalikan suhu ruangan dengan akurasi sebesar ±0,5°C. Kesimpulan dari penelitian ini adalah sistem pengendalian suhu ruangan yang dikembangkan efektif dan efisien. \\
-
-Kata kunci: microcontroller, sistem pengendalian suhu, akurasi."
-\vspace{5mm}
-
-\textbf{Contoh Abstrak Teknik Biomedis:} \\
-
-\hspace{1cm} "Penelitian ini bertujuan untuk mengevaluasi keefektifan prototipe alat pemantau denyut jantung berbasis elektrokardiogram (ECG) untuk pasien jantung. Metodologi yang digunakan meliputi desain dan pembuatan prototipe, pengujian dengan pasien, dan analisis data. Hasil penelitian menunjukkan bahwa prototipe alat pemantau denyut jantung berbasis ECG memiliki 
-akurasi yang baik dan mampu memantau denyut jantung pasien secara efektif. Kesimpulan dari penelitian ini adalah prototipe alat pemantau denyut jantung berbasis ECG merupakan solusi 
-yang efektif dan efisien untuk memantau pasien jantung. \\
-
-Kata kunci: elektrokardiogram, alat pemantau denyut jantung, akurasi."
-\vspace{5mm}
-
-	}%
-}
-
-%-------------------------------------------------
-
-\noindent\fbox{%
-	\parbox{\textwidth}{%
-		\textbf{Contoh Abstrak Teknologi Informasi:} \\
-		
-\hspace{1cm} "Penelitian ini bertujuan untuk mengevaluasi keamanan dan privasi pengguna aplikasi media sosial terpopuler. Metodologi yang digunakan meliputi analisis kebijakan privasi dan pengaturan keamanan, pengujian penetrasi, dan survei pengguna. Hasil penelitian 
-menunjukkan bahwa beberapa aplikasi media sosial memiliki kebijakan privasi yang kurang jelas dan rendahnya tingkat keamanan. Kesimpulan dari penelitian ini adalah pentingnya meningkatkan kebijakan privasi dan tingkat keamanan pada aplikasi media sosial untuk melindungi privasi dan data pengguna. \\
-		
-Kata kunci: media sosial, keamanan, privasi, pengguna."
-\vspace{5mm}
-		
-	}%
-}
+\noindent{Kata kunci} : stabilitas sinyal kecil, DFIG-WT, PMSG-WT, analisis modal, \textit{eigenvalue}

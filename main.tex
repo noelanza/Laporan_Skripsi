@@ -21,24 +21,33 @@
 %\documentclass[bachelor,english]{thesisdtetiugm}
 \usepackage{bookmark}
 \usepackage{array}
+\usepackage{tabularx}
+\usepackage{booktabs}
 \usepackage{float}
+\usepackage{longtable}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\counterwithin{figure}{chapter}
+\counterwithin{table}{chapter}
+\renewcommand{\thefigure}{\arabic{chapter}.\arabic{figure}}
+\renewcommand{\thetable}{\arabic{chapter}.\arabic{table}}
 %======================================
 % Information Input
 %======================================
 % Input author's name and ID number
 \author{Made Abel Noelanza}{22/494616/TK/54274}
 % Input the thesis' title
-\title{Dampak halo}
+\title{Dampak Integrasi PLTB terhadap Stabilitas Sinyal Kecil}
 % Program and the head of the program
-\program{<<Nama Prodi>>}{<<Program coordinator>>}{<<NIP>>}
+\program{Teknik Elektro}{<<Program coordinator>>}{<<NIP>>}
 % Name of department head and NIP
 \departmenthead{<<Head of the department>>}{<<NIP>>}
 \major{<<Major>>}
 \yearsubmit{2026}
 \examdate{<<Exam date>>}
 % Name of thesis supervisors/promotors
-\addsupervisor{Dosen Pembimbing 1, S.T., M.Eng., PhD.}{<<NIP xxxxxx>>}
-\addsupervisor{Dosen Pembimbing 2, S.T., M.Eng., PhD.}{<<NIP xxxxxx>>}
+\addsupervisor{Dr. Ir. Avrin Nur Widiastuti, S.T., M.Eng., IPM.}{198004032005012003}
+\addsupervisor{Ir. Roni Irnawan, S.T., M.Sc., Ph.D., SMIEEE.}{198504032024061001}
 %\addsupervisor{<<Supervisor 3>>}{<<NIP>>}
 % Name of examiners
 %\addexaminer{<<Examiner 1>>}{<<NIP 1>>}
@@ -152,7 +161,7 @@
 \cleardoublepage \phantomsection
 \include{contents/chapter-4/chapter-4}
 \cleardoublepage \phantomsection
-\include{contents/chapter-5/chapter-5}
+%\include{contents/chapter-5/chapter-5}
 \cleardoublepage \phantomsection
 \include{contents/chapter-6/chapter-6}
 
@@ -168,10 +177,7 @@
 \bibliography{references}
 
 %Hapus bagian di bawah setelah tidak diperlukan
-\begin{center}
-	\textcolor{red}{
-	Catatan: Daftar pustaka adalah apa yang dirujuk atau disitasi, bukan apa yang telah dibaca, jika tidak ada dalam sitasi maka tidak perlu dituliskan dalam daftar pustaka.}
-\end{center}
+
 
 %======================================
 

@@ -2,372 +2,282 @@
 
 \section{Latar Belakang}
 
-Sub-bab ini berisi uraian tentang latar belakang atau justifikasi ilmiah (dari \textit{paper} dan jurnal) dari permasalahan yang akan diteliti, alasan penelitian dan penelitian yang pernah dilakukan sebelumnya terkait fenomena tersebut.
+Kebutuhan listrik global tumbuh sebesar 4,4\% pada tahun 2024 dan diproyeksikan
+meningkat rata-rata 3,6\% per tahun sepanjang 2026--2030, sekitar 50\% lebih
+tinggi dibandingkan rata-rata dekade sebelumnya, didorong oleh elektrifikasi
+industri, kendaraan listrik, pendinginan udara, dan pusat data
+\cite{iea2026electricity}. EBT dan nuklir bersama-sama diproyeksikan mencakup
+sekitar setengah dari total pembangkitan listrik dunia pada tahun 2030, dengan
+EBT diperkirakan memenuhi hampir seluruh tambahan kebutuhan listrik tersebut
+\cite{iea2026electricity}. Di Indonesia, pemerintah menargetkan bauran EBT
+sebesar 23\% pada tahun 2025 \cite{iea2022indonesia}. Rencana Usaha Penyediaan
+Tenaga Listrik (RUPTL) PLN 2025--2034 menetapkan penambahan 69,5 GW kapasitas
+pembangkit, 76\% di antaranya dari EBT \cite{ruptl2025}.
 
-%HAPUS YANG TIDAK PERLU
-%-------------------------------------------------
-\noindent\textbf{Contoh latar belakang penelitian untuk teknik elektro:} \\
-\noindent\fbox{%
-	\parbox{\textwidth}{%
-				
-		\hspace{1cm} "Peningkatan konsumsi energi listrik yang terus menerus menyebabkan ketersediaan 
-		sumber energi yang semakin terbatas. Sumber energi terbarukan seperti solar dan angin 
-		menjadi solusi yang menjanjikan untuk memenuhi kebutuhan energi. Namun, kapasitas 
-		produksi dan efisiensi dari sumber energi terbarukan masih sangat tergantung pada 
-		kondisi cuaca dan geografis. Oleh karena itu, perlu adanya sistem penyimpanan energi 
-		yang efisien dan dapat memastikan ketersediaan energi listrik secara kontinu. Penelitian 
-		ini akan mengevaluasi kemampuan superkapasitor dalam menyimpan dan mengirimkan 
-		energi secara efisien dan memastikan ketersediaan energi listrik secara kontinu."
-		
-	}%
-}
+Secara global, kapasitas terpasang Pembangkit Listrik Tenaga Bayu (PLTB) telah
+mencapai 1.133 GW pada akhir tahun 2024 dengan penambahan sebesar 113,2 GW
+sepanjang tahun tersebut, menjadikan energi angin sebagai sumber EBT dengan
+kapasitas terbesar kedua di dunia setelah energi surya \cite{irena2025capacity}.
+Di Indonesia, potensi energi angin nasional diperkirakan mencapai 154,6 GW,
+namun kapasitas PLTB yang telah terpasang hingga tahun 2024 baru sebesar 152,3
+MW, atau kurang dari 0,1\% dari total potensi yang tersedia
+\cite{esdm2025pltb,pambudi2025wind}. Kesenjangan ini bersumber dari harga
+listrik PLTB yang lebih tinggi dibandingkan pembangkit konvensional,
+keterbatasan industri komponen lokal, dan minimnya pembiayaan berbiaya rendah
+\cite{pambudi2025wind}. Pemerintah Indonesia menetapkan target penambahan 5 GW
+kapasitas PLTB hingga tahun 2030 \cite{esdm2025pltb}. Skala target ini menuntut
+pemahaman yang lebih baik tentang dampak integrasi PLTB terhadap stabilitas
+sistem tenaga listrik, termasuk \textit{small signal stability}.
 
-%-------------------------------------------------	
-\vspace{5mm}
-Latar belakang ini memperkenalkan masalah ketersediaan sumber energi dan 
-peningkatan konsumsi energi listrik yang terus menerus. Ini juga memperkenalkan solusi 
-yang menjanjikan dari sumber energi terbarukan dan menjelaskan mengapa perlu adanya 
-sistem penyimpanan energi yang efisien. Latar belakang ini memberikan dasar yang kuat 
-bagi perumusan masalah dan tujuan penelitian, memastikan bahwa hasil penelitian 
-memiliki relevansi dan signifikansi bagi bidang terkait.
+Integrasi PLTB dalam skala besar menimbulkan tantangan teknis, khususnya terhadap
+\textit{small signal stability} (SSS) atau stabilitas sinyal kecil. Integrasi
+PLTB, baik berbasis \textit{doubly fed induction generator} (DFIG)/Type-3 maupun
+\textit{full-rated converter} (FRC)/Type-4, mengubah karakteristik dinamik sistem,
+namun arah perubahan tersebut bersifat \textit{system-dependent} dan tidak universal. Peningkatan penetrasi DFIG pada sistem berskala besar dapat memberikan dampak
+ganda terhadap \textit{electromechanical oscillation mode}, yakni menguntungkan
+pada sejumlah \textit{oscillation mode} namun merugikan pada
+\textit{oscillation mode} lainnya, bergantung pada lokasi integrasi dan
+sensitivitas \textit{eigenvalue} terhadap inersia sistem \cite{gautam2009impact}. Perbandingan tiga jenis \textit{wind turbine generator} (WTG) yaitu
+\textit{squirrel cage induction generator} (SCIG), DFIG, dan \textit{permanent
+magnet synchronous generator} (PMSG) pada sistem \textit{nine-bus} WECC dan
+sistem 24-bus menunjukkan bahwa dampak SSS dari masing-masing teknologi
+bergantung pada strategi kontrol dan kondisi operasi, di mana DFIG dan PMSG
+berpotensi memunculkan \textit{eigenvalue} bernilai positif yang
+mengindikasikan ketidakstabilan pada tingkat penetrasi tinggi
+\cite{he2015investigation}. Kajian pada sistem WECC 9-bus termodifikasi menunjukkan bahwa peningkatan
+keluaran DFIG memperbaiki SSS \cite{sun2013small}. Melalui pendekatan
+\textit{stability region boundary}, dampak DFIG terhadap SSS terbukti bergantung
+pada skala penetrasi dan kekuatan kopling dengan generator sinkron
+\cite{liu2014impact}. Untuk teknologi PMSG-WT, turbin angin berbasis konverter penuh memiliki
+partisipasi yang rendah terhadap osilasi antar-area karena konverter penuh
+memisahkan dinamika generator dari dinamika jaringan \cite{knuppel2009small}.
+Model SSS untuk turbin angin \textit{direct-drive} berbasis PMSG menunjukkan
+bahwa teknologi ini menghasilkan respons dinamik yang lebih baik dibandingkan
+DFIG \cite{wu2009small}. Kajian yang langsung membandingkan dampak DFIG-WT
+dan PMSG-WT terhadap SSS pada sistem \textit{benchmark} yang sama, dengan
+variasi posisi bus integrasi dan kondisi pembebanan, serta metrik meliputi
+\textit{eigenvalue}, \textit{damping ratio}, dan \textit{participation factor},
+masih terbatas.
 
-%HAPUS YANG TIDAK PERLU
-%-------------------------------------------------
-\noindent\textbf{Contoh latar belakang penelitian untuk teknik biomedis:} \\
-\noindent\fbox{%
-	\parbox{\textwidth}{%
-		
-		\hspace{1cm} "Diagnosis dan pengobatan penyakit memerlukan integrasi informasi medis yang 
-		akurat dan terkini. Alat diagnostik tradisional seperti CT scan dan MRI memiliki resolusi 
-		yang tinggi dan dapat mengidentifikasi masalah pada tingkat sel, tetapi sering 
-		memerlukan banyak waktu dan biaya. Alat deteksi dini seperti tes darah dan urin memiliki 
-		biaya rendah dan mudah digunakan, tetapi sering kurang akurat dan tidak memberikan gambaran yang jelas tentang masalah medis. Oleh karena itu, penting untuk menemukan metode baru yang memadukan keunggulan dari kedua jenis alat tersebut. Penelitian ini akan mengevaluasi kemampuan nanopartikel dalam meningkatkan akurasi dan efisiensi diagnosis medis."
-		
-	}%
-}
+Analisis SSS melinearisasi model sistem di sekitar titik operasi keseimbangan
+dan menilai kestabilan terhadap gangguan kecil melalui nilai \textit{eigenvalue},
+\textit{damping ratio}, dan \textit{participation factor}. Bagian real dari
+\textit{eigenvalue} menentukan sifat redaman \textit{oscillation mode}: nilai
+negatif menunjukkan \textit{oscillation mode} yang stabil, sedangkan nilai
+positif mengindikasikan ketidakstabilan. Bagian
+imajiner menentukan frekuensi \textit{electromechanical oscillation} yang bersesuaian.
+\textit{Damping ratio} ($\zeta$) mengukur tingkat redaman relatif, dengan ambang batas
+$\zeta \geq 5\%$ umumnya digunakan sebagai kriteria kestabilan yang memadai.
+\textit{Participation factor} mengidentifikasi variabel keadaan yang paling
+berpengaruh terhadap suatu \textit{oscillation mode}, sehingga memungkinkan pelacakan
+kontribusi masing-masing generator terhadap dinamika sistem. Penerapan kerangka
+ini pada sistem uji IEEE 9-bus dengan penetrasi tinggi PLTB berbasis PMSG
+menunjukkan bahwa pendekatan modal berbasis \textit{eigenvalue} mampu
+mengidentifikasi pergeseran \textit{oscillation mode} dominan pada berbagai tingkat penetrasi
+\cite{wang2014small}.
 
-%-------------------------------------------------	
-\vspace{5mm}
-Latar belakang ini memperkenalkan masalah diagnostik dan pengobatan penyakit dan mempertimbangkan pentingnya integrasi informasi medis yang akurat dan terkini. Ini 
-juga memperkenalkan kelemahan dari alat diagnostik tradisional dan deteksi dini dan menjelaskan mengapa penting untuk menemukan metode baru yang memadukan 
-keunggulan dari kedua jenis alat tersebut. Latar belakang ini memberikan dasar yang kuat bagi perumusan masalah dan tujuan penelitian, memastikan bahwa hasil penelitian 
-memiliki relevansi dan signifikansi bagi bidang terkait.
-
-%HAPUS YANG TIDAK PERLU
-%-------------------------------------------------
-\noindent\textbf{Contoh latar belakang penelitian untuk teknologi informasi:} \\
-\noindent\fbox{%
-	\parbox{\textwidth}{%
-		
-\hspace{1cm} "Dengan perkembangan teknologi informasi yang sangat pesat dalam beberapa tahun terakhir, penyimpanan data menjadi masalah yang semakin penting. Semakin banyak data yang diterima setiap hari, semakin penting bagi organisasi untuk memastikan bahwa data 
-mereka aman dan terlindungi. Pada saat yang sama, organisasi juga membutuhkan akses cepat dan efisien ke data mereka untuk membuat keputusan yang tepat. Teknologi 
-enkripsi kuantum baru-baru ini muncul sebagai solusi potensial untuk memenuhi kebutuhan ini, dengan menawarkan tingkat keamanan yang jauh lebih tinggi dan proses 
-enkripsi yang lebih cepat dibandingkan dengan teknologi enkripsi konvensional. Oleh karena itu, penting untuk mengevaluasi efektivitas dan keamanan teknologi enkripsi 
-kuantum dalam sistem penyimpanan data cloud."
-		
-	}%
-}
-
-%-------------------------------------------------	
-\vspace{5mm}
-Latar belakang ini memperkenalkan masalah penyimpanan data dan mempertimbangkan pentingnya keamanan data. Ini juga memperkenalkan teknologi enkripsi kuantum sebagai solusi potensial dan menjelaskan mengapa evaluasi teknologi ini penting bagi bidang teknologi informasi. Latar belakang ini memberikan dasar yang kuat bagi perumusan masalah dan tujuan penelitian, memastikan bahwa hasil penelitian memiliki relevansi dan signifikansi bagi bidang terkait.
+Penelitian ini menganalisis dan membandingkan dampak integrasi PLTB berbasis
+DFIG-WT dan PMSG-WT terhadap \textit{small signal stability} sistem tenaga
+listrik pada sistem uji \textit{nine-bus} IEEE. Pemodelan dan simulasi
+menggunakan perangkat lunak DIgSILENT PowerFactory, dengan analisis modal
+berbasis \textit{eigenvalue} untuk mengidentifikasi \textit{oscillation mode} dominan,
+\textit{damping ratio}, frekuensi osilasi, dan \textit{participation factor}
+dari setiap skenario. Pengaruh posisi integrasi dikaji dengan menempatkan PLTB
+pada dua lokasi yang berbeda, masing-masing menggantikan generator konvensional
+yang ada, sementara kondisi pembebanan divariasikan untuk mencerminkan berbagai titik operasi.
+Penelitian ini menghasilkan perbandingan kuantitatif dampak kedua teknologi WTG
+terhadap SSS dan masukan teknis bagi perencanaan integrasi PLTB ke dalam sistem
+tenaga listrik nasional.
 
 \section{Rumusan Masalah}
 
-Sub-bab ini berisi poin-poin yang menjelaskan masalah atau isu yang akan diteliti dalam suatu penelitian. Ini mencakup formulasi masalah yang jelas dan spesifik dan 
-mempertimbangkan latar belakang dan deskripsi masalah yang terkait yang tertulis Dalam latar belakang pada sub-bab sebelumnya. Perumusan masalah yang baik akan membantu menentukan fokus penelitian dan memberikan dasar untuk tujuan dan hipotesis penelitian. Dalam penelitian, perumusan masalah memainkan peran penting dalam memastikan bahwa hasil penelitian berguna dan relevan untuk masalah yang diteliti.
-
-Jika rumusan masalah lebih dari 1, maka ditulis dengan format \textit{list}. Contoh sebagai  berikut:
+Penelitian ini menjawab tiga pertanyaan berikut:
 
 \begin{enumerate}
-	\item Rumusan masalah 1.
-	\item Rumusan masalah 2.
+	\item Bagaimana pengaruh integrasi PLTB berbasis DFIG-WT terhadap
+	\textit{small signal stability} sistem tenaga listrik pada variasi posisi bus
+	integrasi dan kondisi pembebanan?
+	\item Bagaimana pengaruh integrasi PLTB berbasis PMSG-WT terhadap
+	\textit{small signal stability} sistem tenaga listrik pada variasi posisi bus
+	integrasi dan kondisi pembebanan?
+	\item Bagaimana perbandingan dampak integrasi DFIG-WT dan PMSG-WT terhadap
+	\textit{small signal stability} ditinjau dari \textit{eigenvalue},
+	\textit{damping ratio}, dan \textit{participation factor}?
 \end{enumerate}
-
-%-------------------------------------------------
-\noindent\fbox{%
-	\parbox{\textwidth}{%
-\noindent\textbf{Contoh} perumusan masalah untuk \textbf{Teknik Elektro}: \\		
-
-\hspace{1cm} \textbf{"Bagaimana memperbaiki efisiensi penghematan energi pada sistem pencahayaan rumah tangga melalui implementasi teknologi kontrol otomatis?"} \\
-	
-\hspace{1cm} Perumusan masalah ini jelas dan spesifik dan menentukan fokus penelitian pada perbaikan efisiensi penghematan energi dalam sistem pencahayaan rumah tangga dengan menggunakan teknologi kontrol otomatis. Ini juga mempertimbangkan latar belakang tentang pentingnya penghematan energi dan memberikan solusi praktis melalui implementasi teknologi. Perumusan masalah ini memberikan dasar yang kuat untuk tujuan dan hipotesis penelitian dan memastikan bahwa hasil penelitian akan berguna bagi bidang teknik elektro.
-		
-	}%
-}
-
-%-------------------------------------------------
-\noindent\fbox{%
-	\parbox{\textwidth}{%
-\noindent\textbf{Contoh} perumusan masalah untuk \textbf{Teknik Biomedis}: \\		
-
-\hspace{1cm} \textbf{"Bagaimana memperbaiki akurasi deteksi kanker payudara dengan menggunakan teknologi pemindaian ultrasonografi berbasis AI?"} \\
-
-\hspace{1cm} Perumusan masalah ini jelas dan spesifik dan menentukan fokus penelitian pada 
-perbaikan akurasi deteksi kanker payudara dengan menggunakan teknologi pemindaian ultrasonografi berbasis AI. Ini mempertimbangkan latar belakang tentang pentingnya deteksi dini kanker payudara dan memberikan solusi praktis melalui implementasi teknologi. Perumusan masalah ini memberikan dasar yang kuat untuk tujuan dan hipotesis penelitian dan memastikan bahwa hasil penelitian akan berguna bagi bidang teknik biomedis.
-		
-	}%
-}
-
-%-------------------------------------------------	
-\noindent\fbox{%
-	\parbox{\textwidth}{%
-\noindent\textbf{Contoh} perumusan masalah untuk \textbf{Teknologi Informasi}: \\		
-
-\hspace{1cm} \textbf{"Bagaimana meningkatkan efisiensi dan keamanan sistem penyimpanan data cloud melalui implementasi teknologi enkripsi kuantum?"} \\
-
-\hspace{1cm} Perumusan masalah ini jelas dan spesifik dan menentukan fokus penelitian pada peningkatan efisiensi dan keamanan sistem penyimpanan data cloud dengan menggunakan teknologi enkripsi kuantum. Ini mempertimbangkan latar belakang tentang pentingnya keamanan data dan memberikan solusi praktis melalui implementasi teknologi. Perumusan masalah ini memberikan dasar yang kuat untuk tujuan dan hipotesis penelitian dan memastikan bahwa hasil penelitian akan berguna bagi bidang teknologi informasi.
-		
-	}%
-}
-
-%-------------------------------------------------	
 
 \section{Tujuan Penelitian}
 
-Tujuan penelitian pada skripsi Teknik (TE, TB, TIF) adalah menentukan sasaran atau target yang ingin dicapai melalui proses penelitian. Tujuan penelitian bisa beragam sesuai dengan bidang ilmu yang dipelajari, topik penelitian, dan permasalahan yang akan dicari solusinya.
+Penelitian ini bertujuan untuk:
 
-%Secara umum, tujuan penelitian pada skripsi bidang teknik adalah untuk:
-%
-%\begin{itemize}
-%	\item Mengidentifikasi dan menganalisis masalah atau permasalahan dalam bidang \textit{engineering}.
-%	\item Meningkatkan pemahaman dan wawasan tentang bidang \textit{engineering} melalui penerapan teori dan metodologi yang sesuai.
-%	\item Mengembangkan solusi atau produk baru yang inovatif dan efektif dalam 
-%	bidang \textit{engineering}.
-%	\item Menunjukkan penerapan prinsip-prinsip keteknikan dalam solusi atau produk yang dikembangkan.
-%	\item Menjelaskan implikasi dan rekomendasi dari hasil penelitian bagi bidang \textit{engineering} dan masyarakat.
-%\end{itemize}
-%
-%
-%\noindent Catatan: Tujuan penelitian dalam skripsi bidang teknik harus jelas, spesifik, terukur, dan dapat dicapai dalam jangka waktu yang ditentukan.
-
-
-\textcolor{red}{Tujuan perlu disinkronkan dengan rumusan masalah. Setiap rumusan masalah boleh memiliki lebih dari 1 tujuan. Berikut ini adalah contoh tujuan dari rumusan masalah "Bagaimanakan memperbaiki efisiensi penghematan energi pada sistem pencahayaan rumah tangga melalui implementasi teknologi kontrol otomatis?"
 \begin{enumerate}
-	\item Memodelkan sistem pencahayaan rumah tangga;
-	\item Mendesain sistem kontrol otomatis untuk sistem pencahayaan rumah tangga.
+	\item Menganalisis dampak integrasi PLTB berbasis DFIG-WT terhadap
+	\textit{electromechanical oscillation mode}, \textit{damping ratio}, dan
+	\textit{participation factor} pada sistem uji \textit{nine-bus} IEEE.
+	\item Menganalisis dampak integrasi PLTB berbasis PMSG-WT terhadap
+	\textit{electromechanical oscillation mode}, \textit{damping ratio}, dan
+	\textit{participation factor} pada sistem uji \textit{nine-bus} IEEE.
+	\item Membandingkan secara kuantitatif dampak integrasi DFIG-WT dan PMSG-WT
+	terhadap \textit{small signal stability} pada berbagai posisi bus integrasi
+	dan kondisi pembebanan.
 \end{enumerate}
-}
-
-\noindent Catatan: Tujuan penelitian dalam skripsi bidang teknik harus jelas, spesifik, terukur, dan dapat dicapai dalam jangka waktu yang ditentukan.
-
-Berikut ini adalah contoh detail tujuan untuk masing-masing prodi di DTETI:
-
-\newpage
-\vspace{5mm}
-\textbf{Contoh Tujuan Penelitian Skripsi Teknik Elektro:}
-
-\begin{minipage}{0.92\textwidth}
-Berikut adalah beberapa contoh tujuan penelitian yang sesuai dengan rumusan masalah 
-“perbaikan efisiensi penghematan energi pada sistem pencahayaan rumah tangga 
-melalui implementasi teknologi kontrol otomatis”:
-\end{minipage}
-
-
-
-%-------------------------------------------------	
-\noindent\fbox{%
-	\parbox{\textwidth}{%
-\begin{enumerate}
-\item Menganalisis tingkat efisiensi energi pada sistem pencahayaan rumah tangga 
-sebelum dan setelah implementasi teknologi kontrol otomatis.
-\item Mengukur pengurangan biaya listrik setelah implementasi teknologi kontrol 
-otomatis pada sistem pencahayaan rumah tangga.
-\item Menunjukkan bagaimana teknologi kontrol otomatis dapat memperbaiki 
-efisiensi penghematan energi pada sistem pencahayaan rumah tangga.
-\item Meningkatkan kenyamanan dan keamanan pengguna rumah tangga melalui 
-penggunaan teknologi kontrol otomatis pada sistem pencahayaan.
-\item Menjelaskan bagaimana implementasi teknologi kontrol otomatis 
-mempengaruhi kualitas cahaya dan faktor-faktor lain dalam sistem pencahayaan 
-rumah tangga.
-\item Membandingkan efisiensi energi dan biaya pada sistem pencahayaan rumah 
-tangga dengan teknologi kontrol otomatis dan sistem manual.
-\item Menunjukkan implikasi dan rekomendasi dari hasil penelitian bagi rumah tangga 
-dan lingkungan.
-\end{enumerate}
-		
-	}%
-}
-
-%-------------------------------------------------	
-
-\newpage
-\vspace{5mm}
-\textbf{Contoh Tujuan Penelitian Skripsi Teknik Biomedis:}
-
-\begin{minipage}{0.92\textwidth}
-Berikut adalah beberapa contoh tujuan penelitian untuk penelitian dengan tema "Bagaimana memperbaiki akurasi deteksi kanker payudara dengan menggunakan 
-teknologi pemindaian ultrasonografi berbasis AI":
-\end{minipage}
-
-%-------------------------------------------------	
-\noindent\fbox{%
-	\parbox{\textwidth}{%
-\begin{enumerate}
-\item Mengidentifikasi faktor-faktor yang mempengaruhi akurasi deteksi kanker 
-payudara dengan menggunakan teknologi pemindaian ultrasonografi berbasis 
-AI.
-\item Menilai efektivitas teknologi pemindaian ultrasonografi berbasis AI dalam 
-meningkatkan akurasi deteksi kanker payudara.
-\item Menentukan metode pemindaian ultrasonografi berbasis AI yang paling efektif dalam meningkatkan akurasi deteksi kanker payudara.
-\item Menilai keamanan dan tolerabilitas teknologi pemindaian ultrasonografi berbasis AI dalam deteksi kanker payudara.
-\item Membandingkan akurasi deteksi kanker payudara dengan teknologi pemindaian 
-ultrasonografi berbasis AI dengan metode deteksi lainnya.
-\item Menyediakan bukti ilmiah untuk menunjukkan bahwa teknologi pemindaian 
-ultrasonografi berbasis AI dapat digunakan sebagai metode deteksi kanker 
-payudara yang lebih efektif dan akurat.
-\item Meningkatkan akurasi deteksi kanker payudara dengan menggunakan teknologi 
-pemindaian ultrasonografi berbasis AI.
-\end{enumerate}
-		
-	}%
-}
-
-%-------------------------------------------------	
-
-\newpage
-\vspace{5mm}
-\textbf{Contoh Tujuan Penelitian Skripsi Teknologi Informasi:}
-
-\begin{minipage}{0.92\textwidth}
-Berikut adalah beberapa contoh tujuan penelitian untuk penelitian dengan tema 
-"Bagaimana meningkatkan efisiensi dan keamanan sistem penyimpanan data cloud 
-melalui implementasi teknologi enkripsi kuantum?":
-\end{minipage}
-
-%-------------------------------------------------	
-\noindent\fbox{%
-	\parbox{\textwidth}{%
-\begin{enumerate}
-\item Menilai efektivitas implementasi teknologi enkripsi kuantum dalam 
-meningkatkan keamanan data pada sistem penyimpanan cloud.
-\item Menentukan metode enkripsi kuantum yang paling efektif dalam meningkatkan 
-keamanan data pada sistem penyimpanan cloud.
-\item Membandingkan efisiensi enkripsi kuantum dengan metode enkripsi lainnya 
-dalam meningkatkan keamanan data pada sistem penyimpanan cloud.
-\item Menilai keamanan dan stabilitas sistem penyimpanan data cloud setelah 
-implementasi teknologi enkripsi kuantum.
-\item Menyediakan bukti ilmiah untuk menunjukkan bahwa implementasi teknologi 
-enkripsi kuantum dapat meningkatkan efisiensi dan keamanan sistem 
-penyimpanan data cloud.
-\item Mengidentifikasi potensi masalah dan hambatan dalam implementasi teknologi 
-enkripsi kuantum pada sistem penyimpanan data cloud.
-\end{enumerate}
-		
-	}%
-}
-
-%-------------------------------------------------	
 
 
 \section{Batasan Penelitian}
 
-Batasan penelitian teknik adalah pembatasan atau definisi yang menentukan lingkup dan ruang lingkup suatu penelitian dalam bidang teknik. Ini membantu membatasi masalah dan isu yang akan diteliti, menentukan metode dan teknik penelitian, membatasi populasi dan sampel, dan membatasi variabel dan hipotesis yang akan diuji. Batasan penelitian juga mencakup keterbatasan dan hambatan yang mungkin timbul selama proses penelitian. Tujuan utama dari batasan penelitian teknik adalah membuat penelitian terfokus dan terarah, serta memastikan hasil yang diperoleh dapat digunakan untuk menjawab pertanyaan dan masalah teknik secara efektif dan akurat.
-
-Batasan penelitian dapat ditulis dengan format \textit{list}. Contohnya adalah sebagai berikut:
+Penelitian ini dibatasi pada:
 
 \begin{enumerate}
-	\item Batasan 1.
-	\item Batasan 2.
+	\item \textbf{Sistem Uji:} Sistem yang digunakan adalah sistem uji standar
+	IEEE \textit{nine-bus} dengan parameter yang telah ditetapkan, beroperasi
+	pada frekuensi nominal 60 Hz, tanpa modifikasi topologi jaringan.
+	\item \textbf{Lingkup Analisis Kestabilan:} Analisis dibatasi pada
+	\textit{small signal stability}; kestabilan transien (\textit{transient
+	stability}) dan kestabilan tegangan (\textit{voltage stability}) tidak
+	dikaji. Sistem diasumsikan beroperasi pada kondisi normal tanpa gangguan
+	besar (\textit{large disturbance}).
+	\item \textbf{Metode Analisis:} Analisis dilakukan secara eksklusif
+	menggunakan analisis modal berbasis \textit{eigenvalue} (\textit{modal
+	analysis}), tanpa simulasi RMS (\textit{root mean square}) berbasis
+	domain waktu. Oleh karena itu, hasil penelitian ini tidak mencakup plot
+	respons waktu (\textit{time response}) sistem terhadap gangguan.
+	\item \textbf{Pemodelan PLTB:} Model komponen dan parameter kontroler
+	DFIG-WT serta PMSG-WT seluruhnya menggunakan nilai bawaan
+	(\textit{default}) dari pustaka DIgSILENT PowerFactory 2024, tanpa
+	modifikasi atau tuning tambahan.
+	\item \textbf{Skenario Integrasi:} PLTB hanya menggantikan satu generator
+	sinkron konvensional (bukan \textit{slack bus}) dengan kapasitas yang
+	setara; setiap skenario mengkaji satu tingkat penetrasi tanpa variasi
+	penetrasi parsial.
+	\item \textbf{Asumsi Pembebanan dan Angin:} Kecepatan angin diasumsikan
+	konstan selama simulasi. Variasi beban diterapkan pada satu beban spesifik;
+	beban lain tidak diubah.
+	\item \textbf{Aspek yang Tidak Dimodelkan:} Pengaruh harmonik dari
+	konverter \textit{power electronics}, serta \textit{Automatic Voltage
+	Regulator} (AVR) dan \textit{Power System Stabilizer} (PSS) pada seluruh
+	generator sinkron konvensional, tidak diperhitungkan dalam analisis.
+	\item \textbf{Perangkat Lunak:} Penelitian menggunakan DIgSILENT
+	PowerFactory 2024 sebagai satu-satunya alat simulasi.
 \end{enumerate}
 
 
 %\noindent \textbf{Contoh penulisan batasan skripsi Teknik Elektro:}
 %
-%%-------------------------------------------------	
-%\noindent\fbox{%
-%	\parbox{\textwidth}{%
-%\begin{enumerate}
-%\item Objek penelitian: Studi efisiensi dan kinerja sistem pemantauan suhu dan arus pada sistem pembangkit tenaga listrik.
-%\item Metode penelitian: Penelitian eksperimental menggunakan analisis simulasi dan pengujian sistem pada skala laboratorium.
-%\item Waktu dan tempat penelitian: Waktu penelitian adalah Maret-Agustus 2022 di 
-%FasLab TTL.
-%\item Populasi dan sampel: Populasi adalah sistem pembangkit tenaga listrik, dan sampel diambil sebanyak 3 sistem yang berbeda.
-%\item Variabel: Variabel bebas adalah metode pemantauan suhu dan arus, dan variabel terikat adalah efisiensi dan kinerja
-%\item Hipotesis: bahwa metode pemantauan suhu dan arus berpengaruh terhadap efisiensi dan kinerja sistem pembangkit tenaga listrik.
-%\item Keterbatasan Penelitian: Keterbatasan penelitian adalah hanya melibatkan 
-%pengujian sistem pada skala laboratorium dan membatasi analisis pada variabel 
-%bebas dan terikat.
-%\end{enumerate}
-%		
-%	}%
+%%------------------------------------------------- 
+%\noindent\fbox{% \parbox{\textwidth}{% \begin{enumerate} \item Objek
+%   penelitian: Studi efisiensi dan kinerja sistem pemantauan suhu dan arus pada
+%   sistem pembangkit tenaga listrik. \item Metode penelitian: Penelitian
+%   eksperimental menggunakan analisis simulasi dan pengujian sistem pada skala
+%   laboratorium. \item Waktu dan tempat penelitian: Waktu penelitian adalah
+%   Maret-Agustus 2022 di FasLab TTL. \item Populasi dan sampel: Populasi adalah
+%   sistem pembangkit tenaga listrik, dan sampel diambil sebanyak 3 sistem yang
+%   berbeda. \item Variabel: Variabel bebas adalah metode pemantauan suhu dan
+%   arus, dan variabel terikat adalah efisiensi dan kinerja \item Hipotesis:
+%   bahwa metode pemantauan suhu dan arus berpengaruh terhadap efisiensi dan
+%   kinerja sistem pembangkit tenaga listrik. \item Keterbatasan Penelitian:
+%   Keterbatasan penelitian adalah hanya melibatkan pengujian sistem pada skala
+%   laboratorium dan membatasi analisis pada variabel bebas dan terikat.
+%   \end{enumerate}
+%
+%   }%
 %}
 %
-%%-------------------------------------------------	
+%%------------------------------------------------- 
 %\newpage
 %
 %\noindent \textbf{Contoh penulisan batasan skripsi Teknik Biomedis:}
 %
-%%-------------------------------------------------	
-%\noindent\fbox{%
-%	\parbox{\textwidth}{%
-%\begin{enumerate}
-%\item Objek Penelitian: Studi efektivitas dan keamanan alat elektromedik seperti pacu jantung.
-%\item Metode Penelitian: Penelitian deskriptif dan observasional menggunakan survei dan analisis data.
-%\item Waktu dan Tempat Penelitian: Waktu penelitian adalah Januari-Juni 2022 di 
-%Rumah Sakit Sarjito. 
-%\item Populasi dan Sampel: Populasi adalah pasien yang menggunakan pacu jantung, dan sampel diambil dengan metode random sampling sebanyak 100 pasien. 
-%\item Variabel: Variabel bebas nya adalah jenis alat pacu jantung, dan variabel terikatnya adalah efektivitas dan keamanan. 
-%\item Hipotesis: bahwa jenis alat pacu jantung berpengaruh terhadap efektivitas dan keamanan. 
-%\item Keterbatasan Penelitian: Keterbatasan penelitian adalah hanya melibatkan satu rumah sakit sebagai lokasi penelitian dan membatasi dalam analisis data hanya pada variabel bebas dan terikat.
-%\end{enumerate}
-%		
-%	}%
+%%------------------------------------------------- 
+%\noindent\fbox{% \parbox{\textwidth}{% \begin{enumerate} \item Objek
+%   Penelitian: Studi efektivitas dan keamanan alat elektromedik seperti pacu
+%   jantung. \item Metode Penelitian: Penelitian deskriptif dan observasional
+%   menggunakan survei dan analisis data. \item Waktu dan Tempat Penelitian:
+%   Waktu penelitian adalah Januari-Juni 2022 di Rumah Sakit Sarjito. \item
+%   Populasi dan Sampel: Populasi adalah pasien yang menggunakan pacu jantung,
+%   dan sampel diambil dengan metode random sampling sebanyak 100 pasien. \item
+%   Variabel: Variabel bebas nya adalah jenis alat pacu jantung, dan variabel
+%   terikatnya adalah efektivitas dan keamanan. \item Hipotesis: bahwa jenis
+%   alat pacu jantung berpengaruh terhadap efektivitas dan keamanan. \item
+%   Keterbatasan Penelitian: Keterbatasan penelitian adalah hanya melibatkan
+%   satu rumah sakit sebagai lokasi penelitian dan membatasi dalam analisis data
+%   hanya pada variabel bebas dan terikat. \end{enumerate}
+%
+%   }%
 %}
 %
-%%-------------------------------------------------	
+%%------------------------------------------------- 
 %
-%\newpage
-%\noindent \textbf{Contoh penulisan batasan skripsi Teknologi Informasi:}
+%\newpage \noindent \textbf{Contoh penulisan batasan skripsi Teknologi
+%Informasi:}
 %
-%%-------------------------------------------------	
-%\noindent\fbox{%
-%	\parbox{\textwidth}{%
-%\begin{enumerate}
-%\item Objek Penelitian: Analisis perbandingan efektivitas dan efisiensi antara sistem manajemen proyek tradisional dan sistem manajemen proyek berbasis teknologi informasi. 
-%\item Metode Penelitian: Penelitian kualitatif dengan menggunakan wawancara dan 
-%survei terhadap para pelaku proyek di berbagai perusahaan. 
-%\item Waktu dan Tempat Penelitian: Waktu penelitian adalah Januari-Juni 2022 di 
-%perusahaan-perusahaan di wilayah Bantul. 
-%\item Populasi dan Sampel: Populasi nya adalah perusahaan yang melakukan proyek, dan sampel diambil sebanyak 10 perusahaan yang menerapkan sistem manajemen 
-%proyek tradisional dan 10 perusahaan yang menggunakan sistem manajemen 
-%proyek berbasis teknologi informasi. 
-%\item Variabel: Variabel bebasnya adalah sistem manajemen proyek, dan variabel 
-%terikatnya adalah efektivitas dan efisiensi. 
-%\item Hipotesis: bahwa sistem manajemen proyek berbasis teknologi informasi lebih efektif dan efisien dibandingkan dengan sistem manajemen proyek tradisional.
-%\item Keterbatasan Penelitian: Keterbatasan penelitian adalah penelitian hanya dilakukan pada perusahaan di wilayah Bantul dan hanya melibatkan wawancara dan survei sebagai metode pengumpulan data.
-%\end{enumerate}
-%		
-%	}%
+%%------------------------------------------------- 
+%\noindent\fbox{% \parbox{\textwidth}{% \begin{enumerate} \item Objek
+%   Penelitian: Analisis perbandingan efektivitas dan efisiensi antara sistem
+%   manajemen proyek tradisional dan sistem manajemen proyek berbasis teknologi
+%   informasi. \item Metode Penelitian: Penelitian kualitatif dengan menggunakan
+%   wawancara dan survei terhadap para pelaku proyek di berbagai perusahaan.
+%   \item Waktu dan Tempat Penelitian: Waktu penelitian adalah Januari-Juni 2022
+%   di perusahaan-perusahaan di wilayah Bantul. \item Populasi dan Sampel:
+%   Populasi nya adalah perusahaan yang melakukan proyek, dan sampel diambil
+%   sebanyak 10 perusahaan yang menerapkan sistem manajemen proyek tradisional
+%   dan 10 perusahaan yang menggunakan sistem manajemen proyek berbasis
+%   teknologi informasi. \item Variabel: Variabel bebasnya adalah sistem
+%   manajemen proyek, dan variabel terikatnya adalah efektivitas dan efisiensi.
+%   \item Hipotesis: bahwa sistem manajemen proyek berbasis teknologi informasi
+%   lebih efektif dan efisien dibandingkan dengan sistem manajemen proyek
+%   tradisional. \item Keterbatasan Penelitian: Keterbatasan penelitian adalah
+%   penelitian hanya dilakukan pada perusahaan di wilayah Bantul dan hanya
+%   melibatkan wawancara dan survei sebagai metode pengumpulan data.
+%   \end{enumerate}
+%
+%   }%
 %}
 
 \section{Manfaat Penelitian}
 
-Manfaat penelitian didefinisikan sebagai manfaat yang diperoleh apabila 
-skripsi telah selesai dilakukan. Manfaat skripsi pada umumnya berbentuk daftar. 
-Manfaat penelitian dapat berupa manfaat bagi dunia akademik dan atau masyarakat.
+Penelitian ini memberi tiga manfaat:
 
 \begin{enumerate}
-	\item Enum 1
-	\begin{itemize}
-		\item Coba 1
-		\item Coba 2
-	\end{itemize}
-	\item Enum 2
+	\item \textbf{Akademis/Teoritis:} Perbandingan kuantitatif DFIG-WT dan
+	PMSG-WT terhadap \textit{small signal stability} pada IEEE \textit{nine-bus}
+	menjadi acuan bagi peneliti kestabilan sistem tenaga dengan penetrasi EBT.
+	\item \textbf{Analitis:} Analisis \textit{eigenvalue}, \textit{damping
+	ratio}, dan \textit{participation factor} mengungkap variabel keadaan yang
+	mendominasi \textit{oscillation mode} saat PLTB terhubung ke sistem.
+	\item \textbf{Industri/Praktis:} Perencana sistem tenaga nasional mendapat
+	acuan teknis untuk memilih teknologi WTG dan posisi integrasi PLTB menuju
+	target 5 GW pada 2030.
 \end{enumerate}
 
 
 
 \section{Sistematika Penulisan}
 
-Sistematika penulisan berisi pembahasan apa yang akan ditulis di setiap bab. 
-Sistematika pada umumnya berupa paragraf yang setiap paragraf mencerminkan 
-bahasan setiap Bab. Contoh:
+\noindent \textbf{Bab I Pendahuluan} memuat latar belakang yang menjelaskan
+urgensi integrasi PLTB terhadap stabilitas sistem tenaga listrik, rumusan masalah
+yang merinci tiga pertanyaan penelitian, tujuan penelitian, batasan penelitian,
+manfaat penelitian, serta sistematika penulisan laporan.
 
-\noindent Bab I membahas tentang pendahuluan yang berisi latar belakang, perumusan masalah 
-dan tujuan penelitian. 
+\noindent \textbf{Bab II Tinjauan Pustaka dan Dasar Teori} menguraikan kajian
+literatur terkait dampak integrasi PLTB berbasis DFIG-WT dan PMSG-WT terhadap
+\textit{small signal stability} (SSS), serta memaparkan dasar teori yang meliputi
+pemodelan sistem tenaga listrik, karakteristik teknologi WTG, konsep analisis
+modal, dan metrik kestabilan yang digunakan yaitu \textit{eigenvalue},
+\textit{damping ratio}, dan \textit{participation factor}.
 
-\noindent Bab II berisi tentang metodologi penelitian yang terdiri dari desain penelitian, sumber data, Teknik pengumpulan data dan Teknik analisis data.
+\noindent \textbf{Bab III Metode Penelitian} menjelaskan pendekatan penelitian
+kuantitatif berbasis simulasi, alat dan bahan penelitian, pemodelan sistem uji
+IEEE \textit{nine-bus} pada DIgSILENT PowerFactory 2024, konfigurasi model
+DFIG-WT dan PMSG-WT, serta definisi enam skenario percobaan yang mencakup
+variasi posisi bus integrasi dan variasi kondisi pembebanan.
 
-\noindent Dan seterusnya.
+\noindent \textbf{Bab IV Hasil dan Pembahasan} menyajikan dan menganalisis hasil
+simulasi dari seluruh skenario percobaan, meliputi nilai \textit{eigenvalue},
+\textit{damping ratio}, frekuensi osilasi, dan \textit{participation factor} pada
+masing-masing skenario, serta membahas perbandingan kuantitatif dampak integrasi
+DFIG-WT dan PMSG-WT terhadap \textit{small signal stability} pada berbagai posisi
+bus dan kondisi pembebanan.
+
+\noindent \textbf{Bab V Kesimpulan dan Saran} merangkum temuan penelitian yang
+menjawab ketiga rumusan masalah, serta memberikan saran untuk penelitian
+selanjutnya terkait integrasi PLTB ke dalam sistem tenaga listrik.
 

@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python -c ' *)",
+      "Bash(cd \"d:/Skripsi/Laporan_Skripsi/contents/chapter-2\" && rm -f ss_check_p*.png ss_check_p*.jpeg ss_kundur_*.jpeg kundur_pg*.png)",
+      "PowerShell(python \"C:\\\\Users\\\\Noelanza\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\d--Skripsi-Laporan-Skripsi\\\\ea4036a7-9282-46b6-86fa-2918a632cb60\\\\scratchpad\\\\generate_prf_plots.py\")",
+      "PowerShell(pip install matplotlib --quiet)"
+    ],
+    "additionalDirectories": [
+      "D:\\Skripsi\\Laporan_Skripsi"
+    ]
+  }
+}

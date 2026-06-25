@@ -1,53 +1,846 @@
 \chapter{Metode Penelitian}
 
-Bab ini menjelaskan metode atau cara yang digunakan dalam penelitian ini untuk 
-mencapai maksud dan tujuan seperti yang tertulis dalam sub-bab 1.3 [jika diinginkan, kalian dapat menuliskan Kembali tujuan penelitian yang ingin dicapai di sini].
+Penelitian ini menganalisis dampak integrasi Pembangkit Listrik Tenaga Bayu
+(PLTB) terhadap kestabilan sinyal kecil (\textit{small signal stability}) sistem
+tenaga listrik IEEE \textit{nine bus} menggunakan DIgSILENT PowerFactory 2024.
+Dua teknologi PLTB dikaji: DFIG-WT (\textit{Doubly Fed Induction Generator Wind
+Turbine}, Tipe 3) dan PMSG-WT (\textit{Permanent Magnet Synchronous Generator
+Wind Turbine}, Tipe 4).
 
-\section{Alat dan Bahan Tugas akhir (Opsional)}
+Setiap skenario dianalisis melalui \textit{modal analysis}: \textit{eigenvalue}, \textit{damping ratio}, frekuensi osilasi teredam, dan \textit{participation factor}.
 
-\subsection{Alat Tugas akhir}
+\section{Alat dan Bahan Penelitian}
 
-Alat-alat yang digunakan pada tugas akhir ini berupa perangkat keras (\textit{hardware}) dan perangkat lunak (\textit{software}) sebagai sarana pendukung antara lain:
+\subsection{Alat Penelitian}
 
-\begin{enumerate}
-	\item \textit{Laptop} Lenovo LOQ 15IRX9 dengan spesifikasi sistem operasi Windows 11 Home Single Language, \textit{processor} 13\textit{th} Gen Intel\textregistered{} Core\texttrademark{} i5-13450HX 2,40 GHz, memori 12 GB DDR5, grafis NVIDIA GeForce RTX 4050 Laptop GPU (6 GB), dan penyimpanan 477 GB.
-	\item DigSILENT PowerFactory 2024, digunakan untuk mengerjakan simulasi \textit{load flow}, analisis modal (\textit{modal analysis}), dan pembuatan \textit{single line diagram} sistem IEEE \textit{nine bus}.
-	\item Visual Studio Code, merupakan \textit{software} yang digunakan untuk menulis dokumen dalam bentuk \LaTeX{} sebagai sistem penulisan karya ilmiah ataupun skripsi.
-\end{enumerate}
-
-\subsection{Bahan Tugas akhir}
-
-Bahan tugas akhir adalah segala sesuatu yang bersifat fisik atau digital yang digunakan untuk kebutuhan tugas akhir. Bahan tugas akhir dapat berupa:
+Penelitian ini menggunakan perangkat keras dan perangkat lunak berikut:
 
 \begin{enumerate}
-	\item Bahan habis pakai. Bahan yang digunakan untuk tugas akhir. Sebagai contoh 
-	mungkin dibutuhkan kertas transparansi, baterai, atau yang lain 
-	\item Bahan yang berupa data atau informasi yang menjadi dataset tugas akhir. Dataset tugas akhir dapat berupa:
-	\begin{itemize}
-		\item Dataset pihak lain yang diperoleh dengan izin atau dalam lisensi yang diizinkan untuk digunakan secara langsung 
-		\item Dataset pihak pertama yang disusun sendiri melalui quisioner, observasi, atau interview 
-		\item Dokumen panduan yang mengacu pada standar, hasil tugas akhir, atau artikel yang disitasi dan digunakan.
-	\end{itemize}
-	
+    \item Laptop Lenovo LOQ 15IRX9 dengan spesifikasi sistem operasi Windows 11
+    Home Single Language, \textit{processor} 13\textit{th} Gen
+    Intel\textregistered{} Core\texttrademark{} i5-13450HX 2,40 GHz, memori 12
+    GB DDR5, grafis NVIDIA GeForce RTX 4050 Laptop GPU (6 GB), dan penyimpanan
+    477 GB. Digunakan untuk menjalankan perangkat lunak simulasi dan pengolahan
+    data.
+    \item DIgSILENT PowerFactory 2024, digunakan untuk memodelkan sistem IEEE
+    \textit{nine bus}, menjalankan simulasi \textit{load flow}, dan melakukan
+    \textit{modal analysis} untuk setiap skenario penelitian.
+    \item Visual Studio Code dengan ekstensi \LaTeX{}, digunakan untuk menyusun
+    laporan penelitian dalam format \LaTeX{} sebagai sistem penulisan karya
+    ilmiah.
 \end{enumerate}
 
+\subsection{Bahan Penelitian}
+
+Data dan informasi yang digunakan sebagai masukan pemodelan dan simulasi
+meliputi:
+
+\begin{enumerate}
+    \item Data parameter sistem IEEE \textit{nine bus}, yang menjadi acuan dalam
+    pemodelan topologi jaringan, data saluran transmisi, transformator, dan
+    titik beban.
+    \item Data generator konvensional (G1, G2, G3), berupa parameter mesin
+    sinkron yang digunakan untuk memodelkan pembangkit konvensional pada sistem
+    IEEE \textit{nine bus}.
+    \item Model PLTB berbasis DFIG-WT dari pustaka DIgSILENT PowerFactory, yang
+    digunakan pada Skenario 2.1, 2.2, 4.1, dan 4.2.
+    \item Model PLTB berbasis PMSG-WT dari pustaka DIgSILENT PowerFactory, yang
+    digunakan pada Skenario 3.1, 3.2, 5.1, dan 5.2.
+    \item Referensi artikel dan buku ilmiah terkait, yang menjadi landasan teori
+    dalam pemodelan, penentuan skenario, dan interpretasi hasil analisis.
+\end{enumerate}
+
+\section{Pemodelan Sistem \textit{IEEE Nine Bus}}
+
+Sistem uji yang digunakan adalah IEEE \textit{nine bus}, jaringan acuan
+(\textit{benchmark network}) yang dikembangkan Anderson dan Fouad dan tersedia
+sebagai templat bawaan DIgSILENT PowerFactory \cite{anderson1977power}. Jaringan ini banyak dipakai dalam kajian kestabilan sistem tenaga
+karena skala dan strukturnya mewakili dinamika sistem nyata. Topologi terdiri
+dari sembilan bus, tiga generator sinkron (G1, G2, G3), tiga transformator
+penaik tegangan, enam saluran transmisi, dan tiga beban statis
+\cite{anderson1977power}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{contents/chapter-3/NineBusModel}
+    \caption[Model Sistem IEEE \textit{Nine Bus}]{Model Sistem IEEE \textit{Nine
+    Bus} pada DigSILENT PowerFactory \cite{anderson1977power}}
+    \label{fig:ninebus_model}
+\end{figure}
+
+G1 terhubung pada Bus 1 sebagai \textit{slack bus}, yaitu bus referensi sudut
+fasa dan tegangan sistem. G2 dan G3 masing-masing terhubung pada Bus 2 dan Bus 3
+sebagai bus tipe PV (\textit{regulated voltage bus}). Ketiga beban terhubung
+pada bus tipe PQ: Beban A di Bus 5, Beban B di Bus 6, dan Beban C di Bus 8. Bus
+4, 7, dan 9 merupakan bus pasif sebagai titik sambungan transformator ke
+jaringan transmisi. Topologi lengkap ditunjukkan pada Gambar
+\ref{fig:ninebus_model}.
+
+Parameter komponen sistem disajikan pada Tabel \ref{tab:generator_params} hingga
+Tabel \ref{tab:beban_params}, mencakup parameter elektromagnetik dan mekanikal
+generator, titik operasi, parameter transformator, saluran transmisi, dan data
+beban nominal \cite{anderson1977power}.
+
+\begin{table}[H]
+  \caption{Parameter Generator Sinkron Sistem IEEE \textit{Nine Bus}}
+  \vspace{0.5em}
+  \centering
+  \fontsize{12}{14.4}\selectfont
+  \setlength{\tabcolsep}{6pt}
+  \begin{tabular}{>{\raggedright\arraybackslash}m{5cm} c c c}
+    \toprule
+    \textbf{Parameter} & \textbf{G1} & \textbf{G2} & \textbf{G3} \\
+    \midrule
+    Daya semu nominal [MVA]      & 247,5        & 192,0        & 128,0        \\
+    Tegangan nominal [kV]        & 16,5         & 18,0         & 13,8         \\
+    \textit{Power factor} nominal & 1,00        & 0,85         & 0,85         \\
+    Kategori pembangkit          & \textit{Hydro} & \textit{Coal} &
+    \textit{Coal} \\
+    Tipe rotor                   & \textit{salient pole} & \textit{round rotor}
+    & \textit{round rotor} \\
+    $x_d$ [p.u.]                 & 0,3614       & 1,7199       & 1,6800       \\
+    $x'_d$ [p.u.]                & 0,1505       & 0,2300       & 0,2321       \\
+    $x_q$ [p.u.]                 & 0,2328       & 1,6598       & 1,6100       \\
+    $x'_q$ [p.u.]                & ---          & 0,3780       & 0,3200       \\
+    $x_l$ (\textit{leakage}) [p.u.] & 0,0832    & 0,1000       & 0,0950       \\
+    $\tau'_{d0}$ [s]             & 8,960        & 6,000        & 5,890        \\
+    $\tau''_{d0}$ [s]            & ---          & 0,535        & 0,600        \\
+    Konstanta inersia $H$ [s]    & 9,5515       & 3,9216       & 2,7665       \\
+    \bottomrule
+  \end{tabular}
+  \label{tab:generator_params}
+\end{table}
+
+\begin{table}[H]
+  \caption{\textit{Dispatch Point} dan Tegangan Referensi Generator Sistem IEEE
+  \textit{Nine Bus}}
+  \vspace{0.5em}
+  \centering
+  \fontsize{12}{14.4}\selectfont
+  \setlength{\tabcolsep}{10pt}
+  \begin{tabular}{c c c c c}
+    \toprule
+    \textbf{Generator} & \textbf{Bus} & \textbf{$P$ [MW]} & \textbf{$Q$ [MVAr]}
+    & \textbf{$u$ [p.u.]} \\
+    \midrule
+    G1 & Bus 1 & --- & --- & 1,040 \\
+    G2 & Bus 2 & 163,0 & 6,7 & 1,025 \\
+    G3 & Bus 3 & 85,0  & $-$10,9 & 1,025 \\
+    \bottomrule
+  \end{tabular}
+  \label{tab:generator_dispatch}
+\end{table}
+
+\begin{table}[H]
+  \caption{Parameter Transformator Sistem IEEE \textit{Nine Bus}}
+  \vspace{0.5em}
+  \centering
+  \fontsize{12}{14.4}\selectfont
+  \setlength{\tabcolsep}{8pt}
+  \begin{tabular}{c c c c c c c}
+    \toprule
+    \textbf{Trafo} & \textbf{Dari} & \textbf{Ke} & \textbf{\shortstack{Nilai
+    Daya\\{[MVA]}}} & \textbf{\shortstack{$U_r$ HV\\{[kV]}}} &
+    \textbf{\shortstack{$U_r$ LV\\{[kV]}}} & \textbf{$x_1$ [p.u.]} \\
+    \midrule
+    T1 & Bus 1 & Bus 4 & 250 & 230 & 16,5 & 0,1440 \\
+    T2 & Bus 2 & Bus 7 & 200 & 230 & 18,0 & 0,1250 \\
+    T3 & Bus 3 & Bus 9 & 150 & 230 & 13,8 & 0,0879 \\
+    \bottomrule
+  \end{tabular}
+  \label{tab:trafo_params}
+\end{table}
+
+\begin{table}[H]
+  \caption{Parameter Saluran Transmisi Sistem IEEE \textit{Nine Bus}}
+  \vspace{0.5em}
+  \centering
+  \fontsize{12}{14.4}\selectfont
+  \setlength{\tabcolsep}{10pt}
+  \begin{tabular}{l c c c c}
+    \toprule
+    \textbf{Saluran} & \textbf{Dari} & \textbf{Ke} & \textbf{$R$ [$\Omega$]} &
+    \textbf{$X$ [$\Omega$]} \\
+    \midrule
+    Saluran 4-5 & Bus 4 & Bus 5 & 5,2900  & 44,9650 \\
+    Saluran 4-6 & Bus 4 & Bus 6 & 8,9930  & 48,6680 \\
+    Saluran 5-7 & Bus 5 & Bus 7 & 16,9280 & 85,1690 \\
+    Saluran 6-9 & Bus 6 & Bus 9 & 20,6310 & 89,9300 \\
+    Saluran 7-8 & Bus 7 & Bus 8 & 4,4965  & 38,0880 \\
+    Saluran 8-9 & Bus 8 & Bus 9 & 6,2951  & 53,3232 \\
+    \bottomrule
+  \end{tabular}
+  \label{tab:saluran_params}
+\end{table}
+
+\begin{table}[H]
+  \caption{Data Beban Statis Sistem IEEE \textit{Nine Bus}}
+  \vspace{0.5em}
+  \centering
+  \fontsize{12}{14.4}\selectfont
+  \setlength{\tabcolsep}{12pt}
+  \begin{tabular}{c c c c}
+    \toprule
+    \textbf{Beban} & \textbf{Bus} & \textbf{$P$ [MW]} & \textbf{$Q$ [MVAr]} \\
+    \midrule
+    Beban A & Bus 5 & 125 & 50 \\
+    Beban B & Bus 6 & 90  & 30 \\
+    Beban C & Bus 8 & 100 & 35 \\
+    \bottomrule
+  \end{tabular}
+  \label{tab:beban_params}
+\end{table}
 
 
-\section{Metode yang Digunakan}
+\section{Pemodelan Integrasi PLTB}
 
-Bagian ini membahas metode atau cara yang akan digunakan dalam penelitian, tahapan 
-penerapan metode, dan desain penelitian (misalnya apakah penelitian akan menggunakan 
-eksperimen di Laboratorium atau di lapangan, misalkan saja penelitian biomedis atau 
-penelitian alat ukur hama yang dapat dilakukan di laboratorium ataupun di lapangan, atau menggunakan metode survei (misalnya untuk teknologi Informasi), studi kasus, atau analisis dengan perangkat lunak (ETAP, LTSpice, dst), atau \textit{prototyping} (pembuatan perangkat keras).
+PLTB menggantikan G3 (Bus 9) atau G2 (Bus 7); G1 sebagai \textit{slack bus} tidak digantikan. Kapasitas unit PLTB
+disesuaikan dengan kapasitas generator yang digantikan agar keseimbangan daya
+sistem terjaga. Variasi posisi (Bus 7 atau Bus 9) dan teknologi (DFIG-WT atau
+PMSG-WT) memungkinkan evaluasi dampak integrasi terhadap kestabilan sinyal kecil
+secara sistematis.
 
-Bagian ini juga membahas bagaimana data [akan] dianalisis, apakah dengan membandingkan keluaran beberapa alat ukur, membandingkan dengan standar atau bagaimana.
+\subsection{Pemodelan PLTB Berbasis DFIG-WT}
 
-\section{Alur Tugas Akhir}
+DFIG-WT (\textit{Doubly Fed Induction Generator Wind Turbine}) atau turbin angin
+tipe 3 menggunakan generator induksi rotor belitan dengan konverter
+\textit{back-to-back} pada rangkaian rotor. RSC (\textit{Rotor Side Converter})
+dan GSC (\textit{Grid Side Converter}) mengendalikan tegangan dan frekuensi
+rotor secara independen sehingga DFIG-WT beroperasi pada kecepatan variabel.
+Konverter hanya menanggung sekitar 25--30\% dari total daya, sehingga biaya
+DFIG-WT lebih rendah dibanding PMSG-WT.
 
-Menguraikan prosedur yang akan digunakan dan jadwal atau alur penyelesaian setiap 
-tahap. Alur penelian ini dapat disajikan dalam bentuk diagram. Diagram dapat disusun dengan aturan yang baik semisal menggunakan \textit{flowchart}. Aturan dan tutorial pembuatan \textit{flowchart} dapat dilihat di \textcolor{blue}{http://ugm.id/flowcharttutorial}. Setelah menggambarkannya, penulis wajib menjelaskan langkah-langkah setiap alur tugas akhir dalam sub bab tersendiri sesuai dengan kebutuhan.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\linewidth]{contents/chapter-3/DFIGSys_Model}
+    \caption[Model Sistem PLTB Berbasis DFIG-WT pada DIgSILENT
+    PowerFactory]{Model Sistem PLTB Berbasis DFIG-WT pada DIgSILENT PowerFactory
+    \cite{digsilent2024dfig}}
+    \label{fig:dfig_model}
+\end{figure}
 
-\section{Etika, Masalah, dan Keterbatasan Penelitian (Opsional))}
+Model DFIG-WT menggunakan \textit{template} \textit{DIgSILENT DFIG WTG 2.5MW}
+dari pustaka DIgSILENT PowerFactory 2024 \cite{digsilent2024dfig}. Pada
+\textit{single line diagram}, DFIG-WT direpresentasikan sebagai mesin asinkron
+(\textit{asynchronous machine}) dengan model dinamik komposit \textit{DFIG
+Control} berbasis \textit{frame Generic DFIG-Turbine\_resync}
+\cite{digsilent2024dfig}.
 
-Bagian ini membahas pertimbangan etis penelitian dan [potensi] masalah serta
-keterbatasannya. Jika menyangkut penelitian dengan makhluk hidup, maka dibutuhkan adanya \textit{ethical clearance}, di bagian ini hal itu akan dibahas. Demikian juga tentang keterbatasan ataupun masalah yang akan timbul.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{contents/chapter-3/DFIGControlModel}
+    \caption[Model Kontrol Komposit DFIG-WT]{Model Kontrol Komposit DFIG-WT
+    \cite{digsilent2024dfig}}
+    \label{fig:dfig_control_model}
+\end{figure}
+
+Struktur model komposit DFIG-WT ditunjukkan pada Gambar
+\ref{fig:dfig_control_model} sebagai \textit{Frame DFIG Generic}. Model ini
+terdiri dari dua kelompok utama dan sejumlah subsistem pendukung. Kelompok
+\textit{Mechanics} (kotak garis biru) mencakup tiga subsistem: \textit{Pitch
+Control} yang menerima sinyal kecepatan referensi ($sp.$) dan kecepatan angin
+($v_w$) lalu menghasilkan sudut \textit{pitch} bilah ($\beta$); \textit{Turbine}
+yang mengonversi $v_w$ dan $\beta$ menjadi daya mekanik ($p_w$); serta
+\textit{Shaft} yang memodelkan sistem poros dua massa untuk menghasilkan daya
+torsi mekanik ($p_t$) yang diteruskan ke mesin DFIG. Kelompok
+\textit{Electronic} (kotak garis hijau) berisi mesin asinkron DFIG (DFIG\_2.5..)
+yang menerima tegangan referensi rotor dari \textit{Compensation}.
+
+Subsistem kontrol daya terdiri dari \textit{MPT} (\textit{Maximum Power
+Tracking}) yang membaca kecepatan rotor dan menghasilkan referensi daya
+pra-kontrol ($pre.$), dilanjutkan oleh \textit{Speed Controller} yang mengolah
+$pre.$ bersama sinyal frekuensi ($F_m$) dan \textit{OverFrequency} untuk
+menghasilkan referensi daya aktif ($P_\text{ref}$). \textit{PQ Control} kemudian
+menentukan referensi arus sumbu-$d$ dan sumbu-$q$ ($i_{rd,\text{ref}}$;
+$i_{rq,\text{ref}}$) berdasarkan $P_\text{ref}$, daya total terukur
+($P_\text{tot}$), dan arus rotor aktual. \textit{Ir\_ctrl} (\textit{Rotor
+Current Controller}) mengolah sinyal-sinyal tersebut bersama sudut tegangan dari
+\textit{PLL WT} (Theta meas.) dan arus rotor dari \textit{Current Measurement},
+lalu mengirimkan sinyal kendali ke \textit{Compensation} untuk menghasilkan
+tegangan referensi rotor ($u_{sr}$; $u_{si}$). Subsistem \textit{Protection}
+memantau tegangan terminal generator (\textit{Vac\_gen}) dan tegangan bus
+(\textit{Vac\_bus}) untuk mengelola prosedur \textit{crowbar} dan penyambungan
+ulang saat gangguan \cite{digsilent2024dfig}.
+
+DFIG-WT digunakan pada Skenario 2.1 (pengganti G3, Bus 9), 2.2 (pengganti G2,
+Bus 7), 4.1, dan 4.2. Kapasitasnya disesuaikan dengan generator yang digantikan:
+85 MW untuk G3 dan 163 MW untuk G2.
+
+\subsection{Pemodelan PLTB Berbasis PMSG-WT}
+
+PMSG-WT (\textit{Permanent Magnet Synchronous Generator Wind Turbine}) atau
+turbin angin tipe 4 menggunakan konverter berdaya penuh (\textit{full-rated
+converter}) sehingga seluruh daya mengalir melalui konverter sisi generator dan
+konverter sisi jaringan. Konfigurasi ini memisahkan secara elektris
+(\textit{full decoupling}) dinamika generator dari jaringan, memungkinkan
+operasi kecepatan variabel penuh. Meskipun generatornya berupa PMSG
+(\textit{Permanent Magnet Synchronous Generator}), karakteristik antarmuka
+jaringan sepenuhnya ditentukan oleh konverter, sehingga respons dinamisnya
+berbeda dari DFIG-WT.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.4\linewidth]{contents/chapter-3/FRCSys_Model}
+    \caption[Model Sistem PLTB Berbasis PMSG-WT pada DIgSILENT
+    PowerFactory]{Model Sistem PLTB Berbasis PMSG-WT pada DIgSILENT PowerFactory
+    \cite{digsilent2024frc}}
+    \label{fig:frc_model}
+\end{figure}
+
+Model PMSG-WT menggunakan \textit{template} \textit{DIgSILENT FullyRatedConv WTG
+2.5MW} dari pustaka DIgSILENT PowerFactory 2024 \cite{digsilent2024frc}.
+Template ini hanya merepresentasikan sisi konverter jaringan (\textit{grid side
+converter}), tanpa bagian mekanik rotor maupun aerodinamika, karena konverter
+VSC berdaya penuh memisahkan dinamika rotor dari jaringan secara elektris
+\cite{digsilent2024frc}. Pada \textit{single line diagram}, PMSG-WT
+direpresentasikan sebagai \textit{static generator} (\textit{ElmGenstat}) dengan
+model komposit \textit{FullyRatedConv Control} berbasis \textit{frame WTG FRC
+Frame incl Current Ctrl} \cite{digsilent2024frc}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{contents/chapter-3/PMSGControlModel}
+    \caption[Model Kontrol Komposit PMSG-WT]{Model Kontrol Komposit PMSG-WT
+    \cite{digsilent2024frc}}
+    \label{fig:pmsg_control_model}
+\end{figure}
+
+Struktur model komposit PMSG-WT ditunjukkan pada Gambar
+\ref{fig:pmsg_control_model} sebagai \textit{Frame Type 4 Generic}. Model ini
+terdiri dari tujuh subsistem yang saling terhubung. \textit{PQ / PQ LV}
+menyediakan \textit{setpoint} daya aktif ($P_\text{in}$) dan daya reaktif
+($Q_\text{in}$) dari pengaturan titik operasi. \textit{Vac / Voltage
+Measurement} mengukur tegangan terminal ($u$) sebagai masukan kontrol tegangan.
+\textit{PQ Control / PQ Controller} menerima $P_\text{in}$, $Q_\text{in}$, $u$,
+dan sinyal reduksi daya ($p_\text{red}$), lalu menghasilkan referensi arus
+sumbu-$d$ ($i_{d,\text{ref}}$) dan sumbu-$q$ ($i_{q,\text{ref}}$) yang
+merepresentasikan komponen aktif dan reaktif arus konverter.
+\textit{ActivePowerReduction / OverFrequPowerReduction} memantau frekuensi
+sistem dan menurunkan $p_\text{red}$ saat terjadi kelebihan frekuensi
+(\textit{over-frequency}), sehingga daya aktif dikurangi secara otomatis.
+\textit{Iac / Current Measurement} mengukur arus aktual konverter dalam komponen
+real ($i_r$) dan imajiner ($i_i$). \textit{PLL / PLL} (\textit{Phase-Locked
+Loop}) mengukur sudut tegangan jaringan dan menghasilkan referensi
+\textit{cosref} dan \textit{sinref} sebagai acuan transformasi koordinat.
+\textit{Current Controller} menerima seluruh sinyal referensi dan terukur
+tersebut lalu menghasilkan tegangan referensi konverter dalam komponen real
+($u_{1r}$) dan imajiner ($u_{1i}$) yang langsung dikirimkan ke \textit{static
+generator} (WTG2.5MW\_Repla..) sebagai perintah keluaran tegangan VSC.
+
+PMSG-WT digunakan pada Skenario 3.1 (pengganti G3, Bus 9), 3.2 (pengganti G2,
+Bus 7), 5.1, dan 5.2.
+
+\section{Skenario Penelitian}
+
+{\fontsize{12}{14.4}\selectfont
+\setlength{\tabcolsep}{6pt}
+\begin{longtable}{>{\centering\arraybackslash}m{1.5cm} m{5.5cm} m{5.5cm}}
+  \caption{Skenario Penelitian} \label{tab:skenario_penelitian} \\
+  \toprule
+  \textbf{Skenario} & \multicolumn{1}{c}{\textbf{Konfigurasi Sistem}} &
+  \multicolumn{1}{c}{\textbf{Tujuan Analisis}} \\
+  \midrule
+  \endfirsthead
+  \multicolumn{3}{c}{\tablename~\thetable{} -- \textit{lanjutan}} \\
+  \noalign{\vspace{0.3em}}
+  \toprule
+  \textbf{Skenario} & \multicolumn{1}{c}{\textbf{Konfigurasi Sistem}} &
+  \multicolumn{1}{c}{\textbf{Tujuan Analisis}} \\
+  \midrule
+  \endhead
+  \bottomrule
+  \endfoot
+  1.1 & Sistem IEEE \textit{nine bus} tanpa PLTB (\textit{base case}) & Menjadi
+  acuan perbandingan kestabilan sinyal kecil sistem konvensional. \\
+  1.2 & Peningkatan Beban B secara bertahap tanpa PLTB & Menjadi acuan
+  perbandingan batas stabilitas tanpa PLTB untuk peningkatan Beban B. \\
+  1.3 & Peningkatan Beban A secara bertahap tanpa PLTB & Menjadi acuan
+  perbandingan batas stabilitas tanpa PLTB untuk peningkatan Beban A. \\
+  2.1 & DFIG-WT menggantikan G3 pada Bus 9 & Menganalisis pengaruh integrasi
+  DFIG-WT pada Bus 9 terhadap kestabilan sinyal kecil. \\
+  2.2 & DFIG-WT menggantikan G2 pada Bus 7 & Menganalisis pengaruh integrasi
+  DFIG-WT pada Bus 7 terhadap kestabilan sinyal kecil. \\
+  3.1 & PMSG-WT menggantikan G3 pada Bus 9 & Menganalisis pengaruh integrasi
+  PMSG-WT pada Bus 9 terhadap kestabilan sinyal kecil. \\
+  3.2 & PMSG-WT menggantikan G2 pada Bus 7 & Menganalisis pengaruh integrasi
+  PMSG-WT pada Bus 7 terhadap kestabilan sinyal kecil. \\
+  4.1 & Peningkatan Beban B secara bertahap pada sistem dengan DFIG-WT (G3
+  diganti) & Menentukan batas maksimum peningkatan beban sebelum sistem tidak
+  stabil dengan DFIG-WT di Bus 9. \\
+  4.2 & Peningkatan Beban A secara bertahap pada sistem dengan DFIG-WT (G2
+  diganti) & Menentukan batas maksimum peningkatan beban sebelum sistem tidak
+  stabil dengan DFIG-WT di Bus 7. \\
+  5.1 & Peningkatan Beban B secara bertahap pada sistem dengan PMSG-WT (G3
+  diganti) & Menentukan batas maksimum peningkatan beban sebelum sistem tidak
+  stabil dengan PMSG-WT di Bus 9. \\
+  5.2 & Peningkatan Beban A secara bertahap pada sistem dengan PMSG-WT (G2
+  diganti) & Menentukan batas maksimum peningkatan beban sebelum sistem tidak
+  stabil dengan PMSG-WT di Bus 7. \\
+\end{longtable}\par }
+
+Model sistem uji untuk Skenario 2.1, 2.2, 4.1, dan 4.2 ditunjukkan pada Gambar
+\ref{fig:dfig_replace_diagram}. Sistem IEEE \textit{nine bus} dimodifikasi
+dengan skema integrasi DFIG-WT langsung (\textit{direct replacement}) pada dua
+titik: \textit{DFIG\_2.5MW\_ReplaceG3} di Bus 9 dan
+\textit{DFIG\_2.5MW\_ReplaceG2} di Bus 7.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.90\textwidth]{contents/chapter-3/DFIGReplace_Diagram}
+    \caption[Sistem IEEE \textit{Nine Bus} dengan DFIG-WT]{Sistem IEEE
+    \textit{Nine Bus} dengan Integrasi DFIG-WT}
+    \label{fig:dfig_replace_diagram}
+\end{figure}
+
+Pada Skenario 2.1 dan 4.1, \textit{DFIG\_2.5MW\_ReplaceG3} menggantikan G3 (85
+MW), terhubung ke Bus 9 melalui \textit{Tr1\_ReplaceG3} dan
+\textit{LV\_ReplaceG3}. Pada Skenario 2.2 dan 4.2,
+\textit{DFIG\_2.5MW\_ReplaceG2} menggantikan G2 (163 MW), terhubung ke Bus 7
+melalui \textit{Tr1\_ReplaceG2} dan \textit{LV\_ReplaceG2}. Tiap skenario hanya
+mengaktifkan satu unit; generator yang digantikan dinonaktifkan. G1 tetap
+beroperasi sebagai \textit{slack bus}.
+
+Penggantian langsung ini mengubah admitansi efektif jaringan di sekitar bus
+terkait. Generator sinkron menghadirkan impedansi sinkron dan dinamika rotor \textit{electromechanical}; DFIG-WT mengendalikan arus rotor melalui konverter
+\textit{back-to-back} (RSC dan GSC) sehingga antarmukanya ke jaringan bersifat
+sebagai sumber arus terkontrol (\textit{current-controlled source}). Penambahan
+variabel keadaan dari subsistem kontrol DFIG-WT (PLL, \textit{Pitch Control}, PQ
+\textit{Control}, dan \textit{Ir Control}) memperbesar dimensi matriks sistem
+$A$, sehingga jumlah \textit{eigenvalue} pada Skenario 2 dan 4 lebih banyak dari
+Skenario 1.
+
+Model sistem uji untuk Skenario 3.1, 3.2, 5.1, dan 5.2 ditunjukkan pada Gambar
+\ref{fig:pmsg_replace_diagram}. Sistem IEEE \textit{nine bus} dimodifikasi
+dengan skema integrasi PMSG-WT langsung pada dua titik:
+\textit{WTG2.5MW\_ReplaceG3} di Bus 9 dan \textit{WTG2.5MW\_ReplaceG2} di Bus 7.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.90\textwidth]{contents/chapter-3/PMSGReplace_Diagram}
+    \caption[Sistem IEEE \textit{Nine Bus} dengan PMSG-WT]{Sistem IEEE
+    \textit{Nine Bus} dengan Integrasi PMSG-WT}
+    \label{fig:pmsg_replace_diagram}
+\end{figure}
+
+Pada Skenario 3.1 dan 5.1, \textit{WTG2.5MW\_ReplaceG3} menggantikan G3 (85 MW),
+terhubung ke Bus 9 melalui \textit{Trf\_WTGReplaceG3} dan
+\textit{LV\_ReplaceG3}. Pada Skenario 3.2 dan 5.2, \textit{WTG2.5MW\_ReplaceG2}
+menggantikan G2 (163 MW), terhubung ke Bus 7 melalui \textit{Trf\_WTGReplaceG2}
+dan \textit{LV\_ReplaceG2}. Seperti skenario DFIG, tiap skenario hanya
+mengaktifkan satu unit, generator yang digantikan dinonaktifkan, dan G1 tetap
+sebagai \textit{slack bus}.
+
+PMSG-WT pada Gambar \ref{fig:pmsg_replace_diagram} direpresentasikan sebagai \textit{static generator} (\textit{ElmGenstat}), bukan mesin asinkron seperti pada Gambar \ref{fig:dfig_replace_diagram}. Konverter berdaya penuh (\textit{full-rated
+converter}) memisahkan seluruh dinamika generator dari jaringan, sehingga
+PMSG-WT berperilaku sebagai sumber arus terkontrol tanpa kontribusi inersia \textit{electromechanical}. Model kompositnya tidak menyertakan subsistem mekanik rotor
+maupun aerodinamika dalam \textit{state matrix} $A$, sehingga variabel keadaan
+yang ditambahkan lebih sedikit dari DFIG-WT (20 mode pada Skenario 3 vs. 30 mode
+pada Skenario 2). Pemisahan elektris ini memberi PMSG-WT margin kestabilan dinamis lebih besar
+terhadap peningkatan beban.
+
+\section{Alur Penelitian}
+
+Penelitian terbagi dalam dua fase yang dihubungkan oleh konektor A, sebagaimana
+ditunjukkan pada Gambar \ref{fig:flowchart_skripsi}.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.80\textwidth]{contents/chapter-3/flowchart_skripsi}
+    \caption[Diagram Alir Penelitian]{Diagram Alir Penelitian}
+    \label{fig:flowchart_skripsi}
+\end{figure}
+
+Fase pertama mencakup studi literatur, perumusan masalah, dan pemodelan sistem
+uji IEEE \textit{nine bus} pada DIgSILENT PowerFactory. Pemodelan dibagi dua
+jalur: Skenario 1 tanpa integrasi PLTB, dan Skenario 2--5 dengan integrasi
+DFIG-WT atau PMSG-WT. \textit{Load flow analysis} memverifikasi keseimbangan
+daya; jika tidak konvergen, parameter dikoreksi dan pemodelan diulang. Jika
+konvergen, alur berlanjut ke fase kedua melalui konektor A.
+
+Fase kedua menjalankan \textit{modal analysis} pada kondisi nominal tiap skenario. Beban dinaikkan bertahap, lalu \textit{modal analysis} diulang
+untuk mengamati perubahan kestabilan. Hasilnya dievaluasi melalui
+\textit{eigenvalue}, \textit{damping ratio}, frekuensi osilasi teredam, dan
+\textit{participation factor}, lalu dibandingkan antar skenario sebagai dasar
+kesimpulan.
+
+Gambar \ref{fig:flowchart_spesifikasi} menunjukkan diagram alir spesifik per
+skenario.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.80\textwidth]{contents/chapter-3/flowchart_spesifikasi}
+    \caption[Diagram Alir Penelitian Spesifik per Skenario]{Diagram Alir Penelitian Spesifik per Skenario}
+    \label{fig:flowchart_spesifikasi}
+\end{figure}
+
+Gambar \ref{fig:flowchart_spesifikasi} memperlihatkan dua jalur yang bercabang
+sejak tahap pemodelan. Jalur kiri untuk sistem tanpa PLTB: Skenario 1.1 langsung
+menjalankan \textit{modal analysis} pada kondisi nominal, sedangkan Skenario 1.2
+dan 1.3 melewati simulasi peningkatan beban terlebih dahulu. Jika sistem masih
+stabil, beban kembali dinaikkan dan \textit{modal analysis} diulang hingga
+kondisi tidak stabil tercapai.
+
+Jalur kanan untuk sistem dengan PLTB, terbagi dua sub-jalur (DFIG-WT dan
+PMSG-WT) di dalam kotak bergaris putus-putus. Skenario 2.1, 2.2, 3.1, dan 3.2
+langsung menjalankan \textit{modal analysis} tanpa peningkatan beban. Skenario
+4.1, 4.2, 5.1, dan 5.2 melewati simulasi peningkatan beban dulu; iterasi
+berhenti saat sistem tidak stabil. Kedua jalur menyatu di tahap analisis \textit{eigenvalue}, \textit{damping ratio},
+frekuensi osilasi, dan \textit{participation factor}.
+
+\section{Metode Analisis Kestabilan Sinyal Kecil}
+
+Kestabilan sinyal kecil (\textit{small signal stability}) adalah kemampuan
+sistem tenaga untuk mempertahankan operasi sinkron setelah gangguan kecil.
+Landasan matematis lengkapnya telah dijabarkan pada Bab 2 pada subbab
+Representasi \textit{State Space}, Linearisasi, dan Analisis Stabilitas.
+Secara ringkas, analisis melinearisasi persamaan diferensial nonlinier sistem
+(Pers.~\ref{eq:ss-nonlinear} pada Bab 2) di sekitar titik operasi nominal:
+
+\begin{equation}
+    \dot{\mathbf{x}} = \mathbf{f}(\mathbf{x}, \mathbf{u})
+    \label{eq:nonlinear}
+\end{equation}
+
+Linearisasi melalui ekspansi deret Taylor orde pertama di sekitar titik
+ekuilibrium $(\mathbf{x}_0, \mathbf{u}_0)$, dengan suku orde dua dan lebih
+tinggi diabaikan karena gangguan diasumsikan kecil, menghasilkan persamaan
+ruang keadaan linear (Pers.~\ref{eq:linear-state} pada Bab 2):
+
+\begin{equation}
+    \Delta\dot{\mathbf{x}} = \mathbf{A}\,\Delta\mathbf{x}
+    \label{eq:state_space}
+\end{equation}
+
+\noindent $\Delta\mathbf{x}$ adalah vektor inkremental variabel keadaan dan
+$\mathbf{A}$ adalah matriks sistem (\textit{state matrix}). \textit{Eigenvalue}
+$\lambda$ dari $\mathbf{A}$ diperoleh dari persamaan karakteristik
+(Pers.~\ref{eq:char-eq} pada Bab 2):
+
+\begin{equation}
+    \det(\lambda \mathbf{I} - \mathbf{A}) = 0
+    \label{eq:char_eq}
+\end{equation}
+
+\textit{Eigenvalue} umumnya berupa bilangan kompleks
+(Pers.~\ref{eq:def-eigenvalue} pada Bab 2):
+
+\begin{equation}
+    \lambda = \sigma \pm j\omega_d
+    \label{eq:eigenvalue}
+\end{equation}
+
+\noindent $\sigma$ adalah bagian real (laju atenuasi) dan $\omega_d$ adalah
+bagian imajiner (frekuensi sudut teredam). Frekuensi osilasi teredam
+(\textit{damped frequency}) dinyatakan sebagai (Pers.~\ref{eq:freq-osc} pada
+Bab 2):
+
+\begin{equation}
+    f_d = \frac{\omega_d}{2\pi}
+    \label{eq:damped_freq}
+\end{equation}
+
+\textit{Damping ratio} ($\zeta$) menyatakan tingkat redaman osilasi
+(Pers.~\ref{eq:damping-ratio} pada Bab 2):
+
+\begin{equation}
+    \zeta = \frac{-\sigma}{\sqrt{\sigma^2 + \omega_d^2}}
+    \label{eq:damping_ratio}
+\end{equation}
+
+Sistem dinyatakan stabil jika seluruh $\sigma < 0$, yaitu seluruh
+\textit{eigenvalue} berada di sisi kiri bidang kompleks. $\zeta > 0$ berarti
+osilasi teredam; $\zeta \leq 0$ berarti sistem tidak stabil atau di ambang
+ketidakstabilan.
+
+\textit{Participation factor} (PRF) mengidentifikasi kontribusi relatif tiap
+variabel keadaan terhadap suatu mode osilasi tertentu. \textit{Participation
+factor} dari variabel keadaan $x_k$ terhadap mode ke-$i$ didefinisikan sebagai
+(Pers.~\ref{eq:pf} pada Bab 2):
+
+\begin{equation}
+    p_{ki} = \phi_{ki}\,\psi_{ik}
+    \label{eq:prf}
+\end{equation}
+
+\noindent $\phi_{ki}$ adalah elemen ke-$k$ dari \textit{right eigenvector} mode
+ke-$i$, dan $\psi_{ik}$ adalah elemen ke-$i$ dari \textit{left eigenvector}.
+Bentuk ternormalisasinya:
+
+\begin{equation}
+    \bar{p}_{ki} = \frac{|p_{ki}|}{\displaystyle\sum_{j}|p_{ji}|}
+    \label{eq:prf_norm}
+\end{equation}
+
+$\bar{p}_{ki}$ bernilai antara 0 dan 1; nilai mendekati 1 menunjukkan
+kontribusi dominan variabel keadaan $x_k$ terhadap mode ke-$i$. Dalam
+penelitian ini, analisis PRF diterapkan pada mode dengan \textit{damping ratio}
+terkecil atau bernilai negatif untuk mengidentifikasi komponen sistem yang
+paling berpengaruh terhadap ketidakstabilan.
+
+\section{Linearisasi Persamaan Model Komponen}
+
+Matriks sistem $\mathbf{A}$ pada Pers.~\eqref{eq:state_space} dibentuk dari
+linearisasi persamaan diferensial seluruh komponen dinamik yang terhubung ke
+jaringan. Elemen $A_{ij} = \partial f_i/\partial x_j$ dievaluasi pada titik
+ekuilibrium operasi yang diperoleh dari solusi \textit{load flow}
+(Pers.~\ref{eq:A-jacobian} pada Bab 2). Vektor keadaan gabungan sistem memiliki
+struktur blok (Pers.~\ref{eq:state-full} pada Bab 2):
+
+\begin{equation}
+    \mathbf{x} =
+    \begin{bmatrix}
+        \mathbf{x}_{sg,1}^\top & \mathbf{x}_{sg,2}^\top & \cdots &
+        \mathbf{x}_{sg,n_g}^\top & \mathbf{x}_{WT}^\top
+    \end{bmatrix}^\top
+    \label{eq:state_full}
+\end{equation}
+
+dengan $\mathbf{x}_{sg,i}$ adalah vektor keadaan generator sinkron ke-$i$ dan
+$\mathbf{x}_{WT}$ adalah vektor keadaan unit turbin angin yang menggantikan
+salah satu generator.
+
+\subsection{Linearisasi Model Generator Sinkron}
+
+Generator sinkron dimodelkan dengan model subtransien DIgSILENT PowerFactory
+yang bersesuaian dengan model dua sumbu (\textit{two-axis model}). Variabel
+keadaan model mesin \textit{round-rotor} dalam PowerFactory adalah
+(Pers.~\ref{eq:sg-pf-statevec} pada Bab 2):
+
+\begin{equation}
+    \mathbf{x}_{sg,PF} =
+    \begin{bmatrix}\varphi & n & \psi_{fd} & \psi_{1d} & \psi_{1q} & \psi_{2q}\end{bmatrix}^\top
+    \label{eq:sg_state_ch3}
+\end{equation}
+
+dengan $\varphi$ adalah posisi sudut rotor (rad), $n$ adalah kecepatan rotor
+per unit, serta $\psi_{fd}$, $\psi_{1d}$, $\psi_{1q}$, $\psi_{2q}$ adalah
+variabel fluks subtransien medan dan belitan peredam (\textit{damper winding}).
+Vektor~\eqref{eq:sg_state_ch3} bersesuaian secara langsung dengan persamaan
+dinamik dua sumbu (Pers.~\ref{eq:sg-delta}--\ref{eq:sg-Ed} pada Bab 2):
+
+\begin{align}
+    \frac{d\delta}{dt} &= \omega - \omega_s
+    \label{eq:sg_delta_ch3} \\[4pt]
+    \frac{2H}{\omega_s}\frac{d\omega}{dt} &= T_m - T_e - D(\omega - \omega_s)
+    \label{eq:sg_omega_ch3} \\[4pt]
+    T'_{do}\frac{dE'_q}{dt} &= E_{fd} - E'_q - (x_d - x'_d)\,I_d
+    \label{eq:sg_Eq_ch3} \\[4pt]
+    T'_{qo}\frac{dE'_d}{dt} &= -E'_d + (x_q - x'_q)\,I_q
+    \label{eq:sg_Ed_ch3}
+\end{align}
+
+Torsi elektromagnetik $T_e$ dinyatakan menggunakan Pers.~\ref{eq:sg-Te} pada
+Bab 2. Linearisasi Pers.~\eqref{eq:sg_delta_ch3}--\eqref{eq:sg_Ed_ch3} di
+sekitar titik ekuilibrium menghasilkan persamaan inkremental komponen generator
+sinkron:
+
+\begin{equation}
+    \Delta\dot{\mathbf{x}}_{sg} = \mathbf{A}_{sg}\,\Delta\mathbf{x}_{sg}
+    \label{eq:sg_linear_ch3}
+\end{equation}
+
+\noindent di mana entri matriks $\mathbf{A}_{sg}$ merupakan turunan parsial
+Pers.~\eqref{eq:sg_delta_ch3}--\eqref{eq:sg_Ed_ch3} terhadap setiap variabel
+keadaan, dievaluasi pada kondisi operasi tunak.
+
+\subsection{Linearisasi Model DFIG-WT}
+
+DFIG-WT dimodelkan menggunakan persamaan \textit{flux linkage} stator dan rotor
+dalam kerangka referensi sinkron (Pers.~\ref{eq:dfig-psiqs}--\ref{eq:dfig-psidr}
+pada Bab 2):
+
+\begin{align}
+    \frac{1}{\omega_s}\frac{d\Psi_{qs}}{dt} &= V_{qs} + R_s I_{qs} - \Psi_{ds}
+    \label{eq:dfig_psiqs_ch3} \\[4pt]
+    \frac{1}{\omega_s}\frac{d\Psi_{ds}}{dt} &= V_{ds} + R_s I_{ds} + \Psi_{qs}
+    \label{eq:dfig_psids_ch3} \\[4pt]
+    \frac{1}{\omega_s}\frac{d\Psi_{qr}}{dt} &= V_{qr} - R_r I_{qr}
+      - \frac{\omega_s - \omega_r}{\omega_s}\Psi_{dr}
+    \label{eq:dfig_psiqr_ch3} \\[4pt]
+    \frac{1}{\omega_s}\frac{d\Psi_{dr}}{dt} &= V_{dr} - R_r I_{dr}
+      + \frac{\omega_s - \omega_r}{\omega_s}\Psi_{qr}
+    \label{eq:dfig_psidr_ch3}
+\end{align}
+
+Hubungan \textit{flux linkage} dengan arus stator dan rotor menggunakan
+Pers.~\ref{eq:dfig-psi-stator}--\ref{eq:dfig-psi-rotor} pada Bab 2. Torsi
+elektromagnetik DFIG dinyatakan sebagai (Pers.~\ref{eq:dfig-Te} pada Bab 2):
+
+\begin{equation}
+    T_e = \Psi_{ds}I_{qs} - \Psi_{qs}I_{ds}
+    \label{eq:dfig_Te_ch3}
+\end{equation}
+
+Dinamika mekanik rotor menggunakan persamaan ayunan massa tunggal
+(Pers.~\ref{eq:dfig-omega} pada Bab 2):
+
+\begin{equation}
+    \frac{2H_r}{\omega_s}\frac{d\omega_r}{dt} = T_m - T_e
+    \label{eq:dfig_omega_ch3}
+\end{equation}
+
+Variabel keadaan model linearisasi DFIG-WT tersusun dalam vektor
+(Pers.~\ref{eq:dfig-statevec} pada Bab 2):
+
+\begin{equation}
+    \mathbf{x}_{DFIG} =
+    \begin{bmatrix}\Psi_{qs} & \Psi_{ds} & \Psi_{qr} & \Psi_{dr} & \omega_r\end{bmatrix}^\top
+    \label{eq:dfig_state_ch3}
+\end{equation}
+
+Dalam implementasi DIgSILENT PowerFactory, variabel keadaan model stabilitas RMS
+untuk mesin DFIG adalah (Pers.~\ref{eq:dfig-pf-statevec} pada Bab 2):
+
+\begin{equation}
+    \mathbf{x}_{DFIG,PF} =
+    \begin{bmatrix}\phi_m & \mathrm{speed} &
+        \psi_{A1,r} & \psi_{A1,i} &
+        \psi_{A2,r} & \psi_{A2,i} &
+        \psi_{B,r}  & \psi_{B,i}
+    \end{bmatrix}^\top
+    \label{eq:dfig_pf_state_ch3}
+\end{equation}
+
+Selain variabel keadaan mesin, subsistem kontrol DFIG-WT (PLL, \textit{Pitch
+Control}, PQ \textit{Control}, dan \textit{Ir Control}) berkontribusi tambahan
+pada variabel keadaan yang memperbesar orde matriks $\mathbf{A}$. Linearisasi
+Pers.~\eqref{eq:dfig_psiqs_ch3}--\eqref{eq:dfig_omega_ch3} beserta persamaan
+kontroler di sekitar titik ekuilibrium menghasilkan:
+
+\begin{equation}
+    \Delta\dot{\mathbf{x}}_{DFIG} = \mathbf{A}_{DFIG}\,\Delta\mathbf{x}_{DFIG}
+    \label{eq:dfig_linear_ch3}
+\end{equation}
+
+\subsection{Linearisasi Model PMSG-WT}
+
+PMSG-WT dimodelkan sebagai \textit{static generator} yang merepresentasikan
+\textit{grid-side converter}. Dinamika listrik PMSG dalam kerangka referensi
+$dq$ menggunakan persamaan tegangan sumbu $d$ dan $q$ dengan suku kopling
+silang (Pers.~\ref{eq:pmsg-Id}--\ref{eq:pmsg-Iq} pada Bab 2):
+
+\begin{align}
+    L_d \frac{dI_d}{dt} &= V_d - R_s I_d + \omega_r L_q I_q
+    \label{eq:pmsg_Id_ch3} \\[4pt]
+    L_q \frac{dI_q}{dt} &= V_q - R_s I_q - \omega_r(L_d I_d + \lambda_f)
+    \label{eq:pmsg_Iq_ch3}
+\end{align}
+
+Torsi elektromagnetik PMSG dinyatakan sebagai (Pers.~\ref{eq:pmsg-Te} pada
+Bab 2):
+
+\begin{equation}
+    T_e = \frac{3}{2}\,p\,\bigl[\lambda_f I_q + (L_d - L_q)\,I_d I_q\bigr]
+    \label{eq:pmsg_Te_ch3}
+\end{equation}
+
+Dinamika mekanik rotor menggunakan persamaan ayunan massa tunggal
+(Pers.~\ref{eq:pmsg-omega} pada Bab 2):
+
+\begin{equation}
+    \frac{2H_r}{\omega_s}\frac{d\omega_r}{dt} = T_m - T_e
+    \label{eq:pmsg_omega_ch3}
+\end{equation}
+
+Variabel keadaan model linearisasi PMSG-WT tersusun dalam vektor
+(Pers.~\ref{eq:pmsg-statevec} pada Bab 2):
+
+\begin{equation}
+    \mathbf{x}_{PMSG} =
+    \begin{bmatrix}I_d & I_q & \omega_r & V_{dc}\end{bmatrix}^\top
+    \label{eq:pmsg_state_ch3}
+\end{equation}
+
+Dalam implementasi DIgSILENT PowerFactory, variabel keadaan model \textit{Fully
+Rated Converter} (FRC) yang masuk ke dalam matriks sistem $\mathbf{A}$ adalah
+(Pers.~\ref{eq:frc-pf-statevec} pada Bab 2):
+
+\begin{equation}
+    \mathbf{x}_{FRC,PF} =
+    \begin{bmatrix}\theta_{PLL} & i_d & i_q\end{bmatrix}^\top
+    \label{eq:pmsg_pf_state_ch3}
+\end{equation}
+
+ditambah variabel keadaan integrator PI pada \textit{Current Controller} dan
+\textit{PQ Control}. Sudut $\theta_{PLL}$ adalah satu-satunya variabel keadaan
+yang mengkopelkan FRC-WTG dengan dinamika tegangan jaringan secara langsung.
+Karena konverter penuh memisahkan seluruh dinamika sisi generator dari jaringan,
+variabel mekanik rotor ($\omega_r$, $I_d$, $I_q$) tidak berpartisipasi dominan
+dalam \textit{electromechanical oscillation mode} sistem. Linearisasi model FRC
+di sekitar titik ekuilibrium menghasilkan:
+
+\begin{equation}
+    \Delta\dot{\mathbf{x}}_{PMSG} = \mathbf{A}_{PMSG}\,\Delta\mathbf{x}_{PMSG}
+    \label{eq:pmsg_linear_ch3}
+\end{equation}
+
+\subsection{Pembentukan Matriks Sistem Gabungan}
+
+Matriks sistem $\mathbf{A}$ gabungan dibentuk dari kontribusi seluruh komponen
+dinamik yang terhubung ke jaringan. Antarkomponen terkopel melalui persamaan
+jaringan bus (matriks admitansi) yang menghubungkan tegangan dan arus setiap
+titik sambung. Untuk sistem IEEE \textit{nine bus} dengan dua generator sinkron
+yang tersisa dan satu unit PLTB, vektor keadaan penuh mengikuti
+Pers.~\eqref{eq:state_full}. Orde $n$ matriks $\mathbf{A}$ bergantung pada
+konfigurasi skenario:
+
+\begin{enumerate}
+    \item Skenario tanpa PLTB (Skenario 1): tiga generator sinkron aktif dengan
+    variabel keadaan model subtransien PowerFactory --- orde $n = 16$.
+    \item Skenario dengan DFIG-WT (Skenario 2 dan 4): variabel keadaan mesin
+    DFIG (Pers.~\eqref{eq:dfig_pf_state_ch3}) ditambah variabel keadaan
+    subsistem kontrol (PLL, \textit{Pitch Control}, PQ \textit{Control},
+    \textit{Ir Control}) --- orde $n = 30$.
+    \item Skenario dengan PMSG-WT (Skenario 3 dan 5): variabel keadaan FRC
+    (Pers.~\eqref{eq:pmsg_pf_state_ch3}) ditambah integrator kontroler ---
+    orde $n = 20$.
+\end{enumerate}
+
+DIgSILENT PowerFactory 2024 membentuk matriks $\mathbf{A}$ dan menyelesaikan
+persamaan karakteristik~\eqref{eq:char_eq} melalui modul \textit{modal
+analysis} secara numerik pada titik operasi hasil \textit{load flow}, sehingga
+seluruh penghitungan \textit{eigenvalue}, \textit{damping ratio}, dan
+\textit{participation factor} yang disajikan dalam Bab 4 mengacu pada
+persamaan-persamaan yang telah dirumuskan di Bab 2 (Pers.~\ref{eq:def-eigenvalue},
+\ref{eq:damping-ratio}, \ref{eq:freq-osc}, dan \ref{eq:pf}).
+
+\section{Klasifikasi Mode Osilasi}
+
+Mode osilasi diklasifikasikan berdasarkan frekuensi osilasi teredam ($f_d$) dan
+\textit{damping ratio} ($\zeta$). Berdasarkan frekuensi:
+
+\begin{enumerate}
+    \item \textbf{Mode inter-area}: frekuensi osilasi berkisar antara 0,1 hingga
+    0,8 Hz, melibatkan osilasi antara kelompok generator yang berjauhan secara
+    elektris.
+    \item \textbf{Mode lokal (\textit{local area mode})}: frekuensi osilasi
+    berkisar antara 0,8 hingga 2,0 Hz, melibatkan osilasi satu generator
+    terhadap sisa sistem.
+    \item \textbf{Mode kontrol (\textit{control mode})}: frekuensi osilasi di
+    atas 2,0 Hz, berkaitan dengan dinamika sistem kontrol pada generator atau
+    peralatan \textit{power electronics}.
+\end{enumerate}
+
+Berdasarkan \textit{damping ratio}:
+
+\begin{enumerate}
+    \item \textbf{Stabil}: $\zeta > 0$, seluruh osilasi teredam seiring waktu.
+    \item \textbf{Kritis}: $\zeta = 0$, osilasi tidak teredam dan tidak
+    bertumbuh (\textit{marginal stability}).
+    \item \textbf{Tidak stabil}: $\zeta < 0$, osilasi bertumbuh tak terbatas dan
+    sistem kehilangan kestabilan sinyal kecil.
+\end{enumerate}
+
+\section{Metode Perbandingan Hasil}
+
+Perbandingan antar skenario mengukur tiga parameter: \textit{damping ratio}
+terkecil, frekuensi osilasi teredam pada mode kritis, dan kontribusi komponen
+berdasarkan \textit{participation factor}.
+
+Skenario 1.1 menjadi acuan terhadap Skenario 2.1, 2.2, 3.1, dan 3.2 untuk
+mengevaluasi pengaruh jenis PLTB dan lokasi penempatan terhadap kestabilan sinyal
+kecil. Skenario 4.x dan 5.x dibandingkan terhadap Skenario 1.2 dan 1.3 untuk
+mengukur pengaruh PLTB terhadap batas kestabilan dinamis saat beban meningkat.
+Kedua perbandingan menentukan teknologi dan konfigurasi PLTB yang paling
+menguntungkan dan paling berisiko bagi kestabilan sinyal kecil sistem IEEE
+\textit{nine bus}.

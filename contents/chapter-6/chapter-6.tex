@@ -2,14 +2,98 @@
 
 \section{Kesimpulan}
 
-Kesimpulan dapat diawali dengan apa yang dilakukan dengan tugas akhir ini lalu 
-dilanjutkan dengan poin-poin yang menjawab tujuan penelitian, apakah tujuan sudah tercapai atau belum, tentunya berdasarkan data ataupun hasil dari Bab pembahasan sebelumnya. Dalam beberapa hal, kesimpulan dapat juga berisi tentang temuan/\textit{findings} yang Anda dapatkan setelah melakukan pengamatan dan atau analisis terhadap hasil penelitian. 
+Penelitian ini menganalisis dan membandingkan dampak integrasi PLTB berbasis
+DFIG-WT dan PMSG-WT terhadap \textit{small signal stability} (SSS) sistem tenaga
+listrik pada sistem uji IEEE \textit{nine-bus} menggunakan analisis modal
+berbasis \textit{eigenvalue} di DIgSILENT PowerFactory 2024.
 
-Kesimpulan menjawab seberapa jauh rumusan masalah tercapai berdasarkan hasil penelitian. Semua rumusan masalah harus disimpulkan berdasarkan data penelitian.
+\begin{enumerate}
+
+\item Integrasi DFIG-WT menurunkan \textit{damping ratio} dan margin
+kestabilan beban. Penggantian generator sinkron konvensional oleh DFIG-WT
+menurunkan DR mode dominan dari 7,22\% (kondisi awal) menjadi sekitar 4,04\%,
+baik ketika DFIG-WT menggantikan G3 (Skenario 2.1, 85 MW) maupun G2 (Skenario
+2.2, 163 MW). Lokasi dan kapasitas penggantian tidak memengaruhi DR mode dominan
+(4,04\% vs 4,05\%). Analisis \textit{participation factor} pada skenario
+peningkatan beban menunjukkan bahwa variabel $\varphi_m$ (sudut rotor internal
+DFIG-WT) mendominasi mode tidak stabil, mengonfirmasi bahwa dinamika internal
+DFIG-WT memicu ketidakstabilan. Integrasi DFIG-WT juga mempersempit margin
+kestabilan beban: batas ketidakstabilan Beban B turun dari 373\%
+menjadi 86\%, dan Beban A dari 247\% menjadi 63\%. Nilai DR pada batas
+ketidakstabilan ($-$10,60\% dan $-$7,42\%) jauh lebih negatif dibandingkan sistem
+konvensional, menandakan DFIG-WT kehilangan kestabilan lebih cepat.
+
+\item Integrasi PMSG-WT mempertahankan atau meningkatkan \textit{damping
+ratio}, dengan margin kestabilan beban yang bergantung pada posisi. Penggantian
+generator sinkron oleh PMSG-WT tidak menurunkan DR: Skenario 3.1 (menggantikan
+G3) menghasilkan DR 7,25\% dan Skenario 3.2 (menggantikan G2) menghasilkan DR
+8,73\%, keduanya lebih tinggi dari kondisi awal 7,22\%. Lokasi penggantian
+generator oleh PMSG-WT memengaruhi DR, di mana penggantian G2 (kapasitas lebih
+besar, 163 MW) justru menghasilkan redaman lebih tinggi. Analisis
+\textit{participation factor} mengonfirmasi bahwa variabel dari model PMSG-WT
+tidak muncul sebagai kontributor dominan pada mode osilasi, karena
+\textit{fully-rated converter} memisahkan dinamika mesin dari jaringan. Margin
+kestabilan beban dengan PMSG-WT lebih baik dibandingkan DFIG-WT, namun bergantung
+pada konfigurasi: pada peningkatan Beban B sebesar 237\%, sistem dengan PMSG-WT
+menggantikan G3 (Skenario 5.1) tepat berada di batas ketidakstabilan (DR =
+$-$0,63\%), sementara sistem dengan PMSG-WT menggantikan G2 (Skenario 5.2) masih
+stabil pada peningkatan Beban A yang sama dengan DR = 8,39\%.
+
+\item DFIG-WT dan PMSG-WT memberikan dampak yang berlawanan terhadap
+SSS, dengan perbedaan mendasar pada \textit{eigenvalue}, DR, dan
+\textit{participation factor}. DFIG-WT menurunkan DR mode dominan dan
+mempersempit margin kestabilan beban di semua skenario, sedangkan PMSG-WT
+mempertahankan atau meningkatkan DR dengan margin kestabilan yang bergantung pada
+posisi penggantian terhadap beban. Seluruh mode dominan dalam kondisi stabil
+tergolong \textit{local area mode} (1,38--1,86 Hz), tanpa karakteristik
+\textit{inter-area}. Jumlah \textit{eigenvalue} meningkat seiring penambahan
+PLTB: 16 mode (kondisi awal), 20 mode (PMSG-WT), dan 30 mode (DFIG-WT),
+mencerminkan kompleksitas model kontrol DFIG-WT yang lebih tinggi. Ketika sistem
+mencapai ketidakstabilan, variabel dominan berbeda: $\varphi_m$ DFIG-WT
+mendominasi pada Skenario 4.1 dan 4.2, sedangkan $\omega$ G1 mendominasi pada
+skenario PMSG-WT (5.1) maupun skenario konvensional (1.2, 1.3), mengonfirmasi
+bahwa \textit{fully-rated converter} PMSG-WT mencegah dinamika mesin
+berpartisipasi dalam mode tidak stabil.
+
+\end{enumerate}
 
 \section{Saran}
 
-Saran berisi hal-hal yang bisa dilanjutkan dari penelitian atau skripsi ini, yang belum dilakukan karena batasan permasalahan. Saran bukan berisi saran kepada sistem atau pengguna, tetapi saran diberikan kepada aspek penelitian yang dapat dikembangkan dan ditambahkan di penelitian atau skripsi selanjutnya.
+Empat aspek berikut dapat dikembangkan pada penelitian selanjutnya berdasarkan
+batasan penelitian dan temuan di Bab~IV.
+
+\begin{enumerate}
+
+\item Penambahan AVR dan PSS pada generator sinkron konvensional.
+Penelitian ini tidak menggunakan AVR maupun PSS pada generator konvensional yang
+tersisa. Penambahan kedua komponen tersebut, dengan berbagai kombinasi tipe
+(misalnya EXDC2, EXAC4, STAB1, PSS2A), berpotensi meningkatkan DR mode dominan
+yang pada skenario DFIG-WT sudah mendekati ambang 5\%. Penelitian lanjutan dapat
+mengevaluasi kombinasi AVR dan PSS terbaik untuk mempertahankan SSS sistem saat
+PLTB terhubung.
+
+\item Penerapan kontroler peredam osilasi pada DFIG-WT. Analisis
+\textit{participation factor} menunjukkan bahwa variabel $\varphi_m$ DFIG-WT
+mendominasi mode tidak stabil pada kondisi peningkatan beban, mengindikasikan
+bahwa dinamika internal DFIG-WT menjadi sumber ketidakstabilan. Penerapan
+\textit{supplementary damping controller} atau \textit{wind power stabilizer}
+pada kontroler DFIG-WT merupakan langkah lanjutan untuk meredam mode tersebut.
+
+\item Variasi tingkat penetrasi dan kecepatan angin. Penelitian ini
+hanya mengkaji satu tingkat penetrasi per skenario dengan asumsi kecepatan angin
+konstan pada kondisi nominal. Variasi penetrasi parsial (misalnya 25\%, 50\%,
+75\% kapasitas nominal) serta kondisi angin rendah dan angin tinggi akan memetakan
+batas operasi aman DFIG-WT dan PMSG-WT terhadap SSS.
+
+\item Validasi pada sistem tenaga praktis dan perluasan jenis kajian
+kestabilan. Sistem uji IEEE \textit{nine-bus} adalah sistem akademis berskala
+kecil yang tidak mewakili kompleksitas sistem interkoneksi nyata. Penerapan
+metodologi yang sama pada sistem kelistrikan nyata, seperti sistem interkoneksi
+Sulawesi atau sistem Jawa-Bali sesuai RUPTL PLN 2025--2034, akan menguji apakah
+kesimpulan ini berlaku pada skala interkoneksi penuh. Analisis dalam penelitian
+ini terbatas pada SSS; penambahan analisis kestabilan transien akan mengungkap
+respons sistem terhadap gangguan besar saat PLTB terhubung.
+
+\end{enumerate}
 
 
-\noindent \textcolor{red}{Catatan: Mahasiswa perlu melihat sinkronisasi antara rumusan masalah, tujuan, metode, hasil penelitian, dan kesimpulan.}
