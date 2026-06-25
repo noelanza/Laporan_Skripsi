@@ -15,11 +15,346 @@ screenshot aplikasi.
 \item Cuplikan kode yang sekiranya penting dan ditambahkan. 
 \item Tabel yang terlalu panjang yang masih diperlukan tetapi tidak 
 memungkinkan untuk ditayangkan di bagian utama skripsi.
-\item Gambar-gambar pendukung yang tidak terlalu penting untuk ditampilkan di 
+\item Gambar-gambar pendukung yang tidak terlalu penting untuk ditampilkan di
 bagian utama. Akan tetapi, mendukung argumentasi/pengamatan/analisis.
-\item Penurunan rumus-rumus atau pembuktian suatu teorema yang terlalu 
-panjang dan terlalu teknis sehingga Anda berasumsi bahwa pembaca biasa 
-tidak akan menelaah lebih lanjut. Hal ini digunakan untuk memberikan 
-kesempatan bagi pembaca tingkat lanjut untuk melihat proses penurunan 
+\item Penurunan rumus-rumus atau pembuktian suatu teorema yang terlalu
+panjang dan terlalu teknis sehingga Anda berasumsi bahwa pembaca biasa
+tidak akan menelaah lebih lanjut. Hal ini digunakan untuk memberikan
+kesempatan bagi pembaca tingkat lanjut untuk melihat proses penurunan
 rumus-rumus ini.
 \end{enumerate}
+
+\section{Data \textit{Eigenvalue} Skenario 1}
+
+\begin{table}[H]
+	\caption{Nilai \textit{Eigenvalue} Skenario 1}
+	\vspace{0.5em}
+	\centering
+	\fontsize{12}{14.4}\selectfont
+	\setlength{\tabcolsep}{4pt}
+	\begin{tabular}{|>{\centering\arraybackslash}m{2.3cm}|c|c|c|c|}
+		\hline
+		\textbf{Name} &
+		\textbf{\shortstack{Real Part\\(1/s)}} &
+		\textbf{\shortstack{Imaginary Part\\(rad/s)}} &
+		\textbf{\shortstack{Damped Frequency\\(Hz)}} &
+		\textbf{\shortstack{Damping Ratio\\(\%)}} \\
+		\hline \hline
+		Mode 00001 & $-$0,05828504  &    0              & 0          & 100        \\
+		Mode 00002 & $-$0,17641815  &    0              & 0          & 100        \\
+		Mode 00003 & $-$0,21843071  &    0              & 0          & 100        \\
+		Mode 00004 & $-$0,22361610  &    0              & 0          & 100        \\
+		Mode 00005 & $-$0,62869676  &    8,68457045     & 1,38219231 & 7,22034356 \\
+		Mode 00006 & $-$0,62869676  & $-$8,68457045     & 1,38219231 & 7,22034356 \\
+		Mode 00007 & $-$1,33144644  &    13,35650682    & 2,12575408 & 9,91935967 \\
+		Mode 00008 & $-$1,33144644  & $-$13,35650682    & 2,12575408 & 9,91935967 \\
+		Mode 00009 & $-$3,44595804  &    0              & 0          & 100        \\
+		Mode 00010 & $-$4,77129105  &    0              & 0          & 100        \\
+		Mode 00011 & $-$7,82431273  &    0              & 0          & 100        \\
+		Mode 00012 & $-$14,99004355 &    0              & 0          & 100        \\
+		Mode 00013 & $-$16,47852236 &    0              & 0          & 100        \\
+		Mode 00014 & $-$16,76870121 &    0              & 0          & 100        \\
+		Mode 00015 & $-$18,17911475 &    0              & 0          & 100        \\
+		Mode 00016 & $-$18,73593392 &    0              & 0          & 100        \\ \hline
+	\end{tabular}
+	\label{tab:eigenvalue_sk1_lampiran}
+\end{table}
+
+\section{Data \textit{Participation Factor} Skenario 1}
+
+\begin{table}[H]
+	\caption{Nilai \textit{Participation Factor} pada Mode 005 Skenario 1}
+	\vspace{0.5em}
+	\centering
+	\fontsize{12}{14.4}\selectfont
+	\setlength{\tabcolsep}{5pt}
+	\begin{tabular}{|c|l|c|c|}
+		\hline
+		\textbf{\textit{No.}} & \multicolumn{1}{c|}{\textbf{\textit{Object}}} & \textbf{\textit{State Variable}} & \textbf{\textit{Participation Factor}} \\
+		\hline \hline
+		1  & G1 & phi    & 0          \\
+		2  & G1 & psi1d  & 0,000074   \\
+		3  & G1 & psi1q  & 0,077998   \\
+		4  & G1 & psifd  & 0,000006   \\
+		5  & G1 & speed  & 0,338495   \\
+		6  & G2 & phi    & 1          \\
+		7  & G2 & psi1d  & 0,015482   \\
+		8  & G2 & psi1q  & 0,017730   \\
+		9  & G2 & psi2q  & 0,007561   \\
+		10 & G2 & psifd  & 0,028238   \\
+		11 & G2 & speed  & 0,731174   \\
+		12 & G3 & phi    & 0,174862   \\
+		13 & G3 & psi1d  & 0,002406   \\
+		14 & G3 & psi1q  & 0,000216   \\
+		15 & G3 & psi2q  & 0,000130   \\
+		16 & G3 & psifd  & 0,004131   \\
+		17 & G3 & speed  & 0,105749   \\ \hline
+	\end{tabular}
+	\label{tab:prf_sk1_lampiran}
+\end{table}
+
+\section{Data \textit{Eigenvalue} Skenario 2.1}
+
+\begingroup
+\fontsize{12}{14.4}\selectfont
+\setlength{\tabcolsep}{4pt}
+\begin{longtable}{|>{\centering\arraybackslash}m{2.3cm}|c|c|c|c|}
+	\caption{Nilai \textit{Eigenvalue} Skenario 2.1}
+	\label{tab:eigenvalue_sk21_lampiran} \\
+	\hline
+	\textbf{Name} &
+	\textbf{\shortstack{Real Part\\(1/s)}} &
+	\textbf{\shortstack{Imaginary Part\\(rad/s)}} &
+	\textbf{\shortstack{Damped Frequency\\(Hz)}} &
+	\textbf{\shortstack{Damping Ratio\\(\%)}} \\
+	\hline \hline
+	\endfirsthead
+	\multicolumn{5}{l}{\textit{(lanjutan)}} \\
+	\hline
+	\textbf{Name} &
+	\textbf{\shortstack{Real Part\\(1/s)}} &
+	\textbf{\shortstack{Imaginary Part\\(rad/s)}} &
+	\textbf{\shortstack{Damped Frequency\\(Hz)}} &
+	\textbf{\shortstack{Damping Ratio\\(\%)}} \\
+	\hline \hline
+	\endhead
+	Mode 00001 & $-$0,03333333  & 0                & 0          & 100         \\
+	Mode 00002 & $-$0,05971291  & 0                & 0          & 100         \\
+	Mode 00003 & $-$0,07401409  &  0,07748869      & 0,01233270 & 69,07082246 \\
+	Mode 00004 & $-$0,07401409  & $-$0,07748869    & 0,01233270 & 69,07082246 \\
+	Mode 00005 & $-$0,17898388  & 0                & 0          & 100         \\
+	Mode 00006 & $-$0,19969047  & 0                & 0          & 100         \\
+	Mode 00007 & $-$0,2         & 0                & 0          & 100         \\
+	Mode 00008 & $-$0,22150037  & 0                & 0          & 100         \\
+	Mode 00009 & $-$0,40985370  &  10,12887611     & 1,61206070 & 4,04308016  \\
+	Mode 00010 & $-$0,40985370  & $-$10,12887611   & 1,61206070 & 4,04308016  \\
+	Mode 00011 & $-$0,64317724  &  8,91207674      & 1,41840106 & 7,19819651  \\
+	Mode 00012 & $-$0,64317724  & $-$8,91207674    & 1,41840106 & 7,19819651  \\
+	Mode 00013 & $-$1,78527320  & 0                & 0          & 100         \\
+	Mode 00014 & $-$2           & 0                & 0          & 100         \\
+	Mode 00015 & $-$3,86357869  & 0                & 0          & 100         \\
+	Mode 00016 & $-$7,74104724  & 0                & 0          & 100         \\
+	Mode 00017 & $-$8,17557728  & 0                & 0          & 100         \\
+	Mode 00018 & $-$8,43339121  & 0                & 0          & 100         \\
+	Mode 00019 & $-$10          & 0                & 0          & 100         \\
+	Mode 00020 & $-$14,80911216 & 0                & 0          & 100         \\
+	Mode 00021 & $-$16,60483582 & 0                & 0          & 100         \\
+	Mode 00022 & $-$18,24327559 & 0                & 0          & 100         \\
+	Mode 00023 & $-$19,95836546 & 0                & 0          & 100         \\
+	Mode 00024 & $-$20          & 0                & 0          & 100         \\
+	Mode 00025 & $-$59,68106425 &  23,10481244     & 3,67724510 & 93,25551308 \\
+	Mode 00026 & $-$59,68106425 & $-$23,10481244   & 3,67724510 & 93,25551308 \\
+	Mode 00027 & $-$85,71860746 & 0                & 0          & 100         \\
+	Mode 00028 & $-$100         & 0                & 0          & 100         \\
+	Mode 00029 & $-$210,07388197 & 0               & 0          & 100         \\
+	Mode 00030 & $-$221,52064235 & 0               & 0          & 100         \\ \hline
+\end{longtable}
+\endgroup
+
+\section{Data \textit{Participation Factor} Skenario 2.1}
+\begingroup
+\fontsize{12}{14.4}\selectfont
+\setlength{\tabcolsep}{5pt}
+\begin{longtable}{|c|p{5cm}|c|c|}
+	\caption{Nilai \textit{Participation Factor} Skenario 2.1}
+	\label{tab:prf_sk21_lampiran} \\
+	\hline
+	\textbf{No.} & \textbf{Object} & \textbf{\textit{State Variable}} & \textbf{\textit{Participation Factor}} \\
+	\hline \hline
+	\endfirsthead
+	\multicolumn{4}{l}{\textit{(lanjutan)}} \\
+	\hline
+	\textbf{No.} & \textbf{Object} & \textbf{\textit{State Variable}} & \textbf{\textit{Participation Factor}} \\
+	\hline \hline
+	\endhead
+	1  & Irot-Ctrl\_DFIG Control             & xd           & 0,000408 \\
+	2  & Irot-Ctrl\_DFIG Control             & xq           & 0        \\
+	3  & OverFrequPwr\_DFIG Control          & x1           & 0        \\
+	4  & OverFrequPwr\_DFIG Control          & x            & 0        \\
+	5  & PLL WT\_DFIG Control                & STATE\_XS(2) & 0,000006 \\
+	6  & PLL WT\_DFIG Control                & x1           & 0        \\
+	7  & PLL WT\_DFIG Control                & x2           & 0,000015 \\
+	8  & PQ Control\_DFIG Control            & xflt         & 0        \\
+	9  & PQ Control\_DFIG Control            & xlim         & 0        \\
+	10 & PQ Control \& synch\_DFIG Control   & xr           & 0        \\
+	11 & PQ Control \& synch\_DFIG Control   & xu           & 0        \\
+	12 & PQ Control\_DFIG Control            & xpctrl       & 0,002941 \\
+	13 & PQ Control\_DFIG Control            & xqctrl       & 0        \\
+	14 & Pitch Control\_DFIG Control         & xip          & 0        \\
+	15 & Pitch Control\_DFIG Control         & xp           & 0        \\
+	16 & Shaft\_DFIG Control                 & dphi12       & 1        \\
+	17 & Shaft\_DFIG Control                 & xH           & 0,170101 \\
+	18 & Speed-Controller\_DFIG Control      & xi           & 0,000089 \\
+	19 & Speed-Controller\_DFIG Control      & xpc          & 0,014491 \\
+	20 & SpeedRef\_DFIG Control              & xp           & 0        \\
+	21 & DFIG\_2.5MW\_ReplaceG3              & cosphiu      & 0        \\
+	22 & DFIG\_2.5MW\_ReplaceG3              & psiA1\_i     & 0        \\
+	23 & DFIG\_2.5MW\_ReplaceG3              & psiA1\_r     & 0,000065 \\
+	24 & DFIG\_2.5MW\_ReplaceG3              & psiA2\_i     & 0        \\
+	25 & DFIG\_2.5MW\_ReplaceG3              & psiA2\_r     & 0        \\
+	26 & DFIG\_2.5MW\_ReplaceG3              & sinphiu      & 0,000014 \\
+	27 & DFIG\_2.5MW\_ReplaceG3              & psiB\_i      & 0        \\
+	28 & DFIG\_2.5MW\_ReplaceG3              & psiB\_r      & 0        \\
+	29 & DFIG\_2.5MW\_ReplaceG3              & speed        & 0,841472 \\
+	30 & DFIG\_2.5MW\_ReplaceG3              & phim         & 1        \\
+	31 & G1                                  & phi          & 0        \\
+	32 & G1                                  & psi1d        & 0,000001 \\
+	33 & G1                                  & psi1q        & 0,000001 \\
+	34 & G1                                  & psifd        & 0        \\
+	35 & G1                                  & speed        & 0,000010 \\
+	36 & G2                                  & phi          & 0,000208 \\
+	37 & G2                                  & psi1d        & 0,000009 \\
+	38 & G2                                  & psi1q        & 0,000007 \\
+	39 & G2                                  & psi2q        & 0,000003 \\
+	40 & G2                                  & psifd        & 0,000013 \\
+	41 & G2                                  & speed        & 0,000191 \\ \hline
+\end{longtable}
+\endgroup
+
+\section{Data \textit{Eigenvalue} Skenario 2.3}
+\begingroup
+\fontsize{12}{14.4}\selectfont
+\setlength{\tabcolsep}{4pt}
+\begin{longtable}{|>{\centering\arraybackslash}m{2.3cm}|c|c|c|c|}
+	\caption{Nilai \textit{Eigenvalue} Skenario 2.3}
+	\label{tab:eigenvalue_sk23_lampiran} \\
+	\hline
+	\textbf{Name} &
+	\textbf{\shortstack{Real Part\\(1/s)}} &
+	\textbf{\shortstack{Imaginary Part\\(rad/s)}} &
+	\textbf{\shortstack{Damped Frequency\\(Hz)}} &
+	\textbf{\shortstack{Damping Ratio\\(\%)}} \\
+	\hline \hline
+	\endfirsthead
+	\multicolumn{5}{l}{\textit{(lanjutan)}} \\
+	\hline
+	\textbf{Name} &
+	\textbf{\shortstack{Real Part\\(1/s)}} &
+	\textbf{\shortstack{Imaginary Part\\(rad/s)}} &
+	\textbf{\shortstack{Damped Frequency\\(Hz)}} &
+	\textbf{\shortstack{Damping Ratio\\(\%)}} \\
+	\hline \hline
+	\endhead
+	Mode 00001 & $-$0,03333333   & 0                 & 0          & 100          \\
+	Mode 00002 & $-$0,06220436   & 0                 & 0          & 100          \\
+	Mode 00003 & $-$0,07411677   &  0,07753577       & 0,01234020 & 69,09894795  \\
+	Mode 00004 & $-$0,07411677   & $-$0,07753577     & 0,01234020 & 69,09894795  \\
+	Mode 00005 & $-$0,2          & 0                 & 0          & 100          \\
+	Mode 00006 & $-$0,20350856   & 0                 & 0          & 100          \\
+	Mode 00007 & $-$0,21267003   & 0                 & 0          & 100          \\
+	Mode 00008 & $-$0,21856963   & 0                 & 0          & 100          \\
+	Mode 00009 & $-$0,41056460   &  10,12948225      & 1,61215717 & 4,04983957   \\
+	Mode 00010 & $-$0,41056460   & $-$10,12948225    & 1,61215717 & 4,04983957   \\
+	Mode 00011 & $-$1,00554857   &  11,66569730      & 1,85665339 & 8,58785944   \\
+	Mode 00012 & $-$1,00554857   & $-$11,66569730    & 1,85665339 & 8,58785944   \\
+	Mode 00013 & $-$1,78480862   & 0                 & 0          & 100          \\
+	Mode 00014 & $-$2            & 0                 & 0          & 100          \\
+	Mode 00015 & $-$3,64417852   & 0                 & 0          & 100          \\
+	Mode 00016 & $-$7,75400870   & 0                 & 0          & 100          \\
+	Mode 00017 & $-$8,09643649   & 0                 & 0          & 100          \\
+	Mode 00018 & $-$8,31524704   & 0                 & 0          & 100          \\
+	Mode 00019 & $-$10           & 0                 & 0          & 100          \\
+	Mode 00020 & $-$15,69994860  & 0                 & 0          & 100          \\
+	Mode 00021 & $-$16,75306241  & 0                 & 0          & 100          \\
+	Mode 00022 & $-$18,50502374  & 0                 & 0          & 100          \\
+	Mode 00023 & $-$19,92436283  & 0                 & 0          & 100          \\
+	Mode 00024 & $-$20           & 0                 & 0          & 100          \\
+	Mode 00025 & $-$50,22573315  &  31,99677885      & 5,09244551 & 84,33955705  \\
+	Mode 00026 & $-$50,22573315  & $-$31,99677885    & 5,09244551 & 84,33955705  \\
+	Mode 00027 & $-$99,80232816  & 0                 & 0          & 100          \\
+	Mode 00028 & $-$100          & 0                 & 0          & 100          \\
+	Mode 00029 & $-$127,05301462 & 0                 & 0          & 100          \\
+	Mode 00030 & $-$170,16391124 & 0                 & 0          & 100          \\ \hline
+\end{longtable}
+\endgroup
+
+\section{Data \textit{Eigenvalue} Skenario 3.1}
+\begingroup
+\fontsize{12}{14.4}\selectfont
+\setlength{\tabcolsep}{4pt}
+\begin{longtable}{|>{\centering\arraybackslash}m{2.3cm}|c|c|c|c|}
+	\caption{Nilai \textit{Eigenvalue} Skenario 3.1}
+	\label{tab:eigenvalue_sk31_lampiran} \\
+	\hline
+	\textbf{Name} &
+	\textbf{\shortstack{Real Part\\(1/s)}} &
+	\textbf{\shortstack{Imaginary Part\\(rad/s)}} &
+	\textbf{\shortstack{Damped Frequency\\(Hz)}} &
+	\textbf{\shortstack{Damping Ratio\\(\%)}} \\
+	\hline \hline
+	\endfirsthead
+	\multicolumn{5}{l}{\textit{(lanjutan)}} \\
+	\hline
+	\textbf{Name} &
+	\textbf{\shortstack{Real Part\\(1/s)}} &
+	\textbf{\shortstack{Imaginary Part\\(rad/s)}} &
+	\textbf{\shortstack{Damped Frequency\\(Hz)}} &
+	\textbf{\shortstack{Damping Ratio\\(\%)}} \\
+	\hline \hline
+	\endhead
+	Mode 00001 & $-$0,03333333   & 0                  & 0            & 100           \\
+	Mode 00002 & $-$0,05976350   &  0,00247284        & 0,00039356   & 99,91450624   \\
+	Mode 00003 & $-$0,05976350   & $-$0,00247284      & 0,00039356   & 99,91450624   \\
+	Mode 00004 & $-$0,17811725   & 0                  & 0            & 100           \\
+	Mode 00005 & $-$0,22238888   & 0                  & 0            & 100           \\
+	Mode 00006 & $-$0,64878445   &  8,91904170        & 1,41950957   & 7,25498086    \\
+	Mode 00007 & $-$0,64878445   & $-$8,91904170      & 1,41950957   & 7,25498086    \\
+	Mode 00008 & $-$3,84986256   & 0                  & 0            & 100           \\
+	Mode 00009 & $-$7,76046069   & 0                  & 0            & 100           \\
+	Mode 00010 & $-$8,56473867   & 0                  & 0            & 100           \\
+	Mode 00011 & $-$10           & 0                  & 0            & 100           \\
+	Mode 00012 & $-$14,86489889  & 0                  & 0            & 100           \\
+	Mode 00013 & $-$16,59457580  & 0                  & 0            & 100           \\
+	Mode 00014 & $-$18,22818626  & 0                  & 0            & 100           \\
+	Mode 00015 & $-$35,88147777  & 0                  & 0            & 100           \\
+	Mode 00016 & $-$49,11799798  & 0                  & 0            & 100           \\
+	Mode 00017 & $-$100          & 0                  & 0            & 100           \\
+	Mode 00018 & $-$100          & 0                  & 0            & 100           \\
+	Mode 00019 & $-$460,14250076 &  106,59825934      & 16,96563989  & 97,41999470   \\
+	Mode 00020 & $-$460,14250076 & $-$106,59825934    & 16,96563989  & 97,41999470   \\ \hline
+\end{longtable}
+\endgroup
+
+\section{Data \textit{Participation Factor} Skenario 3.1}
+\begingroup
+\fontsize{12}{14.4}\selectfont
+\setlength{\tabcolsep}{5pt}
+\begin{longtable}{|c|p{5.5cm}|c|c|}
+	\caption{Nilai \textit{Participation Factor} pada Mode 006 Skenario 3.1}
+	\label{tab:prf_sk31_lampiran} \\
+	\hline
+	\textbf{No.} & \multicolumn{1}{c|}{\textbf{Object}} & \textbf{\textit{State Variable}} & \textbf{\textit{Participation Factor}} \\
+	\hline \hline
+	\endfirsthead
+	\multicolumn{4}{l}{\textit{(lanjutan)}} \\
+	\hline
+	\textbf{No.} & \multicolumn{1}{c|}{\textbf{Object}} & \textbf{\textit{State Variable}} & \textbf{\textit{Participation Factor}} \\
+	\hline \hline
+	\endhead
+	1  & PLL\_FullyRatedConv Control                     & STATE\_XS(2) & 0,000498 \\
+	2  & PQ Controller\_FullyRatedConv Control           & xpctrl       & 0,001908 \\
+	3  & PQ Controller\_FullyRatedConv Control           & xqctrl       & 0,000528 \\
+	4  & PQ Controller\_FullyRatedConv Control           & xramp        & 0        \\
+	5  & PQ Controller\_FullyRatedConv Control           & xuini        & 0        \\
+	6  & Current Controller\_FullyRatedConv Control      & xid          & 0        \\
+	7  & Current Controller\_FullyRatedConv Control      & xiq          & 0        \\
+	8  & PQ Controller\_FullyRatedConv Control           & xflt         & 0        \\
+	9  & PLL\_FullyRatedConv Control                     & x1           & 0,000004 \\
+	10 & PLL\_FullyRatedConv Control                     & x2           & 0,000533 \\
+	11 & Current Controller\_FullyRatedConv Control      & xd           & 0,000064 \\
+	12 & Current Controller\_FullyRatedConv Control      & xq           & 0,000013 \\
+	13 & OverFrequPowerReduc\_\newline{}FullyRatedConv Control & x1      & 0        \\
+	14 & OverFrequPowerReduc\_\newline{}FullyRatedConv Control & x       & 0        \\
+	15 & G1                                              & phi          & 0        \\
+	16 & G1                                              & psi1d        & 0,000279 \\
+	17 & G1                                              & psi1q        & 0,057052 \\
+	18 & G1                                              & psifd        & 0,000021 \\
+	19 & G1                                              & speed        & 0,233136 \\
+	20 & G2                                              & phi          & 1        \\
+	21 & G2                                              & psi1d        & 0,018578 \\
+	22 & G2                                              & psi1q        & 0,014540 \\
+	23 & G2                                              & psi2q        & 0,006078 \\
+	24 & G2                                              & psifd        & 0,032380 \\
+	25 & G2                                              & speed        & 0,767963 \\ \hline
+\end{longtable}
+\endgroup
