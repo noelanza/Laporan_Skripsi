@@ -1,29 +1,27 @@
 Integrasi Pembangkit Listrik Tenaga Bayu (PLTB) berbasis \textit{doubly fed
 induction generator} (DFIG-WT) dan \textit{permanent magnet synchronous
-generator} (PMSG-WT) ke dalam sistem tenaga listrik berpotensi mengubah
-karakteristik stabilitas sinyal kecil karena kedua teknologi ini memiliki
-dinamika yang berbeda dari generator sinkron konvensional; penelitian ini
-bertujuan menganalisis dan membandingkan dampak integrasi DFIG-WT dan PMSG-WT
-terhadap \textit{small signal stability} (SSS) pada sistem uji IEEE
-\textit{nine-bus} menggunakan analisis modal berbasis \textit{eigenvalue} di
-DIgSILENT PowerFactory 2024, dengan enam skenario percobaan yang memvariasikan
-teknologi PLTB, posisi integrasi (Bus 7 dan Bus 9), serta kondisi pembebanan.
-Hasil menunjukkan bahwa integrasi DFIG-WT menurunkan \textit{damping ratio} mode
-dominan dari 7,22\% menjadi sekitar 4,04\% tanpa bergantung pada posisi
-integrasi, serta mempersempit margin kestabilan beban secara signifikan---batas
-ketidakstabilan Beban B turun dari 373\% menjadi 86\% dan Beban A dari 247\%
-menjadi 63\%; sebaliknya, integrasi PMSG-WT mempertahankan atau meningkatkan
-\textit{damping ratio} (7,25\%--8,73\%) karena \textit{fully-rated converter}
-memisahkan dinamika mesin dari jaringan sehingga mode osilasi dominan tetap
-dikendalikan oleh dinamika rotor generator sinkron konvensional, dan analisis
+generator} (PMSG-WT) mengubah karakteristik stabilitas sinyal kecil sistem
+tenaga listrik dengan cara yang bergantung pada arsitektur konverter
+masing-masing teknologi. Penelitian ini menganalisis dan membandingkan dampak
+integrasi DFIG-WT dan PMSG-WT terhadap \textit{small signal stability} (SSS)
+pada sistem uji IEEE \textit{nine-bus} melalui analisis modal berbasis
+\textit{eigenvalue} di DIgSILENT PowerFactory 2024, mencakup sebelas skenario
+yang memvariasikan teknologi PLTB, posisi integrasi (Bus 7 dan Bus 9), serta
+kondisi pembebanan. Integrasi DFIG-WT menurunkan \textit{damping ratio} mode
+dominan dari 7,22\% menjadi 4,04\% terlepas dari posisi integrasi, dan
+mempersempit margin kestabilan beban: batas ketidakstabilan Beban A turun dari
+247\% menjadi 83\%, Beban B dari 373\% menjadi 123\%, keduanya menghasilkan
+ketidakstabilan aperiodik (DR $-$100\%) yang berbeda dari ketidakstabilan
+osilatoris pada sistem konvensional. Integrasi PMSG-WT mempertahankan atau
+meningkatkan \textit{damping ratio} ke 7,25\%--8,73\%, dengan batas Beban A
+165\% dan Beban B 284\%, karena \textit{fully-rated converter} memisahkan
+dinamika mesin dari jaringan sehingga mode osilasi dominan tetap dikendalikan
+oleh generator sinkron konvensional yang tersisa. Analisis
 \textit{participation factor} mengonfirmasi bahwa variabel poros DFIG-WT
-($\Delta\delta_{12}$) mendominasi mode osilasi dominan sedangkan sudut rotor
-internal DFIG-WT ($\varphi_m$) mendominasi mode tidak stabil pada kondisi
-peningkatan beban. Kesimpulannya, DFIG-WT dan PMSG-WT memberikan dampak yang
-berlawanan terhadap SSS---DFIG-WT memperburuk redaman dan mempersempit margin
-operasi aman, sedangkan PMSG-WT mempertahankan atau meningkatkan kestabilan
-dengan karakteristik yang bergantung pada posisi integrasi---sehingga temuan ini
-memberikan acuan teknis bagi perencanaan integrasi PLTB yang aman terhadap SSS
-sistem tenaga listrik.
+($\Delta\delta_{12}$) mendominasi mode osilasi dominan, sementara sudut rotor
+internal DFIG-WT ($\varphi_m$) mendominasi mode tidak stabil saat beban
+meningkat. DFIG-WT memperburuk redaman dan mempersempit margin operasi aman;
+PMSG-WT mempertahankan atau meningkatkannya, dengan besaran peningkatan
+bergantung pada generator yang digantikan.
 
 \noindent{Kata kunci} : stabilitas sinyal kecil, DFIG-WT, PMSG-WT, analisis modal, \textit{eigenvalue}

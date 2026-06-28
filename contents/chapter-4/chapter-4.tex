@@ -30,14 +30,14 @@ disajikan pada Tabel \ref{tab:skenario}.
 		\cmidrule(l){1-2} Skenario 3.2 & PMSG-WT menggantikan generator
 		konvensional G2 pada Bus 7 \\
 		\midrule
-		Skenario 4.1 & Peningkatan beban B pada sistem dengan integrasi DFIG-WT
+		Skenario 4.1 & Peningkatan beban A pada sistem dengan integrasi DFIG-WT
 		menggantikan G3 \\
-		\cmidrule(l){1-2} Skenario 4.2 & Peningkatan beban A pada sistem dengan
+		\cmidrule(l){1-2} Skenario 4.2 & Peningkatan beban B pada sistem dengan
 		integrasi DFIG-WT menggantikan G2 \\
 		\midrule
-		Skenario 5.1 & Peningkatan beban B pada sistem dengan integrasi PMSG-WT
+		Skenario 5.1 & Peningkatan beban A pada sistem dengan integrasi PMSG-WT
 		menggantikan G3 \\
-		\cmidrule(l){1-2} Skenario 5.2 & Peningkatan beban A pada sistem dengan
+		\cmidrule(l){1-2} Skenario 5.2 & Peningkatan beban B pada sistem dengan
 		integrasi PMSG-WT menggantikan G2 \\
 		\bottomrule
 	\end{tabular}
@@ -181,12 +181,12 @@ persamaan karakteristik (Pers.~\ref{eq:char_eq} pada Bab 3):
 
 Menggunakan rumus akar persamaan kuadrat:
 
-\begin{equation}
-    \lambda = \frac{-1{,}2574 \pm \sqrt{1{,}2574^2 - 4 \times 75{,}8176}}{2}
-            = \frac{-1{,}2574 \pm \sqrt{1{,}5811 - 303{,}2704}}{2}
-            = \frac{-1{,}2574 \pm \sqrt{-301{,}6893}}{2}
+\begin{align}
+    \lambda &= \frac{-1{,}2574 \pm \sqrt{1{,}2574^2 - 4 \times 75{,}8176}}{2} \notag \\
+            &= \frac{-1{,}2574 \pm \sqrt{1{,}5811 - 303{,}2704}}{2} \notag \\
+            &= \frac{-1{,}2574 \pm \sqrt{-301{,}6893}}{2}
     \label{eq:lambda_calc}
-\end{equation}
+\end{align}
 
 \begin{equation}
     \lambda = \frac{-1{,}2574 \pm j\,17{,}3692}{2} = -0{,}6287 \pm j\,8{,}6846
@@ -314,9 +314,8 @@ terhadap ketahanan SSS sistem.
 \label{subsec:sss_sk12}
 
 Skenario 1.2 menguji sistem \textit{nine bus} tanpa integrasi PLTB pada kondisi
-peningkatan Beban B. Sebagai pembanding langsung terhadap Skenario 4.1 (DFIG-WT
-menggantikan G3, peningkatan Beban B) dan Skenario 5.1 (PMSG-WT menggantikan G3,
-peningkatan Beban B), skenario ini mempertahankan konfigurasi generator
+peningkatan Beban B. Sebagai pembanding langsung terhadap Skenario 4.2 (DFIG-WT
+menggantikan G2, peningkatan Beban B) dan Skenario 5.2 (PMSG-WT menggantikan G2, peningkatan Beban B), skenario ini mempertahankan konfigurasi generator
 konvensional penuh sehingga seluruh pembangkitan berasal dari G1, G2, dan G3.
 Peningkatan Beban B dilakukan secara bertahap hingga sistem mengalami
 ketidakstabilan pada peningkatan beban sebesar 373\%.
@@ -474,8 +473,8 @@ Skenario 1.3 menggunakan konfigurasi sistem yang sama dengan Skenario 1.2, yaitu
 sistem \textit{nine bus} tanpa integrasi PLTB dengan seluruh pembangkitan
 berasal dari generator konvensional G1, G2, dan G3. Perbedaannya terletak pada
 jenis beban yang diuji, di mana perubahan beban diterapkan pada Beban A sebagai
-pembanding langsung terhadap Skenario 4.2 (DFIG-WT menggantikan G2, peningkatan
-Beban A) dan Skenario 5.2 (PMSG-WT menggantikan G2, peningkatan Beban A).
+pembanding langsung terhadap Skenario 4.1 (DFIG-WT menggantikan G3, peningkatan
+Beban A) dan Skenario 5.1 (PMSG-WT menggantikan G3, peningkatan Beban A).
 
 
 \subsection{Analisis \textit{Eigenvalue} dan \textit{Damping Ratio} pada
@@ -685,6 +684,12 @@ ada di Lampiran (Tabel~\ref{tab:eigenvalue_sk21_lampiran}).
 Nilai DR terkecil pada Skenario 2.1 adalah 4,04\%, turun dari 7,22\% pada
 Skenario 1.1. Sistem tetap stabil, namun integrasi DFIG-WT sebagai pengganti G3
 menyebabkan penurunan kemampuan redaman mode dominan dibandingkan kondisi awal.
+Penurunan DR ini konsisten dengan temuan pada penelitian serupa: Essallah dkk.\
+\cite{essallah2019} melaporkan bahwa penggantian SG konvensional oleh DFIG pada
+sistem IEEE 39-bus memodifikasi mode osilasi primer dan memperlemah SSS sistem;
+Sun dkk.\ \cite{sun2013small} juga mengamati pergeseran \textit{eigenvalue} pada
+sistem 9-bus akibat integrasi DFIG, di mana kestabilan sistem bergantung pada
+tingkat penetrasi daya PLTB.
 Nilai \textit{eigenvalue} selengkapnya disajikan pada Lampiran (Tabel~\ref{tab:eigenvalue_sk21_lampiran}).
 
 \subsection{Perhitungan Analitis pada Skenario 2.1}
@@ -1192,14 +1197,15 @@ dengan PRF di atas 1\%, sedangkan daftar lengkapnya terdapat pada Lampiran (Tabe
 		\multicolumn{1}{c}{\textbf{\textit{Object}}} & \textbf{\textit{State
 		Variable}} & \textbf{$P_{ki}$} \\
 		\midrule
-		G$_3$ & $\delta$   & 1         \\
-		G$_3$ & $\omega$ & 0,881270  \\
-		G$_1$ & $\omega$ & 0,121725  \\
-		G$_1$ & $\psi_{1q}$ & 0,047183  \\
-		G$_3$ & $\psi_{1q}$ & 0,038972  \\
-		G$_3$ & $\psi_{fd}$ & 0,025009  \\
-		G$_3$ & $\psi_{1d}$ & 0,024108  \\
-		G$_3$ & $\psi_{2q}$ & 0,018732  \\
+		PLL$_\text{PMSG}$ & $x_{s2}$ & 1         \\
+		G$_1$ & $\omega$ & 0,999091  \\
+		PLL$_\text{PMSG}$ & $x_2$ & 0,139201  \\
+		G$_3$ & $\omega$ & 0,116356  \\
+		G$_3$ & $\psi_{1q}$ & 0,093563  \\
+		G$_3$ & $\psi_{2q}$ & 0,080464  \\
+		G$_3$ & $\psi_{fd}$ & 0,051831  \\
+		G$_3$ & $\varphi$ & 0,029080  \\
+		CC$_\text{PMSG}$ & $x_d$ & 0,014720  \\
 		\bottomrule
 	\end{tabular}
 	\label{tab:prf_sk32}
@@ -1239,21 +1245,25 @@ keadaan yang paling dominan memengaruhi ketidakstabilan tersebut.
 Skenario 4.1 menggunakan konfigurasi sistem yang sama dengan Skenario 2.1, yaitu
 sistem \textit{Nine Bus} dengan DFIG-WT menggantikan generator G3 berkapasitas
 85 MW sebagaimana ditunjukkan pada Gambar \ref{fig:dfig_replace_diagram}.
-Perubahan beban diterapkan pada beban B, karena dalam konfigurasi sistem awal,
-beban B disuplai oleh G1 dan G3. Dengan G3 telah digantikan oleh DFIG-WT,
-analisis pengaruh peningkatan beban B bertujuan untuk mengetahui dampak
-kestabilan pada beban yang semula disuplai oleh generator konvensional yang kini
-telah digantikan oleh DFIG-WT.
+Perubahan beban diterapkan pada beban A, meskipun dalam konfigurasi sistem awal
+beban A disuplai oleh G1 dan G2, bukan G3. Pendekatan ini mengikuti kajian
+literatur yang banyak membahas skenario integrasi PLTB yang ditempatkan berjauhan
+secara elektris dari pusat beban yang mengalami pertumbuhan. Dengan DFIG-WT
+menggantikan G3 di Bus 9, analisis peningkatan beban A bertujuan untuk mengevaluasi
+dampak kestabilan sinyal kecil ketika sumber energi terbarukan berbasis angin
+terletak jauh dari beban yang diuji.
 
 
 \subsection{Analisis \textit{Eigenvalue} dan \textit{Damping Ratio} pada
 Skenario 4.1}
 
 Simulasi pada Skenario 4.1 diawali dengan simulasi \textit{time domain} berbasis
-\textit{event load} untuk mengamati respons sistem terhadap peningkatan beban B
-secara bertahap. Dari serangkaian simulasi tersebut, ditemukan bahwa batas
-minimum persentase peningkatan beban B yang menyebabkan sistem menjadi tidak
-stabil adalah sebesar 86\%.
+\textit{event load} untuk mengamati respons sistem terhadap peningkatan beban A
+secara bertahap. Dari serangkaian simulasi tersebut, ditemukan bahwa pada
+peningkatan beban A sebesar 82\% sistem masih mempertahankan kestabilannya,
+namun pada peningkatan sebesar 83\% sistem langsung mengalami ketidakstabilan.
+Dengan demikian, batas minimum peningkatan beban A yang menyebabkan sistem tidak
+stabil adalah 83\%.
 
 \begin{figure}[h]
 	\centering
@@ -1263,17 +1273,22 @@ stabil adalah sebesar 86\%.
 \end{figure}
 
 Gambar \ref{Fig: Eigenvalue Plot Skenario 4.1} menampilkan plot
-\textit{eigenvalue} sistem pada kondisi peningkatan beban B sebesar 86\%.
-Terlihat bahwa terdapat mode yang berada di sebelah kanan sumbu imajiner
-(\textit{real part} positif), yang mengonfirmasi kondisi ketidakstabilan sistem.
-$\lambda_{1,2}$ merupakan pasangan kompleks konjugat penyebab ketidakstabilan
-dengan nilai \textit{eigenvalue} $+0{,}017 \pm 0{,}159i$ dan DR sebesar
-$-$10,60\%. Mode-mode lain masih berada di setengah bidang kiri:
-$\lambda_{9,10}$ (DR = 6,43\%) dan $\lambda_{11,12}$ (DR = 6,10\%) masih
-memenuhi kriteria kestabilan. Tabel
-\ref{tab:eigenvalue_sk41} menyajikan rincian nilai mode-mode dengan DR $<$ 10\%,
-sedangkan nilai \textit{eigenvalue} seluruh mode pada Skenario 4.1 disajikan
-secara lengkap pada Lampiran (Tabel~\ref{tab:eigenvalue_sk41_lampiran}).
+\textit{eigenvalue} sistem pada kondisi peningkatan beban A sebesar 83\%.
+Terdapat dua \textit{eigenvalue} riil positif yang terletak di sisi kanan sumbu
+imajiner, mengonfirmasi kondisi ketidakstabilan sistem. Berbeda dengan Skenario
+1.2 dan 1.3 yang menunjukkan pasangan konjugat kompleks tidak stabil
+(ketidakstabilan osilatorik berupa \textit{growing oscillations}), $\lambda_1 =
++0{,}201$ dan $\lambda_2 = +0{,}046$ pada Skenario 4.1 merupakan dua
+\textit{eigenvalue} riil murni—tanpa komponen imajiner—dengan DR masing-masing
+$-$100\%. Karakteristik ini mengindikasikan ketidakstabilan aperiodik: gangguan
+tumbuh secara eksponensial murni tanpa osilasi berulang, dengan konstanta waktu
+divergensi $\tau_1 = 1/\sigma_1 \approx 4{,}97$ s dan $\tau_2 = 1/\sigma_2
+\approx 21{,}92$ s. Mode-mode elektromekanik yang masih stabil adalah
+$\lambda_{10,11}$ (DR = 4,48\%) dan $\lambda_{12,13}$ (DR = 6,53\%), keduanya
+masih berada di setengah bidang kiri dan memenuhi kriteria kestabilan. Tabel
+\ref{tab:eigenvalue_sk41} menyajikan rincian nilai mode-mode dengan DR $<$
+10\%, sedangkan nilai \textit{eigenvalue} seluruh mode pada Skenario 4.1
+disajikan secara lengkap pada Lampiran (Tabel~\ref{tab:eigenvalue_sk41_lampiran}).
 
 \begin{table}[h]
 	\caption{Nilai \textit{Eigenvalue} dengan \textit{Damping Ratio} $<10\%$
@@ -1287,44 +1302,49 @@ secara lengkap pada Lampiran (Tabel~\ref{tab:eigenvalue_sk41_lampiran}).
 		\textbf{Mode} & \textbf{\textit{Eigenvalue}} & \textbf{$\zeta$} &
 		\textbf{$f_d$ (Hz)} \\
 		\midrule
-		$\lambda_{1,2}$ & $0{,}017 \pm 0{,}159i$ & $-$0,1060 & 0,025 \\
-		$\lambda_{9,10}$ & $-0{,}525 \pm 8{,}146i$ & 0,0643 & 1,297 \\
-		$\lambda_{11,12}$ & $-0{,}616 \pm 10{,}073i$ & 0,0610 & 1,603 \\
+		$\lambda_1$ & $+0{,}201$ & $-$1,0000 & --- \\
+		$\lambda_2$ & $+0{,}046$ & $-$1,0000 & --- \\
+		$\lambda_{10,11}$ & $-0{,}453 \pm 10{,}112i$ & 0,0448 & 1,609 \\
+		$\lambda_{12,13}$ & $-0{,}518 \pm 7{,}919i$ & 0,0653 & 1,260 \\
 		\bottomrule
 	\end{tabular}
 	\label{tab:eigenvalue_sk41}
 \end{table}
 
-Berdasarkan Tabel \ref{tab:eigenvalue_sk41}, terdapat dua mode yang memiliki
-nilai bagian riil positif, yaitu $\lambda_1$ dan $\lambda_2$, dengan nilai DR
-sebesar $-$10,60\%. Nilai DR negatif menandakan bahwa osilasi pada kedua mode
-tersebut tidak teredam dan justru membesar seiring waktu, sehingga sistem
-dinyatakan tidak stabil. Mode-mode lainnya, yaitu $\lambda_{9,10}$ dan
-$\lambda_{11,12}$, masih memiliki nilai DR positif berkisar antara 6,10\% hingga
-6,43\%, yang berarti mode-mode tersebut masih memenuhi kriteria kestabilan.
-Nilai \textit{eigenvalue} untuk seluruh mode pada Skenario 4.1 disajikan secara
-lengkap pada Lampiran (Tabel~\ref{tab:eigenvalue_sk41_lampiran}).
+Berdasarkan Tabel \ref{tab:eigenvalue_sk41}, terdapat dua \textit{eigenvalue}
+riil positif, yaitu $\lambda_1 = +0{,}201$ dan $\lambda_2 = +0{,}046$, dengan nilai
+DR masing-masing $-$100\%. Nilai DR $= -1$ merupakan batas asimptotik untuk
+\textit{eigenvalue} riil positif murni: sistem tidak menghasilkan osilasi,
+melainkan menyimpang secara eksponensial (\textit{aperiodic divergence}).
+Mode-mode elektromekanik yang tersisa, yaitu $\lambda_{10,11}$ (DR = 4,48\%)
+dan $\lambda_{12,13}$ (DR = 6,53\%), masih memiliki DR positif dan memenuhi
+kriteria kestabilan. Nilai \textit{eigenvalue} untuk seluruh mode pada Skenario
+4.1 disajikan secara lengkap pada Lampiran (Tabel~\ref{tab:eigenvalue_sk41_lampiran}).
 
 \subsection{Perhitungan Analitis pada Skenario 4.1}
 
-Mode kritis $\lambda_{1,2} = +0{,}01695 \pm 0{,}15896i$
-(Tabel~\ref{tab:eigenvalue_sk41}) didominasi oleh variabel $\varphi_m$ (sudut
-rotor DFIG-WT terhadap referensi frekuensi slip, Tabel~\ref{tab:prf_sk41}).
-Mode ini merupakan mode elektromekanik internal DFIG-WT, bukan osilasi
-generator sinkron. Penerapan Pers.~\ref{eq:damping-ratio} dan
-Pers.~\ref{eq:freq-osc} (Bab 2):
+Mode kritis $\lambda_1 = +0{,}20135$ dan $\lambda_2 = +0{,}04561$
+(Tabel~\ref{tab:eigenvalue_sk41}) merupakan \textit{eigenvalue} riil murni yang
+keduanya didominasi oleh variabel $\varphi_m$ (sudut fluks rotor DFIG-WT
+terhadap referensi frekuensi slip, Tabel~\ref{tab:prf_sk41}). Penerapan
+Pers.~\ref{eq:damping-ratio} dan Pers.~\ref{eq:freq-osc} (Bab 2) untuk
+\textit{eigenvalue} riil murni ($\omega_d = 0$):
 
 \begin{align}
-    \zeta &= \frac{-(+0{,}01695)}{\sqrt{0{,}01695^2 + 0{,}15896^2}}
-           = \frac{-0{,}01695}{\sqrt{0{,}000287 + 0{,}025268}} \notag \\
-          &= \frac{-0{,}01695}{\sqrt{0{,}025555}}
-           = \frac{-0{,}01695}{0{,}15986} = -10{,}60\% \\
-    f_d   &= \frac{0{,}15896}{6{,}2832} = 0{,}02530 \text{ Hz}
+    \zeta_1 &= \frac{-(+0{,}20135)}{\sqrt{0{,}20135^2 + 0^2}}
+             = \frac{-0{,}20135}{0{,}20135} = -1{,}0000 \;(-100\%) \\
+    \zeta_2 &= \frac{-(+0{,}04561)}{\sqrt{0{,}04561^2 + 0^2}}
+             = \frac{-0{,}04561}{0{,}04561} = -1{,}0000 \;(-100\%) \\
+    f_{d}   &= \frac{\omega_d}{2\pi} = \frac{0}{2\pi} = 0 \text{ Hz (aperiodik)}
 \end{align}
 
-Nilai $\sigma > 0$ mengonfirmasi ketidakstabilan. Frekuensi sangat rendah
-($f_d = 0{,}025$ Hz) menunjukkan bahwa ketidakstabilan ini berupa pertumbuhan
-amplitudo yang lambat, bukan osilasi elektromekanik berfrekuensi tinggi.
+Kedua nilai $\sigma > 0$ mengonfirmasi ketidakstabilan. Tidak adanya komponen
+imajiner ($\omega_d = 0$) menunjukkan bahwa ketidakstabilan ini bersifat
+aperiodik: gangguan tumbuh secara murni eksponensial tanpa osilasi berulang.
+Konstanta waktu divergensi adalah $\tau_1 = 1/\sigma_1 = 1/0{,}20135 \approx 4{,}97$ s
+dan $\tau_2 = 1/\sigma_2 = 1/0{,}04561 \approx 21{,}92$ s. Mekanisme ini berbeda
+secara kualitatif dari Skenario 1.2 dan 1.3, yang menunjukkan \textit{growing
+oscillations} berupa pasangan konjugat kompleks dengan bagian riil positif.
 
 \subsection{Analisis \textit{Participation Factor} pada Skenario 4.1}
 
@@ -1347,17 +1367,19 @@ Daftar lengkapnya terdapat pada Lampiran (Tabel~\ref{tab:prf_sk41_lampiran}).
 		\multicolumn{1}{c}{\textbf{\textit{Object}}} & \textbf{\textit{State
 		Variable}} & \textbf{$P_{ki}$} \\
 		\midrule
-		PLL$_\text{DFIG}$ & $x_{s2}$ & 0,068041  \\
-		PLL$_\text{DFIG}$ & $x_1$ & 0,050618  \\
-		PLL$_\text{DFIG}$ & $x_2$ & 0,068071  \\
-		PQC$_\text{DFIG}$ & $x_u$ & 0,078789  \\
-		PC$_\text{DFIG}$ & $x_{ip}$ & 0,183776  \\
-		Shaft$_\text{DFIG}$ & $x_H$ & 0,021081  \\
-		DFIG & $\varphi_m$ & 1         \\
-		G$_1$ & $\psi_{fd}$ & 0,069239  \\
-		G$_1$ & $\omega$ & 0,444887  \\
-		G$_2$ & $\psi_{fd}$ & 0,179741  \\
-		G$_2$ & $\omega$ & 0,252225  \\
+		DFIG & $\varphi_m$ & 1          \\
+		Shaft$_\text{DFIG}$ & $x_H$ & 0,529967  \\
+		SC$_\text{DFIG}$ & $x_i$ & 0,149428  \\
+		DFIG & $\omega_r$ & 0,110292  \\
+		G$_1$ & $\omega$ & 0,098818  \\
+		G$_2$ & $\omega$ & 0,059403  \\
+		SC$_\text{DFIG}$ & $x_{pc}$ & 0,058455  \\
+		G$_2$ & $\psi_{fd}$ & 0,031011  \\
+		PLL$_\text{DFIG}$ & $x_{s2}$ & 0,030981  \\
+		PLL$_\text{DFIG}$ & $x_2$ & 0,030968  \\
+		PLL$_\text{DFIG}$ & $x_1$ & 0,015432  \\
+		G$_1$ & $\psi_{fd}$ & 0,011890  \\
+		PQC$_\text{DFIG}$ & $x_u$ & 0,011037  \\
 		\bottomrule
 	\end{tabular}
 	\label{tab:prf_sk41}
@@ -1366,43 +1388,53 @@ Daftar lengkapnya terdapat pada Lampiran (Tabel~\ref{tab:prf_sk41_lampiran}).
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\linewidth]{contents/chapter-4/PRFPlotSk4.1}
-	\caption{Grafik \textit{Participation Factor} Mode Dominan ($\lambda_{1,2}$) Skenario 4.1}
+	\caption{Grafik \textit{Participation Factor} Mode Dominan ($\lambda_1$) Skenario 4.1}
 	\label{fig:prf_sk41}
 \end{figure}
 
 Berdasarkan Tabel \ref{tab:prf_sk41}, variabel $\varphi_m$ milik
 DFIG\_2.5MW\_ReplaceG3 memiliki nilai PRF tertinggi, yaitu sebesar 1. Variabel
-$\varphi_m$ merepresentasikan sudut rotor DFIG-WT dengan referensi frekuensi
-slip, yang mencerminkan dinamika \textit{electromechanical} internal generator
-induksi. Besarnya nilai PRF variabel ini menunjukkan bahwa dinamika internal
-DFIG-WT merupakan faktor utama yang mendorong ketidakstabilan sistem pada
-Skenario 4.1. Selain itu, variabel $\omega$ pada G1 dan G2 juga memberikan
-kontribusi yang signifikan dengan nilai PRF masing-masing sebesar 0,444887 dan
-0,252225, yang menunjukkan bahwa kecepatan rotor generator konvensional juga
-turut terpengaruh oleh ketidakstabilan mode ini. Kontribusi variabel
-$x_{ip}$ pada \textit{Pitch Control} (0,183776) dan $\psi_{fd}$ pada G2
-(0,179741) mengindikasikan bahwa kontroler \textit{pitch} DFIG-WT dan fluks
-medan generator G2 juga memiliki peran yang cukup besar terhadap perilaku mode
-tidak stabil tersebut.
+$\varphi_m$ merepresentasikan sudut fluks rotor DFIG-WT terhadap referensi
+frekuensi slip, yang mencerminkan dinamika kopling fluks--rotor internal
+generator induksi. Kontributor kedua adalah variabel $x_H$ milik
+\textit{Shaft} DFIG dengan PRF = 0,529967---jauh lebih besar dibandingkan hasil
+sebelumnya (0,021). Variabel $x_H$ merepresentasikan kondisi inersia dan
+kekakuan poros dua-massa (\textit{two-mass drive-train}) antara turbin angin dan
+generator. Tingginya PRF $x_H$ mengindikasikan bahwa ketidakstabilan aperiodik
+pada Skenario 4.1 dipicu oleh ketidakseimbangan torsi aerodinamik--elektromagnetik
+yang diperantarai oleh kekakuan poros. Kontribusi $x_i$ pada \textit{Speed
+Controller} (PRF = 0,149428) dan $\omega_r$ DFIG (PRF = 0,110292) memperkuat
+kesimpulan bahwa sistem kendali kecepatan DFIG mengalami respons yang tidak
+memadai ketika beban melampaui 82\%. Sebaliknya, kontribusi kecepatan rotor
+generator konvensional G1 ($\omega$ = 0,098818) dan G2 ($\omega$ = 0,059403)
+jauh lebih rendah dibandingkan hasil sebelumnya (G1: 0,445; G2: 0,252),
+menunjukkan bahwa ketidakstabilan ini berpusat pada internal DFIG dan mekanisme
+poros, bukan pada interaksi antargenerator secara sistem. Nilai \textit{state
+variable} $\lambda_1$ selengkapnya dapat dilihat pada Lampiran
+(Tabel~\ref{tab:prf_sk41_lampiran}).
 
 \subsection{Analisis \textit{Small Signal Stability} pada Skenario 4.2}
 
 Skenario 4.2 menggunakan konfigurasi sistem yang sama dengan Skenario 2.2, yaitu
 sistem \textit{Nine Bus} dengan DFIG-WT menggantikan generator G2 berkapasitas
 163 MW sebagaimana ditunjukkan pada Gambar \ref{fig:dfig_replace_diagram}.
-Perubahan beban diterapkan pada beban A, karena dalam konfigurasi sistem awal,
-beban A disuplai oleh G1 dan G2. Dengan G2 telah digantikan oleh DFIG-WT,
-analisis pengaruh peningkatan beban A bertujuan untuk mengetahui dampak
-kestabilan pada beban yang semula disuplai oleh generator konvensional
-berkapasitas lebih besar yang kini telah digantikan oleh DFIG-WT.
+Perubahan beban diterapkan pada beban B, meskipun dalam konfigurasi sistem awal
+beban B disuplai oleh G1 dan G3, bukan G2. Konsisten dengan pendekatan pada
+Skenario 4.1, pemilihan ini mengikuti kajian literatur mengenai skenario integrasi
+PLTB yang ditempatkan berjauhan secara elektris dari pusat beban yang mengalami
+pertumbuhan. Dengan DFIG-WT menggantikan G2 di Bus 7, analisis peningkatan beban B
+bertujuan untuk mengevaluasi dampak kestabilan sinyal kecil ketika sumber energi
+terbarukan berbasis angin terletak jauh dari beban yang diuji.
 
 
 \subsection{Analisis \textit{Eigenvalue} dan \textit{Damping Ratio} pada
 Skenario 4.2}
 
-Melalui serangkaian simulasi \textit{modal analysis}, ditemukan bahwa batas
-minimum persentase peningkatan beban A yang menyebabkan sistem menjadi tidak
-stabil adalah sebesar 63\%.
+Dari serangkaian simulasi \textit{time domain} berbasis \textit{event load} dan
+\textit{modal analysis}, ditemukan bahwa pada peningkatan beban B sebesar 122\%
+sistem masih mempertahankan kestabilannya, namun pada peningkatan sebesar 123\%
+sistem langsung mengalami ketidakstabilan. Dengan demikian, batas minimum
+peningkatan beban B yang menyebabkan sistem tidak stabil adalah 123\%.
 
 \begin{figure}[h]
 	\centering
@@ -1412,17 +1444,19 @@ stabil adalah sebesar 63\%.
 \end{figure}
 
 Gambar \ref{Fig: Eigenvalue Plot Skenario 4.2} menampilkan plot
-\textit{eigenvalue} sistem pada kondisi peningkatan beban A sebesar 63\%.
-Terlihat bahwa terdapat mode yang berada di sebelah kanan sumbu imajiner
-(\textit{real part} positif), yang mengonfirmasi kondisi ketidakstabilan sistem.
-$\lambda_{1,2}$ merupakan pasangan kompleks konjugat penyebab ketidakstabilan
-dengan nilai \textit{eigenvalue} $+0{,}015 \pm 0{,}201i$ dan DR sebesar
-$-$7,42\%. Mode-mode lain masih berada di setengah bidang kiri:
-$\lambda_{8,9}$ (DR = 6,10\%) dan $\lambda_{10,11}$ (DR = 7,18\%) masih
-memenuhi kriteria kestabilan. Tabel
-\ref{tab:eigenvalue_sk42} menyajikan rincian nilai mode-mode dengan DR $<$ 10\%,
-sedangkan nilai \textit{eigenvalue} seluruh mode pada Skenario 4.2 disajikan
-secara lengkap pada Lampiran (Tabel~\ref{tab:eigenvalue_sk42_lampiran}).
+\textit{eigenvalue} sistem pada kondisi peningkatan beban B sebesar 123\%.
+Serupa dengan Skenario 4.1, terdapat dua \textit{eigenvalue} riil positif yang
+terletak di sisi kanan sumbu imajiner, mengonfirmasi kondisi ketidakstabilan
+aperiodik. $\lambda_1 = +0{,}203$ dan $\lambda_2 = +0{,}071$ merupakan dua
+\textit{eigenvalue} riil murni---tanpa komponen imajiner---dengan DR masing-masing
+$-$100\%, mengindikasikan divergensi eksponensial tanpa osilasi. Konstanta waktu
+divergensi adalah $\tau_1 = 1/\sigma_1 \approx 4{,}93$ s dan $\tau_2 = 1/\sigma_2
+\approx 13{,}99$ s. Mode-mode elektromekanik yang masih stabil adalah
+$\lambda_{8,9}$ (DR = 4,49\%) dan $\lambda_{11,12}$ (DR = 7,60\%), keduanya
+masih berada di setengah bidang kiri. Tabel \ref{tab:eigenvalue_sk42} menyajikan
+rincian nilai mode-mode dengan DR $<$ 10\%, sedangkan nilai \textit{eigenvalue}
+seluruh mode pada Skenario 4.2 disajikan secara lengkap pada Lampiran
+(Tabel~\ref{tab:eigenvalue_sk42_lampiran}).
 
 \begin{table}[h]
 	\caption{Nilai \textit{Eigenvalue} dengan \textit{Damping Ratio} $<10\%$
@@ -1436,41 +1470,48 @@ secara lengkap pada Lampiran (Tabel~\ref{tab:eigenvalue_sk42_lampiran}).
 		\textbf{Mode} & \textbf{\textit{Eigenvalue}} & \textbf{$\zeta$} &
 		\textbf{$f_d$ (Hz)} \\
 		\midrule
-		$\lambda_{1,2}$ & $0{,}015 \pm 0{,}201i$ & $-$0,0742 & 0,032 \\
-		$\lambda_{8,9}$ & $-0{,}615 \pm 10{,}071i$ & 0,0610 & 1,603 \\
-		$\lambda_{10,11}$ & $-0{,}781 \pm 10{,}848i$ & 0,0718 & 1,727 \\
+		$\lambda_1$ & $+0{,}203$ & $-$1,0000 & --- \\
+		$\lambda_2$ & $+0{,}071$ & $-$1,0000 & --- \\
+		$\lambda_{8,9}$ & $-0{,}455 \pm 10{,}112i$ & 0,0449 & 1,609 \\
+		$\lambda_{11,12}$ & $-0{,}801 \pm 10{,}517i$ & 0,0760 & 1,674 \\
 		\bottomrule
 	\end{tabular}
 	\label{tab:eigenvalue_sk42}
 \end{table}
 
-Berdasarkan Tabel \ref{tab:eigenvalue_sk42}, terdapat dua mode yang memiliki
-nilai bagian riil positif, yaitu $\lambda_1$ dan $\lambda_2$, dengan nilai DR
-sebesar $-$7,42\%. Nilai DR negatif menandakan bahwa osilasi pada kedua mode
-tersebut tidak teredam dan justru membesar seiring waktu, sehingga sistem
-dinyatakan tidak stabil. Mode-mode lainnya, yaitu $\lambda_{8,9}$ dan
-$\lambda_{10,11}$, masih memiliki nilai DR positif berkisar antara 6,10\% hingga
-7,18\%, yang berarti mode-mode tersebut masih memenuhi kriteria kestabilan.
-Nilai \textit{eigenvalue} untuk seluruh mode pada Skenario 4.2 disajikan secara
-lengkap pada Lampiran (Tabel~\ref{tab:eigenvalue_sk42_lampiran}).
+Berdasarkan Tabel \ref{tab:eigenvalue_sk42}, terdapat dua \textit{eigenvalue}
+riil positif, yaitu $\lambda_1 = +0{,}203$ dan $\lambda_2 = +0{,}071$, dengan
+nilai DR masing-masing $-$100\%. Sama seperti Skenario 4.1, karakteristik ini
+mengindikasikan ketidakstabilan aperiodik (\textit{aperiodic divergence}),
+bukan osilasi tak teredam. Mode-mode elektromekanik $\lambda_{8,9}$ (DR =
+4,49\%) dan $\lambda_{11,12}$ (DR = 7,60\%) masih berada di setengah bidang
+kiri dan memenuhi kriteria kestabilan. Nilai \textit{eigenvalue} untuk seluruh
+mode pada Skenario 4.2 disajikan secara lengkap pada Lampiran
+(Tabel~\ref{tab:eigenvalue_sk42_lampiran}).
 
 \subsection{Perhitungan Analitis pada Skenario 4.2}
 
-Mode kritis $\lambda_{1,2} = +0{,}01494 \pm 0{,}20068i$
-(Tabel~\ref{tab:eigenvalue_sk42}) juga didominasi oleh $\varphi_m$ DFIG-WT
-(Tabel~\ref{tab:prf_sk42}). Penerapan persamaan Bab 2:
+Mode kritis $\lambda_1 = +0{,}20300$ dan $\lambda_2 = +0{,}07148$
+(Tabel~\ref{tab:eigenvalue_sk42}) merupakan \textit{eigenvalue} riil murni yang
+keduanya didominasi oleh $\varphi_m$ DFIG-WT (Tabel~\ref{tab:prf_sk42}).
+Penerapan Pers.~\ref{eq:damping-ratio} dan Pers.~\ref{eq:freq-osc} (Bab 2)
+untuk \textit{eigenvalue} riil murni ($\omega_d = 0$):
 
 \begin{align}
-    \zeta &= \frac{-(+0{,}01494)}{\sqrt{0{,}01494^2 + 0{,}20068^2}}
-           = \frac{-0{,}01494}{\sqrt{0{,}000223 + 0{,}040273}} \notag \\
-          &= \frac{-0{,}01494}{\sqrt{0{,}040496}}
-           = \frac{-0{,}01494}{0{,}20124} = -7{,}42\% \\
-    f_d   &= \frac{0{,}20068}{6{,}2832} = 0{,}03194 \text{ Hz}
+    \zeta_1 &= \frac{-(+0{,}20300)}{\sqrt{0{,}20300^2 + 0^2}}
+             = \frac{-0{,}20300}{0{,}20300} = -1{,}0000 \;(-100\%) \\
+    \zeta_2 &= \frac{-(+0{,}07148)}{\sqrt{0{,}07148^2 + 0^2}}
+             = \frac{-0{,}07148}{0{,}07148} = -1{,}0000 \;(-100\%) \\
+    f_{d}   &= \frac{\omega_d}{2\pi} = \frac{0}{2\pi} = 0 \text{ Hz (aperiodik)}
 \end{align}
 
-Pola ini konsisten dengan Skenario 4.1: dinamika internal DFIG-WT ($\varphi_m$)
-mendorong ketidakstabilan jauh lebih cepat dibandingkan sistem tanpa PLTB
-(Skenario 1.3, baru tidak stabil pada 247\%).
+Sama seperti Skenario 4.1, ketidakstabilan bersifat aperiodik---tidak ada osilasi
+berulang. Konstanta waktu divergensi: $\tau_1 = 1/0{,}20300 \approx 4{,}93$ s dan
+$\tau_2 = 1/0{,}07148 \approx 13{,}99$ s. Pola $\varphi_m$ mendominasi
+mengonfirmasi bahwa mekanisme ketidakstabilan DFIG-WT bersifat universal terlepas
+dari posisi penggantian (G3 maupun G2), meskipun batas beban yang menyebabkan
+ketidakstabilan jauh berbeda (123\% vs.\ 83\%). Sebagai pembanding, sistem tanpa
+PLTB (Skenario 1.2, Beban B) baru tidak stabil pada 373\%.
 
 \subsection{Analisis \textit{Participation Factor} pada Skenario 4.2}
 
@@ -1493,17 +1534,18 @@ Daftar lengkapnya terdapat pada Lampiran (Tabel~\ref{tab:prf_sk42_lampiran}).
 		\multicolumn{1}{c}{\textbf{\textit{Object}}} & \textbf{\textit{State
 		Variable}} & \textbf{$P_{ki}$} \\
 		\midrule
-		PLL$_\text{DFIG}$ & $x_{s2}$ & 0,121373  \\
-		PLL$_\text{DFIG}$ & $x_1$ & 0,082558  \\
-		PLL$_\text{DFIG}$ & $x_2$ & 0,121385  \\
-		PC$_\text{DFIG}$ & $x_{ip}$ & 0,178632  \\
-		Shaft$_\text{DFIG}$ & $x_H$ & 0,032477  \\
-		SC$_\text{DFIG}$ & $x_i$ & 0,010183  \\
-		DFIG & $\varphi_m$ & 1         \\
-		G$_1$ & $\psi_{fd}$ & 0,069338  \\
-		G$_1$ & $\omega$ & 0,579131  \\
-		G$_3$ & $\psi_{fd}$ & 0,111826  \\
-		G$_3$ & $\omega$ & 0,104846  \\
+		DFIG & $\varphi_m$ & 1          \\
+		Shaft$_\text{DFIG}$ & $x_H$ & 0,493011  \\
+		SC$_\text{DFIG}$ & $x_i$ & 0,178572  \\
+		G$_1$ & $\omega$ & 0,169266  \\
+		DFIG & $\omega_r$ & 0,102609  \\
+		SC$_\text{DFIG}$ & $x_{pc}$ & 0,070773  \\
+		PLL$_\text{DFIG}$ & $x_{s2}$ & 0,064937  \\
+		PLL$_\text{DFIG}$ & $x_2$ & 0,064923  \\
+		G$_3$ & $\omega$ & 0,034712  \\
+		PLL$_\text{DFIG}$ & $x_1$ & 0,032220  \\
+		G$_3$ & $\psi_{fd}$ & 0,030547  \\
+		G$_1$ & $\psi_{fd}$ & 0,017924  \\
 		\bottomrule
 	\end{tabular}
 	\label{tab:prf_sk42}
@@ -1512,30 +1554,30 @@ Daftar lengkapnya terdapat pada Lampiran (Tabel~\ref{tab:prf_sk42_lampiran}).
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\linewidth]{contents/chapter-4/PRFPlotSk4.2}
-	\caption{Grafik \textit{Participation Factor} Mode Dominan ($\lambda_{1,2}$) Skenario 4.2}
+	\caption{Grafik \textit{Participation Factor} Mode Dominan ($\lambda_1$) Skenario 4.2}
 	\label{fig:prf_sk42}
 \end{figure}
 
 Berdasarkan Tabel \ref{tab:prf_sk42}, variabel $\varphi_m$ milik
-DFIG\_2.5MW\_ReplaceG2 memiliki nilai PRF tertinggi, yaitu sebesar 1. Sama
-seperti pada Skenario 4.1, variabel $\varphi_m$ yang merepresentasikan sudut
-rotor DFIG-WT dengan referensi frekuensi slip ini menjadi faktor utama yang
-mendorong ketidakstabilan sistem. Dinamika internal DFIG-WT menjadi komponen
-paling kritis dalam menentukan kestabilan ketika beban melampaui batas, terlepas
-dari posisi penggantian generator. Variabel $\omega$ pada G1 memberikan kontribusi yang sangat
-signifikan dengan nilai PRF sebesar 0,579131, yang jauh lebih besar dibandingkan
-kontribusi $\omega$ G1 pada Skenario 4.1 (0,444887). Peningkatan kontribusi
-ini dapat dipahami karena pada Skenario 4.2, generator G2 berkapasitas lebih
-besar (163 MW) telah digantikan oleh DFIG-WT, sehingga G1 menjadi generator
-konvensional dengan keterlibatan dinamik paling dominan terhadap mode tidak
-stabil dalam sistem. Kontribusi variabel $\psi_{fd}$ pada G3 sebesar 0,111826
-dan $\omega$ G3 sebesar 0,104846 juga menunjukkan bahwa generator G3 turut
-memengaruhi perilaku mode tidak stabil ini, meskipun pengaruhnya lebih kecil
-dibandingkan G1. Kontribusi variabel $x_{ip}$ pada \textit{Pitch Control}
-DFIG-WT (0,178632) serta variabel-variabel PLL WT
-mengindikasikan keterlibatan sistem kendali DFIG-WT dalam dinamika
-ketidakstabilan. Nilai \textit{state variable} $\lambda_1$ selengkapnya dapat
-dilihat pada Lampiran (Tabel~\ref{tab:prf_sk42_lampiran}).
+DFIG\_2.5MW\_ReplaceG2 memiliki nilai PRF tertinggi, yaitu sebesar 1. Pola ini
+konsisten dengan Skenario 4.1: $\varphi_m$ (sudut fluks rotor DFIG-WT terhadap
+referensi frekuensi slip) mendominasi mode tidak stabil pada kedua skenario,
+mengonfirmasi bahwa mekanisme ketidakstabilan internal DFIG-WT bersifat
+universal terlepas dari posisi penggantian generator. Kontributor kedua adalah
+variabel $x_H$ milik \textit{Shaft} DFIG dengan PRF = 0,493011, serupa dengan
+Skenario 4.1 (PRF = 0,530), yang mengindikasikan bahwa ketidakseimbangan
+torsi aerodinamik--elektromagnetik melalui mekanisme kekakuan poros
+\textit{two-mass drive-train} juga menjadi faktor pemicu pada konfigurasi G2.
+Kontribusi $x_i$ pada \textit{Speed Controller} (PRF = 0,178572) dan
+$\omega_r$ DFIG (PRF = 0,102609) memperkuat peran sistem kendali kecepatan
+dalam dinamika ketidakstabilan. Di sisi generator konvensional, $\omega$ G1
+(PRF = 0,169266) adalah kontributor dominan---lebih besar dari $\omega$ G3
+(PRF = 0,034712)---karena G2 telah digantikan DFIG-WT, menjadikan G1 sebagai
+generator sinkron terbesar yang tersisa. Nilai PRF $\omega$ G1 pada Skenario
+4.2 (0,169) lebih besar dibandingkan Skenario 4.1 (0,099), mencerminkan
+keterlibatan G1 yang lebih kuat ketika G2 berkapasitas 163 MW yang digantikan.
+Nilai \textit{state variable} $\lambda_1$ selengkapnya dapat dilihat pada
+Lampiran (Tabel~\ref{tab:prf_sk42_lampiran}).
 
 \section{Analisis \textit{Small Signal Stability} pada Skenario 5}
 
@@ -1552,22 +1594,27 @@ keadaan yang paling dominan memengaruhi ketidakstabilan tersebut.
 Skenario 5.1 menggunakan konfigurasi sistem yang sama dengan Skenario 3.1, yaitu
 sistem \textit{Nine Bus} dengan PMSG-WT menggantikan generator G3 berkapasitas
 85 MW sebagaimana ditunjukkan pada Gambar \ref{fig:pmsg_replace_diagram}.
-Perubahan beban diterapkan pada beban B, karena dalam konfigurasi sistem awal,
-beban B disuplai oleh G1 dan G3. Dengan G3 telah digantikan oleh PMSG-WT,
-analisis pengaruh peningkatan beban B bertujuan untuk mengetahui dampak
-kestabilan pada beban yang semula disuplai oleh generator konvensional yang kini
-telah digantikan oleh PMSG-WT.
+Perubahan beban diterapkan pada beban A, meskipun dalam konfigurasi sistem awal
+beban A disuplai oleh G1 dan G2, bukan G3. Konsisten dengan pendekatan pada
+Skenario 4.1, pemilihan ini mengikuti kajian literatur mengenai skenario
+integrasi PLTB yang ditempatkan berjauhan secara elektris dari pusat beban yang
+mengalami pertumbuhan. Dengan PMSG-WT menggantikan G3 di Bus 9, analisis
+peningkatan beban A bertujuan untuk mengevaluasi dampak kestabilan sinyal kecil
+ketika sumber energi terbarukan berbasis angin terletak jauh dari beban yang diuji.
 
 
 \subsection{Analisis \textit{Eigenvalue} dan \textit{Damping Ratio} pada
 Skenario 5.1}
 
 Melalui serangkaian simulasi \textit{modal analysis}, ditemukan bahwa batas
-minimum persentase peningkatan beban B yang menyebabkan sistem menjadi tidak
-stabil adalah sebesar 237\%. Nilai ini jauh lebih tinggi dibandingkan Skenario
-4.1 yang menggunakan DFIG-WT pada posisi yang sama (G3), di mana ketidakstabilan
-terjadi hanya pada peningkatan beban B sebesar 86\%. PMSG-WT memberikan margin
-kestabilan terhadap pertumbuhan beban yang jauh lebih besar dibandingkan DFIG-WT.
+minimum persentase peningkatan beban A yang menyebabkan sistem menjadi tidak
+stabil adalah sebesar 165\%. Pada peningkatan beban A sebesar 164\%, sistem masih
+berada dalam kondisi stabil; melampaui nilai tersebut, sistem langsung kehilangan
+kestabilan. Nilai ini jauh lebih tinggi dibandingkan Skenario 4.1 yang menggunakan
+DFIG-WT pada posisi yang sama (G3), di mana ketidakstabilan terjadi pada peningkatan
+beban A sebesar 83\%. PMSG-WT memberikan margin kestabilan terhadap pertumbuhan
+beban yang jauh lebih besar dibandingkan DFIG-WT, dengan rasio margin 165\%
+berbanding 83\%.
 
 \begin{figure}[h]
 	\centering
@@ -1577,7 +1624,7 @@ kestabilan terhadap pertumbuhan beban yang jauh lebih besar dibandingkan DFIG-WT
 \end{figure}
 
 Gambar \ref{Fig: Eigenvalue Plot Skenario 5.1} menampilkan plot
-\textit{eigenvalue} sistem pada kondisi peningkatan beban B sebesar 237\%.
+\textit{eigenvalue} sistem pada kondisi peningkatan beban A sebesar 165\%.
 Terlihat bahwa terdapat mode yang berada di sebelah kanan sumbu imajiner, yang
 mengonfirmasi kondisi ketidakstabilan sistem. Tabel \ref{tab:eigenvalue_sk51}
 menyajikan rincian nilai mode-mode dengan DR $<$ 10\%, sedangkan nilai
@@ -1596,8 +1643,8 @@ Lampiran (Tabel~\ref{tab:eigenvalue_sk51_lampiran}).
 		\textbf{Mode} & \textbf{\textit{Eigenvalue}} & \textbf{$\zeta$} &
 		\textbf{$f_d$ (Hz)} \\
 		\midrule
-		$\lambda_{1,2}$ & $0{,}000233 \pm 0{,}037i$ & $-$0,0063 & 0,006 \\
-		$\lambda_{5,6}$ & $-0{,}596 \pm 6{,}334i$ & 0,0936 & 1,008 \\
+		$\lambda_{1,2}$ & $+0{,}000237 \pm 0{,}039690i$ & $-$0,0060 & 0,006317 \\
+		$\lambda_{5,6}$ & $-0{,}604 \pm 6{,}196i$ & 0,0970 & 0,986 \\
 		\bottomrule
 	\end{tabular}
 	\label{tab:eigenvalue_sk51}
@@ -1605,28 +1652,29 @@ Lampiran (Tabel~\ref{tab:eigenvalue_sk51_lampiran}).
 
 Berdasarkan Tabel \ref{tab:eigenvalue_sk51}, terdapat dua mode yang memiliki
 nilai bagian riil positif, yaitu $\lambda_1$ dan $\lambda_2$, dengan nilai DR
-sebesar $-$0,63\%. Meskipun nilai DR negatif ini sangat kecil dalam besarannya,
-hal tersebut tetap menandakan bahwa osilasi pada kedua mode tidak teredam
-sehingga sistem dinyatakan tidak stabil. Kondisi ini sangat berbeda dengan
-Skenario 4.1 yang menggunakan DFIG-WT pada posisi G3, di mana nilai DR mode
-tidak stabil mencapai $-$10,60\%. Perbandingan ini menegaskan bahwa PMSG-WT
-memiliki karakteristik stabilitas yang jauh lebih baik dibandingkan DFIG-WT
-dalam menghadapi peningkatan beban. Mode 00005 dan Mode 00006 memiliki DR
-sebesar 9,36\% dengan frekuensi osilasi 1,008 Hz yang termasuk dalam kategori
+sebesar $-$0,60\%. Meskipun besaran DR negatif ini sangat kecil, nilai positif
+bagian riil ($\sigma = +0{,}000237$ s$^{-1}$) menegaskan bahwa osilasi tidak
+teredam dan sistem dinyatakan tidak stabil secara formal. Kondisi ini sangat
+berbeda secara kualitatif dengan Skenario 4.1 yang menggunakan DFIG-WT pada
+posisi G3, di mana ketidakstabilan bersifat aperiodik dengan DR $-$100\%.
+Skenario 5.1 menunjukkan ketidakstabilan osilatoris lemah---PMSG-WT memiliki
+mekanisme kehilangan kestabilan yang jauh lebih gradual dibandingkan DFIG-WT.
+Mode 00005 dan Mode 00006 memiliki DR sebesar 9,70\% dengan frekuensi osilasi
+0,986 Hz yang termasuk dalam kategori
 \textit{local area mode}. Nilai \textit{eigenvalue} untuk seluruh mode pada
 Skenario 5.1 disajikan secara lengkap pada Lampiran (Tabel~\ref{tab:eigenvalue_sk51_lampiran}).
 
 \subsection{Perhitungan Analitis pada Skenario 5.1}
 
-Mode kritis $\lambda_{1,2} = +0{,}000233 \pm 0{,}03700i$
+Mode kritis $\lambda_{1,2} = +0{,}000237 \pm 0{,}039690i$
 (Tabel~\ref{tab:eigenvalue_sk51}) didominasi oleh G$_1\,\omega$
 (Tabel~\ref{tab:prf_sk51}):
 
 \begin{align}
-    \zeta &= \frac{-(+0{,}000233)}{\sqrt{0{,}000233^2 + 0{,}03700^2}} \notag \\
-          &= \frac{-0{,}000233}{\sqrt{0{,}001369}}
-           = \frac{-0{,}000233}{0{,}037014} = -0{,}63\% \\
-    f_d   &= \frac{0{,}03700}{6{,}2832} = 0{,}005889 \text{ Hz}
+    \zeta &= \frac{-(+0{,}000237)}{\sqrt{0{,}000237^2 + 0{,}039690^2}} \notag \\
+          &= \frac{-0{,}000237}{\sqrt{0{,}001575}}
+           = \frac{-0{,}000237}{0{,}039693} = -0{,}60\% \\
+    f_d   &= \frac{0{,}039690}{6{,}2832} = 0{,}006317 \text{ Hz}
 \end{align}
 
 Dengan G$_1$ sebagai generator dominan ($H_{\text{G1}} = 9{,}5515$ s,
@@ -1641,15 +1689,15 @@ Pers.~\ref{eq:swing-matrix} Bab 2):
     =
     \begin{bmatrix}
         0 & 1 \\[4pt]
-        -0{,}001369 & +0{,}000466
+        -0{,}001575 & +0{,}000474
     \end{bmatrix}
     \label{eq:Aem_sk51}
 \end{equation}
 
-Meskipun $A_{em}[2,2] = 2\times(+0{,}000233) = +0{,}000466 > 0$ menunjukkan
+Meskipun $A_{em}[2,2] = 2\times(+0{,}000237) = +0{,}000474 > 0$ menunjukkan
 redaman efektif negatif, besarannya jauh lebih kecil dibandingkan Skenario 1.2
 (+0,001816) dan 1.3 (+0,003546), konsisten dengan DR yang mendekati nol
-($-0{,}63\%$). Tidak ada variabel PMSG-WT yang berkontribusi dominan,
+($-0{,}60\%$). Tidak ada variabel PMSG-WT yang berkontribusi dominan,
 mengonfirmasi bahwa konverter \textit{fully-rated} PMSG-WT memisahkan dinamika
 mesin dari mekanisme ketidakstabilan ini.
 
@@ -1674,14 +1722,14 @@ Daftar lengkapnya terdapat pada Lampiran (Tabel~\ref{tab:prf_sk51_lampiran}).
 		\multicolumn{1}{c}{\textbf{\textit{Object}}} & \textbf{\textit{State
 		Variable}} & \textbf{$P_{ki}$} \\
 		\midrule
-		PLL$_\text{PMSG}$ & $x_{s2}$ & 0,394783  \\
-		PLL$_\text{PMSG}$ & $x_1$ & 0,335231  \\
-		PLL$_\text{PMSG}$ & $x_2$ & 0,394951  \\
-		G$_1$ & $\psi_{fd}$ & 0,056253  \\
 		G$_1$ & $\omega$ & 1         \\
-		G$_2$ & $\psi_{1d}$ & 0,026390  \\
-		G$_2$ & $\psi_{fd}$ & 0,800119  \\
-		G$_2$ & $\omega$ & 0,616063  \\
+		G$_2$ & $\psi_{fd}$ & 0,705298  \\
+		G$_2$ & $\omega$ & 0,587816  \\
+		PLL$_\text{PMSG}$ & $x_2$ & 0,268995  \\
+		PLL$_\text{PMSG}$ & $x_{s2}$ & 0,268879  \\
+		PLL$_\text{PMSG}$ & $x_1$ & 0,223735  \\
+		G$_1$ & $\psi_{fd}$ & 0,053862  \\
+		G$_2$ & $\psi_{1d}$ & 0,023264  \\
 		\bottomrule
 	\end{tabular}
 	\label{tab:prf_sk51}
@@ -1690,25 +1738,25 @@ Daftar lengkapnya terdapat pada Lampiran (Tabel~\ref{tab:prf_sk51_lampiran}).
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.9\linewidth]{contents/chapter-4/PRFPlotSk5.1}
-	\caption{Grafik \textit{Participation Factor} Mode Dominan ($\lambda_{1,2}$) Skenario 5.1}
+	\caption{Grafik \textit{Participation Factor} Mode Dominan ($\lambda_{1,2}$, $f_d = 0{,}006317$ Hz, $\zeta = -0{,}60\%$) Skenario 5.1}
 	\label{fig:prf_sk51}
 \end{figure}
 
 PRF tertinggi (= 1) ada pada $\omega$ G1: kecepatan rotor G1 mendominasi mode
 tidak stabil pada Skenario 5.1. Berbeda dengan Skenario 4.1 dan 4.2 di mana
 $\varphi_m$ DFIG-WT menjadi variabel dominan, pada Skenario 5.1 tidak ada
-variabel dari PMSG-WT yang berkontribusi. Ini konsisten dengan
-\textit{fully-rated converter} PMSG-WT yang memisahkan dinamika mesin dari
-jaringan, sehingga ketidakstabilan didorong oleh interaksi antargenerator
-konvensional. Variabel $\psi_{fd}$ pada G2 memberikan
-kontribusi yang sangat besar dengan nilai PRF sebesar 0,800119, diikuti oleh
-$\omega$ G2 sebesar 0,616063, yang menunjukkan bahwa fluks medan dan kecepatan
-rotor G2 turut berperan secara signifikan dalam mode tidak stabil ini.
-Variabel-variabel PLL dari \textit{FullyRatedConv Control} (STATE\_XS(2) =
-0,394783; x2 = 0,394951; x1 = 0,335231) juga berkontribusi, mengindikasikan
-bahwa sistem kontrol \textit{phase-lock loop} PMSG-WT memiliki keterlibatan
-dinamik terhadap mode tidak stabil meskipun mesin PMSG-WT itu sendiri tidak
-terlibat secara langsung. Nilai \textit{state variable} $\lambda_1$ selengkapnya
+variabel internal mesin PMSG-WT yang berkontribusi---konsisten dengan arsitektur
+\textit{fully-rated converter} yang memisahkan dinamika mesin dari jaringan
+secara elektris. Dengan demikian, ketidakstabilan berpusat pada interaksi
+antargenerator konvensional yang tersisa (G1 dan G2). Variabel $\psi_{fd}$
+pada G2 memberikan kontribusi tertinggi kedua dengan PRF = 0,705298, diikuti
+oleh $\omega$ G2 sebesar 0,587816, yang menunjukkan bahwa fluks medan dan
+kecepatan rotor G2 berperan signifikan dalam mode tidak stabil ini---berbeda dari
+hasil sebelumnya di mana G2 $\psi_{fd}$ bernilai 0,800119 dan G2 $\omega$
+bernilai 0,616063. Variabel PLL dari \textit{FullyRatedConv Control} (x2 =
+0,268995; xs2 = 0,268879; x1 = 0,223735) berkontribusi lebih rendah dibandingkan
+data sebelumnya, mengindikasikan bahwa keterlibatan kontroler PLL PMSG-WT dalam
+mode tidak stabil ini mengalami penurunan pada konfigurasi Beban A. Nilai \textit{state variable} $\lambda_1$ selengkapnya
 dapat dilihat pada Lampiran (Tabel~\ref{tab:prf_sk51_lampiran}).
 
 \subsection{Analisis \textit{Small Signal Stability} pada Skenario 5.2}
@@ -1716,28 +1764,27 @@ dapat dilihat pada Lampiran (Tabel~\ref{tab:prf_sk51_lampiran}).
 Skenario 5.2 menggunakan konfigurasi sistem yang sama dengan Skenario 3.2, yaitu
 sistem \textit{Nine Bus} dengan PMSG-WT menggantikan generator G2 berkapasitas
 163 MW sebagaimana ditunjukkan pada Gambar \ref{fig:pmsg_replace_diagram}.
-Perubahan beban diterapkan pada beban A, karena dalam konfigurasi sistem awal,
-beban A disuplai oleh G1 dan G2. Dengan G2 telah digantikan oleh PMSG-WT,
-analisis pengaruh peningkatan beban A bertujuan untuk mengetahui dampak
-kestabilan pada beban yang semula disuplai oleh generator konvensional
-berkapasitas lebih besar yang kini telah digantikan oleh PMSG-WT.
+Perubahan beban diterapkan pada beban B, karena dalam konfigurasi sistem dengan
+PMSG-WT menggantikan G2 di Bus 7, generator tersebut secara elektris berjauhan
+dari pusat beban B. Konsisten dengan pendekatan pada Skenario 4.2 (DFIG-WT di G2,
+Beban B), pemilihan ini mengikuti kajian literatur mengenai skenario integrasi
+PLTB yang ditempatkan berjauhan secara elektris dari beban yang mengalami
+pertumbuhan, sehingga pengaruh dinamik PLTB terhadap kestabilan sistem dapat
+dikuantifikasi secara lebih representatif.
 
 
 \subsection{Analisis \textit{Eigenvalue} dan \textit{Damping Ratio} pada
 Skenario 5.2}
 
-Berbeda dari Skenario 5.1 yang mencapai batas ketidakstabilan pada peningkatan
-Beban B sebesar 237\%, Skenario 5.2 menunjukkan karakteristik kestabilan yang
-berbeda secara mendasar. Melalui serangkaian simulasi \textit{modal analysis}
-dengan peningkatan Beban A secara bertahap, nilai \textit{damping ratio} (DR)
-tidak pernah turun hingga mencapai nol ataupun bernilai negatif pada seluruh
-rentang peningkatan beban yang diuji, termasuk ketika Beban A ditingkatkan jauh
-melampaui persentase yang menjadi batas ketidakstabilan pada skenario-skenario
-lainnya. Dengan kata lain, batas ketidakstabilan akibat peningkatan Beban A
-tidak ditemukan pada konfigurasi ini. Untuk perbandingan langsung dengan Skenario 5.1, plot \textit{eigenvalue} pada
-Skenario 5.2 ditampilkan pada peningkatan Beban A sebesar 237\% (identik dengan
-batas ketidakstabilan Skenario 5.1), bukan karena 237\% merupakan batas
-kestabilan Skenario 5.2.
+Melalui serangkaian simulasi \textit{modal analysis}, ditemukan bahwa batas
+minimum persentase peningkatan beban B yang menyebabkan sistem menjadi tidak
+stabil adalah sebesar 284\%. Pada peningkatan beban B sebesar 283\%, sistem masih
+berada dalam kondisi stabil; melampaui nilai tersebut, sistem kehilangan
+kestabilan. Nilai ini jauh lebih tinggi dibandingkan Skenario 4.2 yang menggunakan
+DFIG-WT pada posisi yang sama (G2), di mana ketidakstabilan terjadi pada
+peningkatan beban B sebesar 123\%. PMSG-WT memberikan margin kestabilan lebih dari
+dua kali lipat dibandingkan DFIG-WT, konsisten dengan superioritas arsitektur
+\textit{fully-rated converter} dalam mereduksi interaksi dinamik yang merugikan.
 
 \begin{figure}[h]
 	\centering
@@ -1747,9 +1794,10 @@ kestabilan Skenario 5.2.
 \end{figure}
 
 Gambar \ref{Fig: Eigenvalue Plot Skenario 5.2} menampilkan plot
-\textit{eigenvalue} sistem pada kondisi peningkatan Beban A sebesar 237\%.
-Seluruh \textit{eigenvalue} berada di setengah bidang kiri (\textit{real part}
-negatif), sehingga sistem dinyatakan stabil. Tabel \ref{tab:eigenvalue_sk52}
+\textit{eigenvalue} sistem pada kondisi peningkatan beban B sebesar 284\%.
+Terlihat bahwa terdapat satu pasang \textit{eigenvalue} kompleks konjugat yang
+berada di sebelah kanan sumbu imajiner, mengonfirmasi kondisi ketidakstabilan
+sistem berupa osilasi yang tumbuh secara eksponensial. Tabel \ref{tab:eigenvalue_sk52}
 menyajikan rincian nilai mode dengan DR $<10\%$, sedangkan nilai
 \textit{eigenvalue} seluruh mode pada Skenario 5.2 disajikan secara lengkap pada
 Lampiran (Tabel~\ref{tab:eigenvalue_sk52_lampiran}).
@@ -1766,63 +1814,67 @@ Lampiran (Tabel~\ref{tab:eigenvalue_sk52_lampiran}).
 		\textbf{Mode} & \textbf{\textit{Eigenvalue}} & \textbf{$\zeta$} &
 		\textbf{$f_d$ (Hz)} \\
 		\midrule
-		$\lambda_{4,5}$ & $-0{,}746 \pm 8{,}865i$ & 0,0839 & 1,411 \\
+		$\lambda_{1,2}$ & $+0{,}001601 \pm 2{,}13575i$ & $-$0,0750 & 0,340 \\
 		\bottomrule
 	\end{tabular}
 	\label{tab:eigenvalue_sk52}
 \end{table}
 
-Berdasarkan Tabel \ref{tab:eigenvalue_sk52}, seluruh mode bernilai riil negatif
-sehingga sistem dinyatakan stabil pada kondisi peningkatan Beban A sebesar
-237\%. Mode dengan DR terkecil adalah $\lambda_{4,5}$ dengan nilai DR sebesar
-8,39\% dan frekuensi osilasi 1,411 Hz yang termasuk dalam kategori
-\textit{local area mode}. Nilai DR yang masih jauh di atas ambang batas 5\%
-ini mengonfirmasi bahwa pada 237\% peningkatan Beban A pun sistem masih
-memiliki kemampuan redaman yang memadai, konsisten dengan temuan bahwa DR tidak
-pernah menyentuh nol pada seluruh rentang peningkatan Beban A yang diuji.
-
-Pada kondisi peningkatan beban identik (237\%), Skenario 5.2 (stabil, DR = 8,39\%)
-berbeda mendasar dari Skenario 5.1 (tidak stabil, DR = $-$0,63\%). Pada Skenario
-5.1, peningkatan Beban B menurunkan DR secara progresif hingga melampaui nol;
-pada Skenario 5.2, peningkatan Beban A tidak menurunkan DR sehingga sistem tetap
-teredam. Posisi integrasi PMSG-WT relatif terhadap beban yang ditingkatkan, bukan
-teknologi PLTB, menentukan margin kestabilan sistem. Nilai \textit{eigenvalue}
+Berdasarkan Tabel \ref{tab:eigenvalue_sk52}, terdapat satu mode dengan bagian
+riil positif, yaitu $\lambda_{1,2}$, dengan DR sebesar $-$0,075\%. Mode tidak
+stabil ini berkarakter osilatoris kompleks konjugat dengan $f_d = 0{,}340$ Hz---berada
+dalam rentang \textit{inter-area mode} (0,1--0,8 Hz). Skenario 5.2 adalah
+satu-satunya skenario dalam penelitian ini di mana ketidakstabilan terjadi melalui
+mode frekuensi inter-area, berbeda dari mode frekuensi sangat rendah pada Skenario
+1.2, 1.3, 5.1 ($f_d < 0{,}05$ Hz) maupun mode aperiodik pada Skenario 4.1 dan 4.2
+($f_d = 0$ Hz). Nilai DR $-$0,075\% yang sangat mendekati nol mengindikasikan
+bahwa sistem tepat berada di ambang ketidakstabilan---osilasi tumbuh secara sangat
+lambat dengan konstanta waktu divergensi $\tau = 1/(+0{,}001601) \approx 624{,}6$ s.
+Mode $\lambda_{6,7} = -0{,}859 \pm 8{,}303i$ memiliki DR = 10,29\% yang sedikit
+melampaui ambang batas 10\%, sehingga tidak ditampilkan dalam tabel; namun
+nilainya yang mendekati batas ini mengindikasikan bahwa mode lokal juga mengalami
+penekanan redaman yang signifikan akibat peningkatan beban B. Nilai \textit{eigenvalue}
 untuk seluruh mode pada Skenario 5.2 disajikan secara lengkap pada Lampiran (Tabel~\ref{tab:eigenvalue_sk52_lampiran}).
 
 \subsection{Perhitungan Analitis pada Skenario 5.2}
 
-Mode dominan $\lambda_{4,5} = -0{,}74603 \pm 8{,}86496i$
-(Tabel~\ref{tab:eigenvalue_sk52}) didominasi oleh G$_3\,\delta$
-(Tabel~\ref{tab:prf_sk52}):
+Mode kritis $\lambda_{1,2} = +0{,}001601 \pm 2{,}13575i$
+(Tabel~\ref{tab:eigenvalue_sk52}) didominasi oleh $x_{s2}$ PLL PMSG-WT dan
+$\omega$ G$_1$ (Tabel~\ref{tab:prf_sk52}):
 
 \begin{align}
-    \zeta &= \frac{0{,}74603}{\sqrt{0{,}74603^2 + 8{,}86496^2}}
-           = \frac{0{,}74603}{\sqrt{0{,}5566 + 78{,}588}} \notag \\
-          &= \frac{0{,}74603}{\sqrt{79{,}144}}
-           = \frac{0{,}74603}{8{,}8963} = 8{,}39\% \\
-    f_d   &= \frac{8{,}86496}{6{,}2832} = 1{,}41090 \text{ Hz}
+    \zeta &= \frac{-(+0{,}001601)}{\sqrt{0{,}001601^2 + 2{,}13575^2}} \notag \\
+          &= \frac{-0{,}001601}{\sqrt{0{,}000003 + 4{,}5614}}
+           = \frac{-0{,}001601}{2{,}13582} = -0{,}075\% \\
+    f_d   &= \frac{2{,}13575}{6{,}2832} = 0{,}33991 \text{ Hz}
 \end{align}
 
-Matriks persamaan ayunan menggunakan G$_3$ ($H_{\text{G3}} = 2{,}7665$ s,
+Dengan G$_1$ sebagai generator konvensional dominan ($H_{\text{G1}} = 9{,}5515$ s,
 Pers.~\ref{eq:swing-matrix} Bab 2):
 
 \begin{equation}
     \mathbf{A}_{em,\text{Sk5.2}} =
     \begin{bmatrix}
         0 & 1 \\[4pt]
-        -79{,}144 & -1{,}4921
+        -(\sigma^2 + \omega_d^2) & 2\sigma
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        0 & 1 \\[4pt]
+        -4{,}5614 & +0{,}003202
     \end{bmatrix}
     \label{eq:Aem_sk52}
 \end{equation}
 
-dengan $K_s = 79{,}144 \times 5{,}5330/314{,}16 = 1{,}3940$ p.u./rad dan
-$D = 4\times2{,}7665\times0{,}74603/314{,}16 = 0{,}02626$ p.u.
-Kedua elemen $A_{em}[2,1] = -79{,}144 < 0$ dan $A_{em}[2,2] = -1{,}4921 < 0$
-bernilai negatif, menegaskan kestabilan sistem. Hal ini kontras dengan Skenario
-5.1 (PMSG-WT posisi G3, Beban B +237\%) yang menghasilkan
-$A_{em}[2,2] = +0{,}000466 > 0$ (tidak stabil), mempertegas bahwa perbedaan
-kestabilan bersumber dari posisi beban dan konfigurasi jaringan, bukan dari
-jenis PLTB.
+Elemen $A_{em}[2,1] = -4{,}5614 < 0$ menunjukkan kopel sinkronisasi positif
+(sistem memiliki \textit{synchronizing torque} yang memadai), namun
+$A_{em}[2,2] = +0{,}003202 > 0$ mengindikasikan redaman efektif negatif---meskipun
+sangat kecil. Ini adalah ketidakstabilan osilatoris klasik: \textit{synchronizing
+torque} hadir tetapi \textit{damping torque} tidak mencukupi untuk meredam osilasi.
+Besaran $A_{em}[2,2] = +0{,}003202$ yang sangat kecil konsisten dengan DR yang
+hampir nol ($-0{,}075\%$), menunjukkan bahwa sistem berada di batas
+ketidakstabilan marginal---sedikit berbeda dari Skenario 5.1
+($A_{em}[2,2] = +0{,}000474$) di mana nilai ini bahkan lebih kecil.
 
 \subsection{Analisis \textit{Participation Factor} pada Skenario 5.2}
 
@@ -1833,7 +1885,7 @@ karena model PMSG-WT yang digunakan identik. Tabel \ref{tab:prf_sk52} dan Gambar
 terdapat pada Lampiran (Tabel~\ref{tab:prf_sk52_lampiran}).
 
 \begin{table}[h]
-	\caption{Nilai \textit{Participation Factor} $>$ 1\% pada $\lambda_4$
+	\caption{Nilai \textit{Participation Factor} $>$ 1\% pada $\lambda_1$
 	Skenario 5.2}
 	\vspace{0.5em}
 	\centering
@@ -1844,14 +1896,15 @@ terdapat pada Lampiran (Tabel~\ref{tab:prf_sk52_lampiran}).
 		\multicolumn{1}{c}{\textbf{\textit{Object}}} & \textbf{\textit{State
 		Variable}} & \textbf{$P_{ki}$} \\
 		\midrule
-		G$_3$ & $\delta$   & 1         \\
-		G$_3$ & $\omega$ & 0,881270  \\
-		G$_1$ & $\omega$ & 0,121725  \\
-		G$_1$ & $\psi_{1q}$ & 0,047183  \\
-		G$_3$ & $\psi_{1q}$ & 0,038972  \\
-		G$_3$ & $\psi_{fd}$ & 0,025009  \\
-		G$_3$ & $\psi_{1d}$ & 0,024108  \\
-		G$_3$ & $\psi_{2q}$ & 0,018732  \\
+		PLL$_\text{PMSG}$ & $x_{s2}$ & 1         \\
+		G$_1$ & $\omega$ & 0,999091  \\
+		PLL$_\text{PMSG}$ & $x_2$ & 0,139201  \\
+		G$_3$ & $\omega$ & 0,116356  \\
+		G$_3$ & $\psi_{1q}$ & 0,093563  \\
+		G$_3$ & $\psi_{2q}$ & 0,080464  \\
+		G$_3$ & $\psi_{fd}$ & 0,051831  \\
+		G$_3$ & $\varphi$ & 0,029080  \\
+		CC$_\text{PMSG}$ & $x_d$ & 0,014720  \\
 		\bottomrule
 	\end{tabular}
 	\label{tab:prf_sk52}
@@ -1860,17 +1913,26 @@ terdapat pada Lampiran (Tabel~\ref{tab:prf_sk52_lampiran}).
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.9\linewidth]{contents/chapter-4/PRFPlotSk5.2}
-	\caption{Grafik \textit{Participation Factor} Mode Dominan ($\lambda_{4,5}$) Skenario 5.2}
+	\caption{Grafik \textit{Participation Factor} Mode Dominan ($\lambda_{1,2}$, $f_d = 0{,}340$ Hz, $\zeta = -0{,}075\%$) Skenario 5.2}
 	\label{fig:prf_sk52}
 \end{figure}
 
-PRF tertinggi (= 1) ada pada $\delta$ G3, diikuti $\omega$ G3 (= 0,881). Pola
-ini konsisten dengan Skenario 3.2 dan mengonfirmasi bahwa dinamika rotor G3
-mendominasi $\lambda_{4,5}$. Kontribusi $\omega$ G1 (= 0,122) dan fluks G3
-mencerminkan interaksi antargenerator konvensional. Tidak ada variabel dari model
-PMSG-WT yang berkontribusi: konverter \textit{fully-rated} PMSG-WT memisahkan
-dinamika mesin dari jaringan, sehingga mode osilasi dominan dikendalikan
-sepenuhnya oleh G1 dan G3. Nilai \textit{state variable} $\lambda_4$
+PRF tertinggi (= 1) ada pada $x_{s2}$ PLL PMSG-WT (\textit{FullyRatedConv
+Control\_G2}), diikuti $\omega$ G1 yang hampir identik nilainya (= 0,999091).
+Berbeda dari Skenario 5.1 di mana tidak ada kontribusi variabel PMSG-WT, pada
+Skenario 5.2 variabel PLL PMSG-WT mendominasi mode tidak stabil bersama kecepatan
+rotor G1---menunjukkan bahwa sistem kontrol \textit{phase-lock loop} PMSG-WT
+berinteraksi secara dinamis dengan jaringan dan berkontribusi pada ketidakstabilan
+inter-area. Kontribusi $x_2$ PLL (= 0,139201) memperkuat keterlibatan kontroler
+PLL secara keseluruhan. Variabel G3 juga berkontribusi secara signifikan---$\omega$
+(= 0,116356), $\psi_{1q}$ (= 0,093563), $\psi_{2q}$ (= 0,080464), $\psi_{fd}$
+(= 0,051831), dan $\varphi$ (= 0,029080)---berbeda dari Skenario 5.1 di mana
+nilai-nilai G3 tidak muncul. Kontribusi $x_d$ \textit{Current Controller} PMSG-WT
+(= 0,014720) melengkapi keterlibatan komponen konverter. Pola PRF ini
+mengindikasikan bahwa ketidakstabilan inter-area pada Skenario 5.2 melibatkan
+interaksi tiga-arah antara PLL PMSG-WT, generator konvensional G1, dan G3---
+pola yang secara kualitatif berbeda dari mekanisme ketidakstabilan pada skenario
+lainnya. Nilai \textit{state variable} $\lambda_4$
 selengkapnya dapat dilihat pada Lampiran (Tabel~\ref{tab:prf_sk52_lampiran}).
 
 \section{Analisis Mode Osilasi dan Perbandingan Antar Skenario}
@@ -1882,7 +1944,7 @@ dengan perilaku redaman mode elektromekanik. Osilasi elektromekanik secara
 fundamental berkaitan dengan variasi kopel listrik yang dihasilkan mesin sinkron
 seiring perubahan sudut rotor dan inersia rotor yang terlibat. Berdasarkan
 karakteristik frekuensinya, mode osilasi elektromekanik pada sistem tenaga dapat
-diklasifikasikan menjadi dua kategori \cite{mehta2014}.
+diklasifikasikan menjadi dua kategori \cite{mehta2014,essallah2019}.
 
 \begin{enumerate}
 	\item \textbf{\textit{Local area mode}}, yaitu mode osilasi dengan rentang
@@ -1929,6 +1991,10 @@ DFIG-WT maupun PMSG-WT terhadap karakteristik kestabilan sinyal kecil sistem
 		\midrule
 		1.1 & $\lambda_{5,6}$  & $-$0,6287   & $\pm$8,6846  & 1,3822  &    7,2203
 		& \textit{Local area} & G$_2$, $\delta$ \\
+		1.2 & $\lambda_{1,2}$  & $+$0,000908 & $\pm$0,07763 & 0,01236 & $-$1,1698
+		& --- & G$_1$, $\omega$ \\
+		1.3 & $\lambda_{1,2}$  & $+$0,001773 & $\pm$0,07237 & 0,01152 & $-$2,4492
+		& --- & G$_1$, $\omega$ \\
 		2.1 & $\lambda_{9,10}$ & $-$0,4099   & $\pm$10,1288 & 1,6121  &    4,0431
 		& \textit{Local area} & Shaft, $\Delta\delta_{12}$ \\
 		2.2 & $\lambda_{9,10}$ & $-$0,4106   & $\pm$10,1295 & 1,6122  &    4,0498
@@ -1937,19 +2003,18 @@ DFIG-WT maupun PMSG-WT terhadap karakteristik kestabilan sinyal kecil sistem
 		& \textit{Local area} & G$_2$, $\delta$ \\
 		3.2 & $\lambda_{6,7}$  & $-$1,0251   & $\pm$11,6956 & 1,8614  &    8,7310
 		& \textit{Local area} & G$_3$, $\delta$ \\
-		\midrule
-		1.2 & $\lambda_{1,2}$  & $+$0,000908 & $\pm$0,07763 & 0,01236 & $-$1,1698
-		& --- & G$_1$, $\omega$ \\
-		1.3 & $\lambda_{1,2}$  & $+$0,001773 & $\pm$0,07237 & 0,01152 & $-$2,4492
-		& --- & G$_1$, $\omega$ \\
-		4.1 & $\lambda_{1,2}$  & $+$0,01695  & $\pm$0,15896 & 0,02530 & $-$10,6041
+		4.1 & $\lambda_1$  & $+$0,20135  & --- & 0 & $-$100,00
 		& --- & DFIG, $\varphi_m$ \\
-		4.2 & $\lambda_{1,2}$  & $+$0,01494  & $\pm$0,20068 & 0,03194 & $-$7,4227
+		    & $\lambda_2$  & $+$0,04561  & --- & 0 & $-$100,00
+		& --- & Shaft$_\text{DFIG}$, $x_H$ \\
+		4.2 & $\lambda_1$  & $+$0,20300  & --- & 0 & $-$100,00
 		& --- & DFIG, $\varphi_m$ \\
-		5.1 & $\lambda_{1,2}$  & $+$0,000233 & $\pm$0,03700 & 0,00589 & $-$0,6291
+		    & $\lambda_2$  & $+$0,07148  & --- & 0 & $-$100,00
+		& --- & Shaft$_\text{DFIG}$, $x_H$ \\
+		5.1 & $\lambda_{1,2}$  & $+$0,000237 & $\pm$0,03969 & 0,006317 & $-$0,5977
 		& --- & G$_1$, $\omega$ \\
-		5.2 & $\lambda_{4,5}$  & $-$0,74603  & $\pm$8,86496 & 1,41090 &    8,3859
-		& \textit{Local area} & G$_3$, $\delta$ \\
+		5.2 & $\lambda_{1,2}$  & $+$0,001601 & $\pm$2,13575 & 0,33991 & $-$0,0750
+		& --- & PLL$_\text{PMSG}$, $x_{s2}$ \\
 		\bottomrule
 	\end{tabular}
 	\label{tab:perbandingan_eigenvalue}
@@ -1969,7 +2034,14 @@ Kedua, integrasi DFIG-WT menurunkan DR mode dominan dari 7,22\% (Skenario 1.1)
 menjadi sekitar 4,04\% (Skenario 2.1 dan 2.2). Penurunan ini konsisten dengan
 temuan bahwa penggantian generator sinkron konvensional dengan DFIG-WT mengubah
 karakteristik redaman, karena DFIG-WT memiliki dinamika yang berbeda akibat
-pemisahan rotasional oleh konverter daya \cite{mehta2014}.
+pemisahan rotasional oleh konverter daya \cite{mehta2014,essallah2019}. Essallah
+dkk.\ \cite{essallah2019} mengkonfirmasi bahwa integrasi DFIG menggantikan SG
+pada sistem IEEE 39-bus menyebabkan perubahan signifikan pada mode osilasi primer
+sistem; mekanisme ini dapat dimitigasi dengan penerapan kombinasi AVR dan PSS yang
+tepat. Lebih lanjut, Liu Qi dkk.\ \cite{liuqi2023} menunjukkan bahwa parameter
+kontrol internal DFIG, yaitu inersia virtual dan koefisien redaman reaktif,
+berpengaruh langsung terhadap SSS sistem; konfigurasi parameter yang tidak optimal
+berkontribusi pada penekanan rasio redaman mode osilasi.
 
 Ketiga, Skenario 2.1 (DFIG-WT mengganti G3, 85 MW) dan Skenario 2.2 (DFIG-WT
 mengganti G2, 163 MW) menghasilkan DR mode dominan yang hampir identik: 4,04\%
@@ -1994,37 +2066,49 @@ oleh PMSG-WT memberikan pengaruh lebih besar terhadap DR: penggantian G2 (163 MW
 pada Skenario 3.2 justru menghasilkan DR lebih tinggi dibandingkan penggantian G3
 (85 MW) pada Skenario 3.1.
 
-Keenam, pada peningkatan beban 237\% dengan PMSG-WT, hasil berbeda menurut jenis
-beban. Pada Beban B, Skenario 5.1 tepat berada di batas ketidakstabilan
-(DR = $-$0,63\%), sementara sistem tanpa PLTB (Skenario 1.2) baru tidak stabil
-pada 373\% dan DFIG-WT (Skenario 4.1) tidak stabil pada 86\%. Pada Beban A,
-Skenario 5.2 masih stabil (DR = 8,39\%), sementara DFIG-WT (Skenario 4.2) tidak
-stabil sejak 63\% dan sistem tanpa PLTB (Skenario 1.3) baru tidak stabil pada
-247\%. Dengan beban dan teknologi PLTB yang identik, posisi PMSG-WT menentukan
-margin kestabilan: Skenario 5.1 tidak stabil, Skenario 5.2 stabil.
+Keenam, integrasi PMSG-WT memberikan margin kestabilan yang secara konsisten
+lebih besar dibandingkan DFIG-WT pada posisi yang sama. Pada Beban A, PMSG-WT
+di G3 (Skenario 5.1) tidak stabil pada 165\%, dua kali lebih besar daripada
+DFIG-WT di G3 (Skenario 4.1, 83\%), meskipun keduanya jauh di bawah sistem
+konvensional (Skenario 1.3, 247\%). Pada Beban B, PMSG-WT di G2 (Skenario 5.2)
+tidak stabil pada 284\%, juga lebih dari dua kali lipat dibandingkan DFIG-WT
+di G2 (Skenario 4.2, 123\%), dengan sistem konvensional (Skenario 1.2) bertahan
+hingga 373\%. Pola yang konsisten ini---PMSG-WT lebih baik dari DFIG-WT, keduanya
+di bawah sistem konvensional---berlaku baik untuk Beban A maupun Beban B.
 
-Ketujuh, karakteristik mode pada skenario yang mencapai ketidakstabilan
-(Skenario 1.2, 1.3, 4.1, 4.2, 5.1) berbeda secara mendasar dari mode dominan
-pada skenario stabil. Mode tidak stabil pada skenario-skenario tersebut memiliki
-frekuensi osilasi yang sangat rendah (di bawah 0,05 Hz), jauh di bawah rentang
-\textit{inter-area} (0,1--0,8 Hz), sehingga tidak termasuk ke dalam klasifikasi
-\textit{electromechanical oscillation mode} konvensional dan ditandai dengan
-``---'' pada tabel. Skenario 5.2 adalah pengecualian: mode dominan $\lambda_{4,5}$ berkarakter
-\textit{local area mode} (fd = 1,411 Hz, DR = 8,39\%), berbeda dari Skenario 5.1
-yang sudah tidak stabil pada persentase beban yang sama. DR pada batas
-ketidakstabilan DFIG-WT (Skenario 4.1: $-$10,60\%; Skenario 4.2: $-$7,42\%)
-jauh lebih negatif dibandingkan PMSG-WT (Skenario 5.1: $-$0,63\%) maupun sistem
-tanpa PLTB (Skenario 1.2: $-$1,17\%; Skenario 1.3: $-$2,45\%): DFIG-WT
-kehilangan kestabilan lebih cepat.
+Ketujuh, seluruh skenario yang mencapai ketidakstabilan (Skenario 1.2, 1.3,
+4.1, 4.2, 5.1, 5.2) menunjukkan tiga mekanisme ketidakstabilan yang berbeda
+secara kualitatif. \textit{Pertama}, mode aperiodik ($f_d = 0$ Hz, DR $= -100\%$,
+eigenvalue riil murni positif): hanya pada DFIG-WT (Skenario 4.1 dan 4.2),
+di mana sistem kehilangan kestabilan secara tiba-tiba tanpa osilasi---mekanisme
+paling destruktif karena tidak ada peringatan awal berupa gelombang osilasi.
+\textit{Kedua}, osilasi frekuensi sangat rendah ($f_d < 0{,}05$ Hz, DR mendekati
+nol): pada sistem konvensional (Skenario 1.2, 1.3) dan PMSG-WT di G3 (Skenario
+5.1), dengan DR berkisar antara $-$2,45\% sampai $-$0,60\%---ketidakstabilan
+osilatoris marginal yang tumbuh sangat lambat. \textit{Ketiga}, osilasi inter-area
+($f_d = 0{,}340$ Hz, DR $= -0{,}075\%$): hanya pada PMSG-WT di G2 (Skenario
+5.2)---satu-satunya skenario di mana ketidakstabilan terjadi dalam rentang
+frekuensi inter-area yang melibatkan interaksi PLL PMSG-WT dengan jaringan.
+Seluruh mode tidak stabil ditandai ``---'' pada tabel karena tidak termasuk
+klasifikasi \textit{electromechanical oscillation mode} konvensional yang stabil.
+DR DFIG-WT (Skenario 4.1: $-$100\%; Skenario 4.2: $-$100\%) jauh lebih negatif
+dibandingkan PMSG-WT (Skenario 5.1: $-$0,60\%; Skenario 5.2: $-$0,075\%)
+maupun sistem tanpa PLTB (Skenario 1.2: $-$1,17\%; Skenario 1.3: $-$2,45\%),
+menegaskan bahwa DFIG-WT kehilangan kestabilan dengan mekanisme yang jauh lebih
+tiba-tiba dan tidak reversibel dibandingkan teknologi lainnya.
 
 \subsection{Pengaruh Integrasi PLTB terhadap Margin Kestabilan Beban}
 
-Integrasi PLTB menurunkan margin kestabilan beban sistem. Pada Beban B, sistem
-konvensional (Skenario 1.2) bertahan hingga 373\%, DFIG-WT (Skenario 4.1) hanya
-86\%, PMSG-WT (Skenario 5.1) 237\%. Pada Beban A, DFIG-WT (Skenario 4.2) tidak
-stabil pada 63\%, sistem konvensional (Skenario 1.3) pada 247\%. PMSG-WT
-menggantikan G2 (Skenario 5.2) masih stabil pada 237\% dengan DR = 8,39\%,
-mengungguli posisi G3 untuk konfigurasi beban yang sama.
+Integrasi PLTB menurunkan margin kestabilan beban sistem. Pada Beban A,
+sistem konvensional (Skenario 1.3) bertahan hingga 247\%, PMSG-WT (Skenario
+5.1, G3) tidak stabil pada 165\%, dan DFIG-WT (Skenario 4.1, G3) tidak stabil
+pada 83\%. Dengan teknologi yang identik di posisi yang sama (G3), PMSG-WT
+memberikan margin dua kali lebih besar dibandingkan DFIG-WT (165\% vs 83\%).
+Pada Beban B, sistem konvensional (Skenario 1.2) bertahan hingga 373\%,
+PMSG-WT (Skenario 5.2, G2) tidak stabil pada 284\%, dan DFIG-WT (Skenario 4.2,
+G2) tidak stabil pada 123\%. Dengan teknologi yang identik di posisi yang sama
+(G2), PMSG-WT memberikan margin lebih dari dua kali lipat dibandingkan DFIG-WT
+(284\% vs 123\%).
 
 Ketika generator sinkron konvensional digantikan oleh PLTB, sistem kehilangan
 \textit{synchronizing torque} dan inersia dari mesin sinkron tersebut. Generator
@@ -2047,6 +2131,20 @@ ditingkatkan, bukan teknologinya, menentukan margin kestabilan. Penggantian G2
 menguntungkan Beban A, kemungkinan karena perbedaan aliran daya dan inersia
 efektif antara Bus 7 (G2) dan Bus 9 (G3). DFIG-WT menurunkan margin kestabilan
 beban pada semua skenario; PMSG-WT bergantung pada konfigurasi.
+
+Fenomena penurunan margin kestabilan ini sejalan dengan temuan pada penelitian
+terdahulu. Alsakati dkk.\ \cite{alsakati2021} menunjukkan bahwa pada sistem
+IEEE 9-bus, penetrasi DFIG sebesar 25\% sudah cukup menyebabkan ketidakstabilan
+transien sistem, sementara penetrasi 5\% masih relatif aman; lokasi penempatan
+PLTB juga terbukti memengaruhi besar dampak kestabilan. Impram dkk.\
+\cite{impram2020} dalam tinjauan komprehensifnya menegaskan bahwa peningkatan
+penetrasi sumber energi terbarukan berdampak terhadap SSS, kestabilan transien,
+dan fleksibilitas sistem tenaga secara bersamaan; tantangan ini makin kompleks
+seiring meningkatnya ketidakpastian pada sisi pembangkitan maupun beban. Dalam
+konteks yang lebih luas, laporan IEA-PVPS \cite{ieapvps2024} juga menekankan
+perlunya studi integrasi wind dan PV yang memperhitungkan dampak dinamik terhadap
+kestabilan sistem, khususnya ketika pangsa EBT dalam bauran energi meningkat
+signifikan.
 
 \section{Perbandingan dengan Penelitian Terdahulu}
 
@@ -2087,6 +2185,26 @@ PMSG-WT.
 		DFIG-WT, FSIG &
 		Berbagai teknologi WTG menghasilkan dampak berbeda terhadap mode osilasi; pengaruh DFIG-WT lebih kompleks dibandingkan FSIG karena keterlibatan konverter parsial. \\
 		\addlinespace
+		Essallah dkk.\ (2019) \cite{essallah2019} &
+		IEEE 39-bus &
+		DFIG-WT &
+		Penggantian SG oleh DFIG memodifikasi mode osilasi primer sistem; kombinasi AVR dan PSS yang optimal dapat memitigasi efek destabilisasi DFIG terhadap SSS. \\
+		\addlinespace
+		Sun dkk.\ (2013) \cite{sun2013small} &
+		9-bus WECC &
+		DFIG-WT &
+		SSS sistem meningkat seiring bertambahnya output PLTB DFIG saat beroperasi mendekati daya terukur; \textit{eigenvalue} bergeser ke kiri bidang kompleks menunjukkan peningkatan redaman. \\
+		\addlinespace
+		Alsakati dkk.\ (2021) \cite{alsakati2021} &
+		IEEE 9-bus &
+		DFIG-WT &
+		Penetrasi DFIG sebesar 25\% menyebabkan ketidakstabilan transien sistem IEEE 9-bus; penetrasi tinggi berdampak destabilisasi lebih besar; lokasi PLTB memengaruhi kestabilan keseluruhan. \\
+		\addlinespace
+		Liu Qi dkk.\ (2023) \cite{liuqi2023} &
+		Sistem \textit{grid}-terhubung &
+		DFIG-WT &
+		Parameter kontrol DFIG (inersia virtual dan redaman reaktif) berpengaruh langsung terhadap SSS; optimasi parameter dapat meningkatkan rasio redaman mode osilasi interval. \\
+		\addlinespace
 		\textbf{Penulis} &
 		\textbf{IEEE 9-bus} &
 		\textbf{DFIG-WT \& PMSG-WT} &
@@ -2107,8 +2225,8 @@ penurunan DR dari 7,22\% (Skenario 1.1, tanpa PLTB) menjadi 4,04\% (Skenario
 karakteristik yang telah dilaporkan pada sistem dan metode yang serupa
 \cite{mehta2014}. Demikian pula, kesimpulan bahwa peningkatan penetrasi DFIG-WT
 memperburuk SSS terkonfirmasi melalui temuan margin kestabilan beban yang jauh
-lebih sempit pada skenario integrasi DFIG-WT (86\% untuk Beban B dan 63\% untuk
-Beban A) dibandingkan skenario tanpa PLTB (373\% dan 247\%) \cite{gautam2009impact}.
+lebih sempit pada skenario integrasi DFIG-WT (83\% untuk Beban A dan 123\% untuk
+Beban B) dibandingkan skenario tanpa PLTB (247\% dan 373\%) \cite{gautam2009impact}.
 
 Dalam aspek PMSG-WT, temuan penelitian ini sejalan dengan landasan teoritis bahwa
 \textit{fully-rated converter} pada PMSG memberikan pemisahan dinamis yang lebih
@@ -2131,4 +2249,27 @@ kestabilan beban, yang mengungkap bahwa lokasi integrasi PLTB, bukan hanya
 teknologinya, memberikan dampak yang signifikan terhadap respons kestabilan sistem
 --- temuan yang belum dikaji secara spesifik dalam konteks perbandingan DFIG-WT
 dan PMSG-WT \cite{he2015investigation}.
+
+Temuan penelitian ini juga dapat dikontekstualisasikan dengan beberapa penelitian
+tambahan. Essallah dkk.\ \cite{essallah2019} menganalisis SSS pada sistem IEEE
+39-bus dengan integrasi DFIG menggantikan SG dan menemukan bahwa mode osilasi
+primer mengalami perubahan signifikan; berbeda dengan penelitian ini yang
+memfokuskan pada SSS tanpa kendali tambahan, Essallah dkk.\ mengkaji efektivitas
+kombinasi AVR dan PSS sebagai mekanisme mitigasi. Alsakati dkk.\
+\cite{alsakati2021} mengkonfirmasi bahwa ketidakstabilan akibat penetrasi DFIG
+tinggi bukan hanya fenomena kestabilan sinyal kecil, melainkan juga berdampak
+pada kestabilan transien sistem IEEE 9-bus---memperkuat relevansi analisis batas
+beban yang dilakukan dalam penelitian ini. Liu Qi dkk.\ \cite{liuqi2023}
+memberikan konteks teoritis tambahan terhadap dominansi variabel $\varphi_m$
+DFIG pada mode tidak stabil Skenario 4.1 dan 4.2: parameter kontrol internal
+DFIG, khususnya inersia virtual dan koefisien redaman reaktif, terbukti
+berpengaruh langsung terhadap SSS dan dapat memicu ketidakstabilan aperiodik
+ketika tidak dikonfigurasi secara optimal. Sun dkk.\ \cite{sun2013small}
+melengkapi gambaran ini dengan menunjukkan bahwa pada sistem 9-bus WECC, SSS
+sistem DFIG justru dapat meningkat ketika PLTB beroperasi mendekati daya
+terukurnya---kontras dengan temuan penelitian ini di mana penetrasi DFIG yang
+menggantikan generator konvensional secara penuh justru menurunkan margin
+kestabilan beban, perbedaan yang berasal dari pendekatan penambahan PLTB
+(menambah kapasitas) versus penggantian generator (mengubah komposisi
+pembangkit).
 

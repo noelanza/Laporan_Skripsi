@@ -23,11 +23,11 @@ Penelitian ini menggunakan perangkat keras dan perangkat lunak berikut:
     477 GB. Digunakan untuk menjalankan perangkat lunak simulasi dan pengolahan
     data.
     \item DIgSILENT PowerFactory 2024, digunakan untuk memodelkan sistem IEEE
-    \textit{nine bus}, menjalankan simulasi \textit{load flow}, dan melakukan
-    \textit{modal analysis} untuk setiap skenario penelitian.
+    \textit{nine bus}, menjalankan simulasi \textit{load flow}, melakukan
+    \textit{modal analysis}, serta mensimulasikan \textit{load event} berupa
+    peningkatan beban untuk setiap skenario penelitian.
     \item Visual Studio Code dengan ekstensi \LaTeX{}, digunakan untuk menyusun
-    laporan penelitian dalam format \LaTeX{} sebagai sistem penulisan karya
-    ilmiah.
+    laporan skripsi dalam format \LaTeX{}.
 \end{enumerate}
 
 \subsection{Bahan Penelitian}
@@ -806,41 +806,55 @@ persamaan-persamaan yang telah dirumuskan di Bab 2 (Pers.~\ref{eq:def-eigenvalue
 
 \section{Klasifikasi Mode Osilasi}
 
-Mode osilasi diklasifikasikan berdasarkan frekuensi osilasi teredam ($f_d$) dan
-\textit{damping ratio} ($\zeta$). Berdasarkan frekuensi:
+Setiap \textit{eigenvalue} kompleks $\lambda = \sigma \pm j\omega_d$ membentuk
+satu mode osilasi. Penelitian ini menggunakan dua dasar klasifikasi: frekuensi
+osilasi teredam ($f_d$) untuk mengidentifikasi jenis interaksi dinamik, dan
+\textit{damping ratio} ($\zeta$) untuk menentukan status kestabilannya.
+
+Berdasarkan $f_d$, tiga kelompok mode dikenali:
 
 \begin{enumerate}
-    \item \textbf{Mode inter-area}: frekuensi osilasi berkisar antara 0,1 hingga
-    0,8 Hz, melibatkan osilasi antara kelompok generator yang berjauhan secara
-    elektris.
-    \item \textbf{Mode lokal (\textit{local area mode})}: frekuensi osilasi
-    berkisar antara 0,8 hingga 2,0 Hz, melibatkan osilasi satu generator
-    terhadap sisa sistem.
-    \item \textbf{Mode kontrol (\textit{control mode})}: frekuensi osilasi di
-    atas 2,0 Hz, berkaitan dengan dinamika sistem kontrol pada generator atau
-    peralatan \textit{power electronics}.
+    \item \textbf{Mode \textit{inter-area}} (0,1--0,8 Hz): osilasi antara
+    kelompok generator yang berjauhan secara elektris. Sistem IEEE \textit{nine
+    bus} berskala kecil sehingga mode ini umumnya tidak dominan pada kondisi
+    nominal, tetapi dapat terbentuk pada kondisi pembebanan ekstrem.
+    \item \textbf{Mode lokal} (0,8--2,0 Hz): satu generator berosilasi terhadap
+    sisa sistem. Mode-mode pada rentang ini menjadi fokus utama analisis karena
+    mencerminkan interaksi \textit{electromechanical} antargenerator sinkron.
+    \item \textbf{Mode kontrol} ($f_d > 2{,}0$ Hz): berasal dari dinamika
+    kontroler DFIG-WT atau PMSG-WT. Mode ini memiliki DR mendekati 100\% dan
+    teredam sempurna, sehingga tidak dianalisis lebih lanjut dalam kajian
+    kestabilan \textit{electromechanical}.
 \end{enumerate}
 
-Berdasarkan \textit{damping ratio}:
-
-\begin{enumerate}
-    \item \textbf{Stabil}: $\zeta > 0$, seluruh osilasi teredam seiring waktu.
-    \item \textbf{Kritis}: $\zeta = 0$, osilasi tidak teredam dan tidak
-    bertumbuh (\textit{marginal stability}).
-    \item \textbf{Tidak stabil}: $\zeta < 0$, osilasi bertumbuh tak terbatas dan
-    sistem kehilangan kestabilan sinyal kecil.
-\end{enumerate}
+Berdasarkan $\zeta$, mode diklasifikasikan sebagai stabil ($\zeta > 0$), di
+ambang kestabilan ($\zeta = 0$), atau tidak stabil ($\zeta < 0$). Tidak semua
+ketidakstabilan berwujud osilasi: pada skenario dengan DFIG-WT dan beban
+tinggi, \textit{eigenvalue} dapat berupa bilangan riil positif murni tanpa
+komponen imajiner, menghasilkan ketidakstabilan aperiodik dengan DR $= -100\%$,
+bukan \textit{growing oscillations} seperti pada pasangan konjugat kompleks
+dengan bagian riil positif. Mode dominan pada setiap skenario didefinisikan
+sebagai mode stabil dengan $\zeta$ terkecil, karena mode ini yang pertama
+melanggar kriteria kestabilan jika kondisi operasi bergeser.
 
 \section{Metode Perbandingan Hasil}
 
-Perbandingan antar skenario mengukur tiga parameter: \textit{damping ratio}
-terkecil, frekuensi osilasi teredam pada mode kritis, dan kontribusi komponen
-berdasarkan \textit{participation factor}.
+Setiap skenario dievaluasi berdasarkan tiga parameter: (1) \textit{damping
+ratio} minimum mode dominan pada kondisi nominal, (2) batas persentase
+peningkatan beban saat sistem pertama kali kehilangan kestabilan, dan (3)
+variabel keadaan yang mendominasi mode kritis berdasarkan \textit{participation
+factor}.
 
-Skenario 1.1 menjadi acuan terhadap Skenario 2.1, 2.2, 3.1, dan 3.2 untuk
-mengevaluasi pengaruh jenis PLTB dan lokasi penempatan terhadap kestabilan sinyal
-kecil. Skenario 4.x dan 5.x dibandingkan terhadap Skenario 1.2 dan 1.3 untuk
-mengukur pengaruh PLTB terhadap batas kestabilan dinamis saat beban meningkat.
-Kedua perbandingan menentukan teknologi dan konfigurasi PLTB yang paling
-menguntungkan dan paling berisiko bagi kestabilan sinyal kecil sistem IEEE
-\textit{nine bus}.
+Perbandingan disusun dalam dua kelompok. Kelompok pertama membandingkan
+Skenario 1.1 dengan Skenario 2.1, 2.2, 3.1, dan 3.2: parameter yang diukur
+adalah pergeseran DR mode dominan akibat penggantian generator konvensional oleh
+DFIG-WT atau PMSG-WT. Kelompok kedua membandingkan batas ketidakstabilan pada
+Skenario 4.1 dan 5.1 terhadap Skenario 1.3 (referensi Beban A), serta Skenario
+4.2 dan 5.2 terhadap Skenario 1.2 (referensi Beban B): parameter yang diukur
+adalah selisih margin kestabilan beban antara sistem dengan PLTB dan sistem
+konvensional pada beban yang sama.
+
+Analisis \textit{participation factor} pada mode kritis tiap skenario melengkapi
+kedua kelompok tersebut: variabel keadaan dominan mengidentifikasi komponen
+mana---generator sinkron, mesin PLTB, atau kontroler PLTB---yang paling
+berpengaruh terhadap mode osilasi dominan maupun mode tidak stabil.

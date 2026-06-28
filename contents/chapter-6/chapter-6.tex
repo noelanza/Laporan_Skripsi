@@ -17,11 +17,13 @@ baik ketika DFIG-WT menggantikan G3 (Skenario 2.1, 85 MW) maupun G2 (Skenario
 (4,04\% vs 4,05\%). Analisis \textit{participation factor} pada skenario
 peningkatan beban menunjukkan bahwa variabel $\varphi_m$ (sudut rotor internal
 DFIG-WT) mendominasi mode tidak stabil, mengonfirmasi bahwa dinamika internal
-DFIG-WT memicu ketidakstabilan. Integrasi DFIG-WT juga mempersempit margin
-kestabilan beban: batas ketidakstabilan Beban B turun dari 373\%
-menjadi 86\%, dan Beban A dari 247\% menjadi 63\%. Nilai DR pada batas
-ketidakstabilan ($-$10,60\% dan $-$7,42\%) jauh lebih negatif dibandingkan sistem
-konvensional, menandakan DFIG-WT kehilangan kestabilan lebih cepat.
+DFIG-WT memicu ketidakstabilan. Integrasi DFIG-WT juga mempersempit margin kestabilan beban secara signifikan:
+batas ketidakstabilan Beban A turun dari 247\% menjadi 83\% (Skenario 4.1), dan
+Beban B dari 373\% menjadi 123\% (Skenario 4.2). Ketidakstabilan yang terjadi
+bersifat aperiodik dengan DR $-$100\% pada kedua \textit{eigenvalue} riil positif,
+berbeda dari ketidakstabilan osilatoris pada skenario konvensional (DR $-$1,17\%
+pada Skenario 1.2 dan $-$2,45\% pada Skenario 1.3), menunjukkan mekanisme
+kehilangan kestabilan yang lebih cepat dan tanpa osilasi peringatan.
 
 \item Integrasi PMSG-WT mempertahankan atau meningkatkan \textit{damping
 ratio}, dengan margin kestabilan beban yang bergantung pada posisi. Penggantian
@@ -32,12 +34,14 @@ generator oleh PMSG-WT memengaruhi DR, di mana penggantian G2 (kapasitas lebih
 besar, 163 MW) justru menghasilkan redaman lebih tinggi. Analisis
 \textit{participation factor} mengonfirmasi bahwa variabel dari model PMSG-WT
 tidak muncul sebagai kontributor dominan pada mode osilasi, karena
-\textit{fully-rated converter} memisahkan dinamika mesin dari jaringan. Margin
-kestabilan beban dengan PMSG-WT lebih baik dibandingkan DFIG-WT, namun bergantung
-pada konfigurasi: pada peningkatan Beban B sebesar 237\%, sistem dengan PMSG-WT
-menggantikan G3 (Skenario 5.1) tepat berada di batas ketidakstabilan (DR =
-$-$0,63\%), sementara sistem dengan PMSG-WT menggantikan G2 (Skenario 5.2) masih
-stabil pada peningkatan Beban A yang sama dengan DR = 8,39\%.
+\textit{fully-rated converter} memisahkan dinamika mesin dari jaringan. Margin kestabilan beban dengan PMSG-WT secara konsisten lebih baik dibandingkan
+DFIG-WT: batas ketidakstabilan Beban A pada Skenario 5.1 (PMSG-WT menggantikan
+G3) adalah 165\%, lebih dari dua kali lipat Skenario 4.1 (DFIG-WT menggantikan
+G3, 83\%); batas ketidakstabilan Beban B pada Skenario 5.2 (PMSG-WT menggantikan
+G2) adalah 284\%, juga lebih dari dua kali lipat Skenario 4.2 (DFIG-WT
+menggantikan G2, 123\%). Nilai DR pada batas ketidakstabilan adalah $-$0,60\%
+(Skenario 5.1, osilasi sangat lambat dengan $f_d = 0{,}006$ Hz) dan $-$0,075\%
+(Skenario 5.2, osilasi \textit{inter-area} dengan $f_d = 0{,}340$ Hz).
 
 \item DFIG-WT dan PMSG-WT memberikan dampak yang berlawanan terhadap
 SSS, dengan perbedaan mendasar pada \textit{eigenvalue}, DR, dan
@@ -50,10 +54,10 @@ tergolong \textit{local area mode} (1,38--1,86 Hz), tanpa karakteristik
 PLTB: 16 mode (kondisi awal), 20 mode (PMSG-WT), dan 30 mode (DFIG-WT),
 mencerminkan kompleksitas model kontrol DFIG-WT yang lebih tinggi. Ketika sistem
 mencapai ketidakstabilan, variabel dominan berbeda: $\varphi_m$ DFIG-WT
-mendominasi pada Skenario 4.1 dan 4.2, sedangkan $\omega$ G1 mendominasi pada
-skenario PMSG-WT (5.1) maupun skenario konvensional (1.2, 1.3), mengonfirmasi
-bahwa \textit{fully-rated converter} PMSG-WT mencegah dinamika mesin
-berpartisipasi dalam mode tidak stabil.
+mendominasi pada Skenario 4.1 dan 4.2, sedangkan $\omega$ G$_1$ mendominasi pada skenario PMSG-WT (5.1) maupun skenario
+konvensional (1.2, 1.3), dan $x_{s2}$ PLL PMSG-WT mendominasi pada Skenario 5.2,
+mengonfirmasi bahwa \textit{fully-rated converter} PMSG-WT mencegah dinamika mesin
+itu sendiri berpartisipasi langsung dalam mode tidak stabil.
 
 \end{enumerate}
 
